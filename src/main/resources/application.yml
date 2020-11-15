@@ -1,0 +1,44 @@
+server:
+  servlet:
+    context-path: /
+  port: 685
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  mvc:
+    view:
+      suffix: /,/fore,/back
+      prefix: .html
+  thymeleaf:
+    cache: false
+  devtools:
+    restart:
+      enable: true
+      additional-paths: src/main/java
+      additional-exclude: static
+  datasource:
+    url: jdbc:mysql://localhost:3306/mul_amuse?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  type-aliases-package: com.skyc.demo.*.dao
+  mapper-locations: classpath:mapper/*/*.xml
+logging:
+  level:
+    com:
+      tm:
+        huanglu:
+          dao:
+            factory: debug
+            file: debug
+            log: debug
+            problem: debug
+            product: debug
+            tm: debug
+            user: debug
+
