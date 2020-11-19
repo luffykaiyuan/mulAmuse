@@ -10,7 +10,7 @@ spring:
       max-request-size: 100MB
   mvc:
     view:
-      suffix: /,/fore,/back
+      suffix: /,/fore,/back,/test
       prefix: .html
   thymeleaf:
     cache: false
@@ -42,3 +42,4 @@ logging:
             tm: debug
             user: debug
 
+uploadPath: C:/upload/img

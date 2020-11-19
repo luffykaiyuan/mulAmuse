@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RouteCon {
 
-    @RequestMapping("/test")
+    @RequestMapping("/uploadTest")
     public String entryTest(){
-        return "fore/test";
+        return "test/uploadTest";
     }
 
 }

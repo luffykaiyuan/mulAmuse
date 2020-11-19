@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    [v-cloak]{
+        display: none;
+    }
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+    }
+    .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
+    }
+</style>
+<body>
+    <div id="app" v-cloak>
+        <el-upload
+                class="avatar-uploader"
+                :action="urls.imgUpload"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload">
+            <img v-if="imageUrl" :src="imageUrl" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
+    </div>
+</body>
+<script src="./js/jquery.js"></script>
+<script src="./js/vue.min.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/axios.min.js"></script>
+<script>
+
+    var vue1 = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                imageUrl: '',
+                urls:{
+                    imgUpload: '/file/fileUpload'
+                },
+            }
+        },
+        created: function () {
+        },
+        methods: {
+            handleAvatarSuccess(res, file) {
+                this.imageUrl = URL.createObjectURL(file.raw);
+                console.log(res);
+            },
+            beforeAvatarUpload(file) {
+                console.log(file);
+                const isJPG = file.type === 'image/jpeg';
+                const isPNG = file.type === 'image/png';
+                const isLt2M = file.size / 1024 / 1024 < 100;
+
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 100MB!');
+                    return false;
+                }
+
+                if (isJPG) {
+                    return true;
+                } else {
+                    if (isPNG) {
+                        return true;
+                    }
+                }
+                this.$message.error('上传头像图片只能是 JPG 或 PNG 格式!');
+                return false;
+            },
+        },
+        watch: {}
+    });
+</script>
+</html>
