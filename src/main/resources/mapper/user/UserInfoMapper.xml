@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.user.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.user.po.UserInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="wechat_number" jdbcType="VARCHAR" property="wechatNumber" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="user_rank" jdbcType="VARCHAR" property="userRank" />
+    <result column="user_title" jdbcType="VARCHAR" property="userTitle" />
+    <result column="user_count" jdbcType="REAL" property="userCount" />
+    <result column="user_invite" jdbcType="VARCHAR" property="userInvite" />
+    <result column="invite_number" jdbcType="INTEGER" property="inviteNumber" />
+    <result column="father_id" jdbcType="VARCHAR" property="fatherId" />
+    <result column="father_title" jdbcType="VARCHAR" property="fatherTitle" />
+    <result column="father_support" jdbcType="REAL" property="fatherSupport" />
+    <result column="grand_id" jdbcType="VARCHAR" property="grandId" />
+    <result column="grand_title" jdbcType="VARCHAR" property="grandTitle" />
+    <result column="grand_support" jdbcType="REAL" property="grandSupport" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, password, wechat_number, head_img, nick_name, user_phone, user_rank, 
+    user_title, user_count, user_invite, invite_number, father_id, father_title, father_support, 
+    grand_id, grand_title, grand_support, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.user.po.UserInfo">
+    insert into user_info (id, user_name, password, 
+      wechat_number, head_img, nick_name, 
+      user_phone, user_rank, user_title, 
+      user_count, user_invite, invite_number, 
+      father_id, father_title, father_support, 
+      grand_id, grand_title, grand_support, 
+      add_time, status)
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{wechatNumber,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{userPhone,jdbcType=VARCHAR}, #{userRank,jdbcType=VARCHAR}, #{userTitle,jdbcType=VARCHAR}, 
+      #{userCount,jdbcType=REAL}, #{userInvite,jdbcType=VARCHAR}, #{inviteNumber,jdbcType=INTEGER}, 
+      #{fatherId,jdbcType=VARCHAR}, #{fatherTitle,jdbcType=VARCHAR}, #{fatherSupport,jdbcType=REAL}, 
+      #{grandId,jdbcType=VARCHAR}, #{grandTitle,jdbcType=VARCHAR}, #{grandSupport,jdbcType=REAL}, 
+      #{addTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.UserInfo">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="wechatNumber != null">
+        wechat_number,
+      </if>
+      <if test="headImg != null">
+        head_img,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="userRank != null">
+        user_rank,
+      </if>
+      <if test="userTitle != null">
+        user_title,
+      </if>
+      <if test="userCount != null">
+        user_count,
+      </if>
+      <if test="userInvite != null">
+        user_invite,
+      </if>
+      <if test="inviteNumber != null">
+        invite_number,
+      </if>
+      <if test="fatherId != null">
+        father_id,
+      </if>
+      <if test="fatherTitle != null">
+        father_title,
+      </if>
+      <if test="fatherSupport != null">
+        father_support,
+      </if>
+      <if test="grandId != null">
+        grand_id,
+      </if>
+      <if test="grandTitle != null">
+        grand_title,
+      </if>
+      <if test="grandSupport != null">
+        grand_support,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatNumber != null">
+        #{wechatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null">
+        #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userRank != null">
+        #{userRank,jdbcType=VARCHAR},
+      </if>
+      <if test="userTitle != null">
+        #{userTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="userCount != null">
+        #{userCount,jdbcType=REAL},
+      </if>
+      <if test="userInvite != null">
+        #{userInvite,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteNumber != null">
+        #{inviteNumber,jdbcType=INTEGER},
+      </if>
+      <if test="fatherId != null">
+        #{fatherId,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherTitle != null">
+        #{fatherTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherSupport != null">
+        #{fatherSupport,jdbcType=REAL},
+      </if>
+      <if test="grandId != null">
+        #{grandId,jdbcType=VARCHAR},
+      </if>
+      <if test="grandTitle != null">
+        #{grandTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="grandSupport != null">
+        #{grandSupport,jdbcType=REAL},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatNumber != null">
+        wechat_number = #{wechatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null">
+        head_img = #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userRank != null">
+        user_rank = #{userRank,jdbcType=VARCHAR},
+      </if>
+      <if test="userTitle != null">
+        user_title = #{userTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="userCount != null">
+        user_count = #{userCount,jdbcType=REAL},
+      </if>
+      <if test="userInvite != null">
+        user_invite = #{userInvite,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteNumber != null">
+        invite_number = #{inviteNumber,jdbcType=INTEGER},
+      </if>
+      <if test="fatherId != null">
+        father_id = #{fatherId,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherTitle != null">
+        father_title = #{fatherTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherSupport != null">
+        father_support = #{fatherSupport,jdbcType=REAL},
+      </if>
+      <if test="grandId != null">
+        grand_id = #{grandId,jdbcType=VARCHAR},
+      </if>
+      <if test="grandTitle != null">
+        grand_title = #{grandTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="grandSupport != null">
+        grand_support = #{grandSupport,jdbcType=REAL},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      wechat_number = #{wechatNumber,jdbcType=VARCHAR},
+      head_img = #{headImg,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_rank = #{userRank,jdbcType=VARCHAR},
+      user_title = #{userTitle,jdbcType=VARCHAR},
+      user_count = #{userCount,jdbcType=REAL},
+      user_invite = #{userInvite,jdbcType=VARCHAR},
+      invite_number = #{inviteNumber,jdbcType=INTEGER},
+      father_id = #{fatherId,jdbcType=VARCHAR},
+      father_title = #{fatherTitle,jdbcType=VARCHAR},
+      father_support = #{fatherSupport,jdbcType=REAL},
+      grand_id = #{grandId,jdbcType=VARCHAR},
+      grand_title = #{grandTitle,jdbcType=VARCHAR},
+      grand_support = #{grandSupport,jdbcType=REAL},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.skyc.demo.user.po.UserInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="img_id" jdbcType="VARCHAR" property="imgId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, nick_name, gender, phone, email, sign, address, img_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.user.po.UserInfo">
+    insert into user_info (id, nick_name, gender, 
+      phone, email, sign, 
+      address, img_id)
+    values (#{id,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{imgId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.UserInfo">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="imgId != null">
+        img_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null">
+        #{imgId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    <set>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null">
+        img_id = #{imgId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      img_id = #{imgId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.skyc.demo.user.po.UserInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="login_id" jdbcType="VARCHAR" property="loginId" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="img_id" jdbcType="VARCHAR" property="imgId" />
+    <result column="user_gender" jdbcType="VARCHAR" property="userGender" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="qq_number" jdbcType="VARCHAR" property="qqNumber" />
+    <result column="wechat_number" jdbcType="VARCHAR" property="wechatNumber" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="delete_status" jdbcType="VARCHAR" property="deleteStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, login_id, nick_name, img_id, user_gender, phone, qq_number, wechat_number, add_time, 
+    delete_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.user.po.UserInfo">
+    insert into user_info (id, login_id, nick_name, 
+      img_id, user_gender, phone, 
+      qq_number, wechat_number, add_time, 
+      delete_status)
+    values (#{id,jdbcType=VARCHAR}, #{loginId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{imgId,jdbcType=VARCHAR}, #{userGender,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{qqNumber,jdbcType=VARCHAR}, #{wechatNumber,jdbcType=VARCHAR}, #{addTime,jdbcType=VARCHAR}, 
+      #{deleteStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.UserInfo">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loginId != null">
+        login_id,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="imgId != null">
+        img_id,
+      </if>
+      <if test="userGender != null">
+        user_gender,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="qqNumber != null">
+        qq_number,
+      </if>
+      <if test="wechatNumber != null">
+        wechat_number,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="deleteStatus != null">
+        delete_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loginId != null">
+        #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null">
+        #{imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null">
+        #{userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qqNumber != null">
+        #{qqNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatNumber != null">
+        #{wechatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    <set>
+      <if test="loginId != null">
+        login_id = #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null">
+        img_id = #{imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null">
+        user_gender = #{userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qqNumber != null">
+        qq_number = #{qqNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatNumber != null">
+        wechat_number = #{wechatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        delete_status = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    set login_id = #{loginId,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      img_id = #{imgId,jdbcType=VARCHAR},
+      user_gender = #{userGender,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      qq_number = #{qqNumber,jdbcType=VARCHAR},
+      wechat_number = #{wechatNumber,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      delete_status = #{deleteStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.skyc.demo.user.po.UserInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, password, nick_name, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.user.po.UserInfo">
+    insert into user_info (id, user_name, password, 
+      nick_name, status)
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.UserInfo">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.merchants.dao.ProductInfoMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.merchants.po.ProductInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="product_type" jdbcType="VARCHAR" property="productType" />
+    <result column="product_free" jdbcType="VARCHAR" property="productFree" />
+    <result column="product_cover_img" jdbcType="VARCHAR" property="productCoverImg" />
+    <result column="product_main_img1" jdbcType="VARCHAR" property="productMainImg1" />
+    <result column="product_main_img2" jdbcType="VARCHAR" property="productMainImg2" />
+    <result column="product_main_img3" jdbcType="VARCHAR" property="productMainImg3" />
+    <result column="product_main_img4" jdbcType="VARCHAR" property="productMainImg4" />
+    <result column="product_main_img5" jdbcType="VARCHAR" property="productMainImg5" />
+    <result column="product_title" jdbcType="VARCHAR" property="productTitle" />
+    <result column="product_sale_status" jdbcType="VARCHAR" property="productSaleStatus" />
+    <result column="product_sale_time" jdbcType="VARCHAR" property="productSaleTime" />
+    <result column="product_original_price" jdbcType="REAL" property="productOriginalPrice" />
+    <result column="product_now_price" jdbcType="REAL" property="productNowPrice" />
+    <result column="product_vip_price" jdbcType="REAL" property="productVipPrice" />
+    <result column="product_sale_volume" jdbcType="INTEGER" property="productSaleVolume" />
+    <result column="product_detail" jdbcType="VARCHAR" property="productDetail" />
+    <result column="max_appointment" jdbcType="INTEGER" property="maxAppointment" />
+    <result column="product_end_time" jdbcType="VARCHAR" property="productEndTime" />
+    <result column="commission_heigh" jdbcType="REAL" property="commissionHeigh" />
+    <result column="commission_middle" jdbcType="REAL" property="commissionMiddle" />
+    <result column="commission_low" jdbcType="REAL" property="commissionLow" />
+    <result column="operate_id" jdbcType="VARCHAR" property="operateId" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, store_id, product_type, product_free, product_cover_img, product_main_img1, product_main_img2, 
+    product_main_img3, product_main_img4, product_main_img5, product_title, product_sale_status, 
+    product_sale_time, product_original_price, product_now_price, product_vip_price, 
+    product_sale_volume, product_detail, max_appointment, product_end_time, commission_heigh, 
+    commission_middle, commission_low, operate_id, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    insert into product_info (id, store_id, product_type, 
+      product_free, product_cover_img, product_main_img1, 
+      product_main_img2, product_main_img3, product_main_img4, 
+      product_main_img5, product_title, product_sale_status, 
+      product_sale_time, product_original_price, product_now_price, 
+      product_vip_price, product_sale_volume, product_detail, 
+      max_appointment, product_end_time, commission_heigh, 
+      commission_middle, commission_low, operate_id, 
+      add_time, status)
+    values (#{id,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
+      #{productFree,jdbcType=VARCHAR}, #{productCoverImg,jdbcType=VARCHAR}, #{productMainImg1,jdbcType=VARCHAR}, 
+      #{productMainImg2,jdbcType=VARCHAR}, #{productMainImg3,jdbcType=VARCHAR}, #{productMainImg4,jdbcType=VARCHAR}, 
+      #{productMainImg5,jdbcType=VARCHAR}, #{productTitle,jdbcType=VARCHAR}, #{productSaleStatus,jdbcType=VARCHAR}, 
+      #{productSaleTime,jdbcType=VARCHAR}, #{productOriginalPrice,jdbcType=REAL}, #{productNowPrice,jdbcType=REAL}, 
+      #{productVipPrice,jdbcType=REAL}, #{productSaleVolume,jdbcType=INTEGER}, #{productDetail,jdbcType=VARCHAR}, 
+      #{maxAppointment,jdbcType=INTEGER}, #{productEndTime,jdbcType=VARCHAR}, #{commissionHeigh,jdbcType=REAL}, 
+      #{commissionMiddle,jdbcType=REAL}, #{commissionLow,jdbcType=REAL}, #{operateId,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    insert into product_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="productType != null">
+        product_type,
+      </if>
+      <if test="productFree != null">
+        product_free,
+      </if>
+      <if test="productCoverImg != null">
+        product_cover_img,
+      </if>
+      <if test="productMainImg1 != null">
+        product_main_img1,
+      </if>
+      <if test="productMainImg2 != null">
+        product_main_img2,
+      </if>
+      <if test="productMainImg3 != null">
+        product_main_img3,
+      </if>
+      <if test="productMainImg4 != null">
+        product_main_img4,
+      </if>
+      <if test="productMainImg5 != null">
+        product_main_img5,
+      </if>
+      <if test="productTitle != null">
+        product_title,
+      </if>
+      <if test="productSaleStatus != null">
+        product_sale_status,
+      </if>
+      <if test="productSaleTime != null">
+        product_sale_time,
+      </if>
+      <if test="productOriginalPrice != null">
+        product_original_price,
+      </if>
+      <if test="productNowPrice != null">
+        product_now_price,
+      </if>
+      <if test="productVipPrice != null">
+        product_vip_price,
+      </if>
+      <if test="productSaleVolume != null">
+        product_sale_volume,
+      </if>
+      <if test="productDetail != null">
+        product_detail,
+      </if>
+      <if test="maxAppointment != null">
+        max_appointment,
+      </if>
+      <if test="productEndTime != null">
+        product_end_time,
+      </if>
+      <if test="commissionHeigh != null">
+        commission_heigh,
+      </if>
+      <if test="commissionMiddle != null">
+        commission_middle,
+      </if>
+      <if test="commissionLow != null">
+        commission_low,
+      </if>
+      <if test="operateId != null">
+        operate_id,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productFree != null">
+        #{productFree,jdbcType=VARCHAR},
+      </if>
+      <if test="productCoverImg != null">
+        #{productCoverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg1 != null">
+        #{productMainImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg2 != null">
+        #{productMainImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg3 != null">
+        #{productMainImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg4 != null">
+        #{productMainImg4,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg5 != null">
+        #{productMainImg5,jdbcType=VARCHAR},
+      </if>
+      <if test="productTitle != null">
+        #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="productSaleStatus != null">
+        #{productSaleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productSaleTime != null">
+        #{productSaleTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productOriginalPrice != null">
+        #{productOriginalPrice,jdbcType=REAL},
+      </if>
+      <if test="productNowPrice != null">
+        #{productNowPrice,jdbcType=REAL},
+      </if>
+      <if test="productVipPrice != null">
+        #{productVipPrice,jdbcType=REAL},
+      </if>
+      <if test="productSaleVolume != null">
+        #{productSaleVolume,jdbcType=INTEGER},
+      </if>
+      <if test="productDetail != null">
+        #{productDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="maxAppointment != null">
+        #{maxAppointment,jdbcType=INTEGER},
+      </if>
+      <if test="productEndTime != null">
+        #{productEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="commissionHeigh != null">
+        #{commissionHeigh,jdbcType=REAL},
+      </if>
+      <if test="commissionMiddle != null">
+        #{commissionMiddle,jdbcType=REAL},
+      </if>
+      <if test="commissionLow != null">
+        #{commissionLow,jdbcType=REAL},
+      </if>
+      <if test="operateId != null">
+        #{operateId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    update product_info
+    <set>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        product_type = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productFree != null">
+        product_free = #{productFree,jdbcType=VARCHAR},
+      </if>
+      <if test="productCoverImg != null">
+        product_cover_img = #{productCoverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg1 != null">
+        product_main_img1 = #{productMainImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg2 != null">
+        product_main_img2 = #{productMainImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg3 != null">
+        product_main_img3 = #{productMainImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg4 != null">
+        product_main_img4 = #{productMainImg4,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg5 != null">
+        product_main_img5 = #{productMainImg5,jdbcType=VARCHAR},
+      </if>
+      <if test="productTitle != null">
+        product_title = #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="productSaleStatus != null">
+        product_sale_status = #{productSaleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productSaleTime != null">
+        product_sale_time = #{productSaleTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productOriginalPrice != null">
+        product_original_price = #{productOriginalPrice,jdbcType=REAL},
+      </if>
+      <if test="productNowPrice != null">
+        product_now_price = #{productNowPrice,jdbcType=REAL},
+      </if>
+      <if test="productVipPrice != null">
+        product_vip_price = #{productVipPrice,jdbcType=REAL},
+      </if>
+      <if test="productSaleVolume != null">
+        product_sale_volume = #{productSaleVolume,jdbcType=INTEGER},
+      </if>
+      <if test="productDetail != null">
+        product_detail = #{productDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="maxAppointment != null">
+        max_appointment = #{maxAppointment,jdbcType=INTEGER},
+      </if>
+      <if test="productEndTime != null">
+        product_end_time = #{productEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="commissionHeigh != null">
+        commission_heigh = #{commissionHeigh,jdbcType=REAL},
+      </if>
+      <if test="commissionMiddle != null">
+        commission_middle = #{commissionMiddle,jdbcType=REAL},
+      </if>
+      <if test="commissionLow != null">
+        commission_low = #{commissionLow,jdbcType=REAL},
+      </if>
+      <if test="operateId != null">
+        operate_id = #{operateId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    update product_info
+    set store_id = #{storeId,jdbcType=VARCHAR},
+      product_type = #{productType,jdbcType=VARCHAR},
+      product_free = #{productFree,jdbcType=VARCHAR},
+      product_cover_img = #{productCoverImg,jdbcType=VARCHAR},
+      product_main_img1 = #{productMainImg1,jdbcType=VARCHAR},
+      product_main_img2 = #{productMainImg2,jdbcType=VARCHAR},
+      product_main_img3 = #{productMainImg3,jdbcType=VARCHAR},
+      product_main_img4 = #{productMainImg4,jdbcType=VARCHAR},
+      product_main_img5 = #{productMainImg5,jdbcType=VARCHAR},
+      product_title = #{productTitle,jdbcType=VARCHAR},
+      product_sale_status = #{productSaleStatus,jdbcType=VARCHAR},
+      product_sale_time = #{productSaleTime,jdbcType=VARCHAR},
+      product_original_price = #{productOriginalPrice,jdbcType=REAL},
+      product_now_price = #{productNowPrice,jdbcType=REAL},
+      product_vip_price = #{productVipPrice,jdbcType=REAL},
+      product_sale_volume = #{productSaleVolume,jdbcType=INTEGER},
+      product_detail = #{productDetail,jdbcType=VARCHAR},
+      max_appointment = #{maxAppointment,jdbcType=INTEGER},
+      product_end_time = #{productEndTime,jdbcType=VARCHAR},
+      commission_heigh = #{commissionHeigh,jdbcType=REAL},
+      commission_middle = #{commissionMiddle,jdbcType=REAL},
+      commission_low = #{commissionLow,jdbcType=REAL},
+      operate_id = #{operateId,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.skyc.demo.merchants.po.ProductInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="belong_to_id" jdbcType="VARCHAR" property="belongToId" />
+    <result column="belong_to_name" jdbcType="VARCHAR" property="belongToName" />
+    <result column="purchase_price" jdbcType="REAL" property="purchasePrice" />
+    <result column="wholesale_price" jdbcType="REAL" property="wholesalePrice" />
+    <result column="tm_price" jdbcType="REAL" property="tmPrice" />
+    <result column="inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_name, belong_to_id, belong_to_name, purchase_price, wholesale_price, 
+    tm_price, inventory, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    insert into product_info (id, product_name, belong_to_id, 
+      belong_to_name, purchase_price, wholesale_price, 
+      tm_price, inventory, add_time, 
+      status)
+    values (#{id,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{belongToId,jdbcType=VARCHAR}, 
+      #{belongToName,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=REAL}, #{wholesalePrice,jdbcType=REAL}, 
+      #{tmPrice,jdbcType=REAL}, #{inventory,jdbcType=INTEGER}, #{addTime,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    insert into product_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="belongToId != null">
+        belong_to_id,
+      </if>
+      <if test="belongToName != null">
+        belong_to_name,
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price,
+      </if>
+      <if test="wholesalePrice != null">
+        wholesale_price,
+      </if>
+      <if test="tmPrice != null">
+        tm_price,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="belongToId != null">
+        #{belongToId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongToName != null">
+        #{belongToName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null">
+        #{purchasePrice,jdbcType=REAL},
+      </if>
+      <if test="wholesalePrice != null">
+        #{wholesalePrice,jdbcType=REAL},
+      </if>
+      <if test="tmPrice != null">
+        #{tmPrice,jdbcType=REAL},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    update product_info
+    <set>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="belongToId != null">
+        belong_to_id = #{belongToId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongToName != null">
+        belong_to_name = #{belongToName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price = #{purchasePrice,jdbcType=REAL},
+      </if>
+      <if test="wholesalePrice != null">
+        wholesale_price = #{wholesalePrice,jdbcType=REAL},
+      </if>
+      <if test="tmPrice != null">
+        tm_price = #{tmPrice,jdbcType=REAL},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    update product_info
+    set product_name = #{productName,jdbcType=VARCHAR},
+      belong_to_id = #{belongToId,jdbcType=VARCHAR},
+      belong_to_name = #{belongToName,jdbcType=VARCHAR},
+      purchase_price = #{purchasePrice,jdbcType=REAL},
+      wholesale_price = #{wholesalePrice,jdbcType=REAL},
+      tm_price = #{tmPrice,jdbcType=REAL},
+      inventory = #{inventory,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.skyc.demo.merchants.po.ProductInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="main_title" jdbcType="VARCHAR" property="mainTitle" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="show_id" jdbcType="VARCHAR" property="showId" />
+    <result column="img_id" jdbcType="VARCHAR" property="imgId" />
+    <result column="video_id" jdbcType="VARCHAR" property="videoId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, main_title, sub_title, add_time, show_id, img_id, video_id, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    insert into product_info (id, main_title, sub_title, 
+      add_time, show_id, img_id, 
+      video_id, status)
+    values (#{id,jdbcType=VARCHAR}, #{mainTitle,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=VARCHAR}, #{showId,jdbcType=VARCHAR}, #{imgId,jdbcType=VARCHAR}, 
+      #{videoId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    insert into product_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mainTitle != null">
+        main_title,
+      </if>
+      <if test="subTitle != null">
+        sub_title,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="showId != null">
+        show_id,
+      </if>
+      <if test="imgId != null">
+        img_id,
+      </if>
+      <if test="videoId != null">
+        video_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mainTitle != null">
+        #{mainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="showId != null">
+        #{showId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null">
+        #{imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoId != null">
+        #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    update product_info
+    <set>
+      <if test="mainTitle != null">
+        main_title = #{mainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        sub_title = #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="showId != null">
+        show_id = #{showId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null">
+        img_id = #{imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoId != null">
+        video_id = #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    update product_info
+    set main_title = #{mainTitle,jdbcType=VARCHAR},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      show_id = #{showId,jdbcType=VARCHAR},
+      img_id = #{imgId,jdbcType=VARCHAR},
+      video_id = #{videoId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

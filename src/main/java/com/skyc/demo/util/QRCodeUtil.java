@@ -24,10 +24,13 @@ import com.google.zxing.Result;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.skyc.demo.admin.service.FileInfoService;
-import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.web.multipart.MultipartFile;
 
+/*
+ * 二维码的编辑
+ * @author luffykaiyuan
+ * @date 2020/11/22 11:34
+ * @return
+ */
 public class QRCodeUtil {
     private static final String CHARSET = "utf-8";
     private static final String FORMAT_NAME = "JPG";

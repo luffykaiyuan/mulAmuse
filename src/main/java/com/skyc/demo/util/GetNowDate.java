@@ -3,6 +3,12 @@ package com.skyc.demo.util;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/*
+ * 获取当前时间
+ * @author luffykaiyuan
+ * @date 2020/11/22 11:24
+ * @return
+ */
 public class GetNowDate {
     //获取字符串类型的当前时间
     public static String getStringDate() {

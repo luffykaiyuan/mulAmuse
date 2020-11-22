@@ -2,6 +2,12 @@ package com.skyc.demo.util;
 
 import java.util.UUID;
 
+/*
+ * UUID获取
+ * @author luffykaiyuan
+ * @date 2020/11/22 11:34
+ * @return
+ */
 public class UUIDUtils {
 
     public static  String getUUID()

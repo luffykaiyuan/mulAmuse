@@ -27,8 +27,7 @@ spring:
 
 mybatis:
   type-aliases-package: com.skyc.demo.*.dao
-  mapper-locations: classpath:mapper/*/*.xml
-logging:
+  mapper-locations: classpath:mapper/admin/*.xml
   level:
     com:
       tm:

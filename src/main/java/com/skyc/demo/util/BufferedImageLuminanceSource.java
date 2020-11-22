@@ -5,6 +5,12 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import com.google.zxing.LuminanceSource;
 
+/* 
+ * 二维码处理相关
+ * @author luffykaiyuan
+ * @date 2020/11/22 11:22
+ * @return 
+ */
 public class BufferedImageLuminanceSource extends LuminanceSource {
 
     private final BufferedImage image;

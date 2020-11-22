@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="./js/jquery.js"></script>
+    <script src="./js/vue.min.js"></script>
+    <!-- import JavaScript -->
+    <script src="./js/index.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <title>Title</title>
+</head>
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<body>
+    <div id="app" v-cloak>
+        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+            <el-form-item label="用户头衔">
+                <el-select v-model="formInline.userTitle" placeholder="用户头衔">
+                    <el-option label="用户" value="0"></el-option>
+                    <el-option label="初级达人" value="1"></el-option>
+                    <el-option label="中级达人" value="2"></el-option>
+                    <el-option label="高级达人" value="3"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="父级头衔">
+                <el-select v-model="formInline.fatherTitle" placeholder="父级头衔">
+                    <el-option label="用户" value="0"></el-option>
+                    <el-option label="初级达人" value="1"></el-option>
+                    <el-option label="中级达人" value="2"></el-option>
+                    <el-option label="高级达人" value="3"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="爷级头衔">
+                <el-select v-model="formInline.grandTitle" placeholder="爷级头衔">
+                    <el-option label="用户" value="0"></el-option>
+                    <el-option label="初级达人" value="1"></el-option>
+                    <el-option label="中级达人" value="2"></el-option>
+                    <el-option label="高级达人" value="3"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="onSubmit">查询</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+</body>
+<script>
+    var vue1 = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                urls:{
+                    getCommission: '/commission/getCommission'
+                },
+                formInline: {
+                    userTitle: '',
+                    fatherTitle: '',
+                    grandTitle: ''
+                }
+            }
+        },
+        created: function () {
+        },
+        methods: {
+            onSubmit() {
+                var self = this;
+                var url = self.urls.getCommission;
+                axios.post(url, self.formInline)
+                    .then(function (res) {
+                        alert("用户获得" + res.data[0] + ",父级获得" + res.data[1] + ",爷级获得" + res.data[2])
+                    })
+            }
+        },
+        watch: {}
+    });
+</script>
+</html>
