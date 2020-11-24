@@ -36,37 +36,21 @@
     product_sale_volume, product_detail, max_appointment, product_end_time, commission_heigh, 
     commission_middle, commission_low, operate_id, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectProductByStore" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from product_info
-    where id = #{id,jdbcType=VARCHAR}
+    where store_id = #{storeId,jdbcType=VARCHAR}
+    order by add_time desc
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from product_info
+  <select id="selectProductById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
     where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.merchants.po.ProductInfo">
-    insert into product_info (id, store_id, product_type, 
-      product_free, product_cover_img, product_main_img1, 
-      product_main_img2, product_main_img3, product_main_img4, 
-      product_main_img5, product_title, product_sale_status, 
-      product_sale_time, product_original_price, product_now_price, 
-      product_vip_price, product_sale_volume, product_detail, 
-      max_appointment, product_end_time, commission_heigh, 
-      commission_middle, commission_low, operate_id, 
-      add_time, status)
-    values (#{id,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
-      #{productFree,jdbcType=VARCHAR}, #{productCoverImg,jdbcType=VARCHAR}, #{productMainImg1,jdbcType=VARCHAR}, 
-      #{productMainImg2,jdbcType=VARCHAR}, #{productMainImg3,jdbcType=VARCHAR}, #{productMainImg4,jdbcType=VARCHAR}, 
-      #{productMainImg5,jdbcType=VARCHAR}, #{productTitle,jdbcType=VARCHAR}, #{productSaleStatus,jdbcType=VARCHAR}, 
-      #{productSaleTime,jdbcType=VARCHAR}, #{productOriginalPrice,jdbcType=REAL}, #{productNowPrice,jdbcType=REAL}, 
-      #{productVipPrice,jdbcType=REAL}, #{productSaleVolume,jdbcType=INTEGER}, #{productDetail,jdbcType=VARCHAR}, 
-      #{maxAppointment,jdbcType=INTEGER}, #{productEndTime,jdbcType=VARCHAR}, #{commissionHeigh,jdbcType=REAL}, 
-      #{commissionMiddle,jdbcType=REAL}, #{commissionLow,jdbcType=REAL}, #{operateId,jdbcType=VARCHAR}, 
-      #{addTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    order by add_time desc
+  </select>
+  <insert id="insertProduct" parameterType="com.skyc.demo.merchants.po.ProductInfo">
     insert into product_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -229,7 +213,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+  <update id="updateProduct" parameterType="com.skyc.demo.merchants.po.ProductInfo">
     update product_info
     <set>
       <if test="storeId != null">
@@ -310,33 +294,9 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+  <update id="deleteProduct" parameterType="java.lang.String">
     update product_info
-    set store_id = #{storeId,jdbcType=VARCHAR},
-      product_type = #{productType,jdbcType=VARCHAR},
-      product_free = #{productFree,jdbcType=VARCHAR},
-      product_cover_img = #{productCoverImg,jdbcType=VARCHAR},
-      product_main_img1 = #{productMainImg1,jdbcType=VARCHAR},
-      product_main_img2 = #{productMainImg2,jdbcType=VARCHAR},
-      product_main_img3 = #{productMainImg3,jdbcType=VARCHAR},
-      product_main_img4 = #{productMainImg4,jdbcType=VARCHAR},
-      product_main_img5 = #{productMainImg5,jdbcType=VARCHAR},
-      product_title = #{productTitle,jdbcType=VARCHAR},
-      product_sale_status = #{productSaleStatus,jdbcType=VARCHAR},
-      product_sale_time = #{productSaleTime,jdbcType=VARCHAR},
-      product_original_price = #{productOriginalPrice,jdbcType=REAL},
-      product_now_price = #{productNowPrice,jdbcType=REAL},
-      product_vip_price = #{productVipPrice,jdbcType=REAL},
-      product_sale_volume = #{productSaleVolume,jdbcType=INTEGER},
-      product_detail = #{productDetail,jdbcType=VARCHAR},
-      max_appointment = #{maxAppointment,jdbcType=INTEGER},
-      product_end_time = #{productEndTime,jdbcType=VARCHAR},
-      commission_heigh = #{commissionHeigh,jdbcType=REAL},
-      commission_middle = #{commissionMiddle,jdbcType=REAL},
-      commission_low = #{commissionLow,jdbcType=REAL},
-      operate_id = #{operateId,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
+    set status = '0'
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -1,17 +1,22 @@
 package com.skyc.demo.merchants.dao;
 
 import com.skyc.demo.merchants.po.ProductInfo;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
+@Mapper
 public interface ProductInfoMapper {
-    int deleteByPrimaryKey(String id);
 
-    int insert(ProductInfo record);
+    int insertProduct(ProductInfo productInfo);
 
-    int insertSelective(ProductInfo record);
+    List<ProductInfo> selectProductByStore(String storeId);
 
-    ProductInfo selectByPrimaryKey(String id);
+    List<ProductInfo> selectProductById(String id);
 
-    int updateByPrimaryKeySelective(ProductInfo record);
+    int updateProduct(ProductInfo productInfo);
 
-    int updateByPrimaryKey(ProductInfo record);
+    int deleteProduct(String id);
 }
