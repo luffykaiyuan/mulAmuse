@@ -40,7 +40,7 @@ public class AdminInfoCon {
     }
 
     @PostMapping("/loginAdmin")
-    public boolean loginAdmin(@RequestBody AdminInfo adminInfo){
+    public String loginAdmin(@RequestBody AdminInfo adminInfo){
         return adminInfoService.loginAdmin(adminInfo);
     }
 

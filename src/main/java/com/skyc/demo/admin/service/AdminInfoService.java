@@ -24,6 +24,10 @@ public class AdminInfoService {
     String updateSuc;
     @Value("${updateFal}")
     String updateFal;
+    @Value("${checkUsername}")
+    String checkUsername;
+    @Value("${repeatUsername}")
+    String repeatUsername;
     @Value("${checkPass}")
     String checkPass;
 
@@ -35,7 +39,7 @@ public class AdminInfoService {
             adminInfoMapper.insertAdmin(adminInfo);
             return insertSuc;
         }else {
-            return insertFAL;
+            return repeatUsername;
         }
     }
 
@@ -54,15 +58,11 @@ public class AdminInfoService {
     }
 
     public String changePassword(AdminInfo adminInfo){
-        if (checkInfo(adminInfo)){
-            int flag = adminInfoMapper.changePassword(adminInfo);
-            if (flag > 0){
-                return updateSuc;
-            }else {
-                return updateFal;
-            }
+        int flag = adminInfoMapper.changePassword(adminInfo);
+        if (flag > 0){
+            return updateSuc;
         }else {
-            return checkPass;
+            return updateFal;
         }
     }
 
@@ -70,16 +70,17 @@ public class AdminInfoService {
         return adminInfoMapper.deleteAdmin(id);
     }
 
-    public boolean loginAdmin(AdminInfo adminInfo){
-        return checkInfo(adminInfo);
-    }
-
-    public boolean checkInfo(AdminInfo adminInfo){
+    public String loginAdmin(AdminInfo adminInfo){
         AdminInfo adminInfoOld = adminInfoMapper.selectByUsername(adminInfo.getId());
-        if (adminInfoOld.equals(adminInfo.getAdminPassword())){
-            return true;
-        }else {
-            return false;
+        if ("".equals(adminInfoOld.getAdminUsername())){
+            return checkUsername;
+        }else{
+            if (adminInfoOld.equals(adminInfo.getAdminPassword())){
+                return "";
+            }else {
+                return checkPass;
+            }
         }
     }
+
 }

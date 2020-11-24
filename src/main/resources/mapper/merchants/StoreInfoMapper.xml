@@ -18,27 +18,25 @@
     id, store_username, store_password, store_name, store_address, store_phone, store_type, 
     store_rank, operate_id, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectAllNormal" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from store_info
-    where id = #{id,jdbcType=VARCHAR}
+    where status = '0'
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from store_info
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.merchants.po.StoreInfo">
-    insert into store_info (id, store_username, store_password, 
-      store_name, store_address, store_phone, 
-      store_type, store_rank, operate_id, 
-      add_time, status)
-    values (#{id,jdbcType=VARCHAR}, #{storeUsername,jdbcType=VARCHAR}, #{storePassword,jdbcType=VARCHAR}, 
-      #{storeName,jdbcType=VARCHAR}, #{storeAddress,jdbcType=VARCHAR}, #{storePhone,jdbcType=VARCHAR}, 
-      #{storeType,jdbcType=VARCHAR}, #{storeRank,jdbcType=VARCHAR}, #{operateId,jdbcType=VARCHAR}, 
-      #{addTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.merchants.po.StoreInfo">
+  <select id="selectAllStore" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from store_info
+  </select>
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from store_info
+    where store_username = #{storeUsername,jdbcType=VARCHAR}
+    and status = '1'
+  </select>
+  <insert id="insertStore" parameterType="com.skyc.demo.merchants.po.StoreInfo">
     insert into store_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -111,7 +109,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.merchants.po.StoreInfo">
+  <update id="updateStore" parameterType="com.skyc.demo.merchants.po.StoreInfo">
     update store_info
     <set>
       <if test="storeUsername != null">
@@ -147,18 +145,9 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.merchants.po.StoreInfo">
+  <update id="deleteStore" parameterType="java.lang.String">
     update store_info
-    set store_username = #{storeUsername,jdbcType=VARCHAR},
-      store_password = #{storePassword,jdbcType=VARCHAR},
-      store_name = #{storeName,jdbcType=VARCHAR},
-      store_address = #{storeAddress,jdbcType=VARCHAR},
-      store_phone = #{storePhone,jdbcType=VARCHAR},
-      store_type = #{storeType,jdbcType=VARCHAR},
-      store_rank = #{storeRank,jdbcType=VARCHAR},
-      operate_id = #{operateId,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
+    set status = '0'
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

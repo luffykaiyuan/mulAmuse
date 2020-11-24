@@ -16,13 +16,15 @@ public class TestMain {
 
     public static void main(String[] args) throws Exception {
         String a = "0";
-        String b = "1";
+        String b = "";
         String c = "0";
-        int myTitle = Integer.parseInt(a);
-        int fatherTitle = Integer.parseInt(b);
-        int grandTitle = Integer.parseInt(c);
-        int max = myTitle > fatherTitle ? (myTitle > grandTitle ? myTitle : grandTitle) : (fatherTitle > grandTitle ? fatherTitle : grandTitle);
 
-        System.out.println(max);
+//        int myTitle = Integer.parseInt(a);
+//        int fatherTitle = Integer.parseInt(b);
+//        int grandTitle = Integer.parseInt(c);
+//        int max = myTitle > fatherTitle ? (myTitle > grandTitle ? myTitle : grandTitle) : (fatherTitle > grandTitle ? fatherTitle : grandTitle);
+
+        System.out.println(c.equals(a));
+        System.out.println("".equals(b));
     }
 }

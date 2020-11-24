@@ -4,18 +4,22 @@ import com.skyc.demo.merchants.po.StoreInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
 public interface StoreInfoMapper {
-    int deleteByPrimaryKey(String id);
 
-    int insert(StoreInfo record);
+    List<StoreInfo> selectAllNormal();
 
-    int insertSelective(StoreInfo record);
+    List<StoreInfo> selectAllStore();
 
-    StoreInfo selectByPrimaryKey(String id);
+    StoreInfo selectByUsername(String storeUsername);
 
-    int updateByPrimaryKeySelective(StoreInfo record);
+    int insertStore(StoreInfo storeInfo);
 
-    int updateByPrimaryKey(StoreInfo record);
+    int updateStore(StoreInfo storeInfo);
+
+    int deleteStore(String id);
+
 }

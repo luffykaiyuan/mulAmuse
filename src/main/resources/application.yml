@@ -47,4 +47,7 @@ insertSuc: 添加成功！
 insertFAL: 添加失败！
 updateSuc: 修改成功！
 updateFal: 修改失败，请重试！
+
+checkUsername: 用户名未注册!
+repeatUsername: 用户名已存在!
 checkPass: 请核对密码后重试!
