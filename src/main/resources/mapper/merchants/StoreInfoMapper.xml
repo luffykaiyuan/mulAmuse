@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.merchants.dao.StoreInfoMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.merchants.po.StoreInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="store_username" jdbcType="VARCHAR" property="storeUsername" />
+    <result column="store_password" jdbcType="VARCHAR" property="storePassword" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="store_address" jdbcType="VARCHAR" property="storeAddress" />
+    <result column="store_phone" jdbcType="VARCHAR" property="storePhone" />
+    <result column="store_type" jdbcType="VARCHAR" property="storeType" />
+    <result column="store_rank" jdbcType="VARCHAR" property="storeRank" />
+    <result column="operate_id" jdbcType="VARCHAR" property="operateId" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, store_username, store_password, store_name, store_address, store_phone, store_type, 
+    store_rank, operate_id, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from store_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.merchants.po.StoreInfo">
+    insert into store_info (id, store_username, store_password, 
+      store_name, store_address, store_phone, 
+      store_type, store_rank, operate_id, 
+      add_time, status)
+    values (#{id,jdbcType=VARCHAR}, #{storeUsername,jdbcType=VARCHAR}, #{storePassword,jdbcType=VARCHAR}, 
+      #{storeName,jdbcType=VARCHAR}, #{storeAddress,jdbcType=VARCHAR}, #{storePhone,jdbcType=VARCHAR}, 
+      #{storeType,jdbcType=VARCHAR}, #{storeRank,jdbcType=VARCHAR}, #{operateId,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.merchants.po.StoreInfo">
+    insert into store_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="storeUsername != null">
+        store_username,
+      </if>
+      <if test="storePassword != null">
+        store_password,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="storeAddress != null">
+        store_address,
+      </if>
+      <if test="storePhone != null">
+        store_phone,
+      </if>
+      <if test="storeType != null">
+        store_type,
+      </if>
+      <if test="storeRank != null">
+        store_rank,
+      </if>
+      <if test="operateId != null">
+        operate_id,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="storeUsername != null">
+        #{storeUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="storePassword != null">
+        #{storePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddress != null">
+        #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null">
+        #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeType != null">
+        #{storeType,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRank != null">
+        #{storeRank,jdbcType=VARCHAR},
+      </if>
+      <if test="operateId != null">
+        #{operateId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.merchants.po.StoreInfo">
+    update store_info
+    <set>
+      <if test="storeUsername != null">
+        store_username = #{storeUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="storePassword != null">
+        store_password = #{storePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddress != null">
+        store_address = #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null">
+        store_phone = #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeType != null">
+        store_type = #{storeType,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRank != null">
+        store_rank = #{storeRank,jdbcType=VARCHAR},
+      </if>
+      <if test="operateId != null">
+        operate_id = #{operateId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.merchants.po.StoreInfo">
+    update store_info
+    set store_username = #{storeUsername,jdbcType=VARCHAR},
+      store_password = #{storePassword,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      store_address = #{storeAddress,jdbcType=VARCHAR},
+      store_phone = #{storePhone,jdbcType=VARCHAR},
+      store_type = #{storeType,jdbcType=VARCHAR},
+      store_rank = #{storeRank,jdbcType=VARCHAR},
+      operate_id = #{operateId,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

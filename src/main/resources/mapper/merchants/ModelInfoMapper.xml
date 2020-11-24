@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.merchants.dao.ModelInfoMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.merchants.po.ModelInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="model_name" jdbcType="VARCHAR" property="modelName" />
+    <result column="model_stock" jdbcType="INTEGER" property="modelStock" />
+    <result column="model_price" jdbcType="REAL" property="modelPrice" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_id, model_name, model_stock, model_price, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from model_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from model_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.merchants.po.ModelInfo">
+    insert into model_info (id, product_id, model_name, 
+      model_stock, model_price, add_time, 
+      status)
+    values (#{id,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{modelName,jdbcType=VARCHAR}, 
+      #{modelStock,jdbcType=INTEGER}, #{modelPrice,jdbcType=REAL}, #{addTime,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.merchants.po.ModelInfo">
+    insert into model_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="modelName != null">
+        model_name,
+      </if>
+      <if test="modelStock != null">
+        model_stock,
+      </if>
+      <if test="modelPrice != null">
+        model_price,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="modelName != null">
+        #{modelName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelStock != null">
+        #{modelStock,jdbcType=INTEGER},
+      </if>
+      <if test="modelPrice != null">
+        #{modelPrice,jdbcType=REAL},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.merchants.po.ModelInfo">
+    update model_info
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="modelName != null">
+        model_name = #{modelName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelStock != null">
+        model_stock = #{modelStock,jdbcType=INTEGER},
+      </if>
+      <if test="modelPrice != null">
+        model_price = #{modelPrice,jdbcType=REAL},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.merchants.po.ModelInfo">
+    update model_info
+    set product_id = #{productId,jdbcType=VARCHAR},
+      model_name = #{modelName,jdbcType=VARCHAR},
+      model_stock = #{modelStock,jdbcType=INTEGER},
+      model_price = #{modelPrice,jdbcType=REAL},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

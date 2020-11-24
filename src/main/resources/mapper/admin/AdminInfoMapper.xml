@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.admin.dao.AdminInfoMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.admin.po.AdminInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="admin_username" jdbcType="VARCHAR" property="adminUsername" />
+    <result column="admin_nick_name" jdbcType="VARCHAR" property="adminNickName" />
+    <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, admin_username, admin_nick_name, admin_password, add_time, status
+  </sql>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin_info
+    where id = #{id,jdbcType=VARCHAR}
+    and status = '1'
+  </select>
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin_info
+    where admin_username = #{adminUsername,jdbcType=VARCHAR}
+    and status = '1'
+  </select>
+  <select id="selectAllAdmin" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin_info
+  </select>
+  <insert id="insertAdmin" parameterType="com.skyc.demo.admin.po.AdminInfo">
+    insert into admin_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="adminUsername != null">
+        admin_username,
+      </if>
+      <if test="adminNickName != null">
+        admin_nick_name,
+      </if>
+      <if test="adminPassword != null">
+        admin_password,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="adminUsername != null">
+        #{adminUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="adminNickName != null">
+        #{adminNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null">
+        #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateAdmin" parameterType="com.skyc.demo.admin.po.AdminInfo">
+    update admin_info
+    <set>
+      <if test="adminUsername != null">
+        admin_username = #{adminUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="adminNickName != null">
+        admin_nick_name = #{adminNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null">
+        admin_password = #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="changePassword" parameterType="java.lang.String">
+    update admin_info
+    set admin_password = #{adminPassword,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="deleteAdmin" parameterType="java.lang.String">
+    update admin_info
+    set status = '0'
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

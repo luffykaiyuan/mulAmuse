@@ -26,8 +26,8 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
-  type-aliases-package: com.skyc.demo.*.dao
-  mapper-locations: classpath:mapper/admin/*.xml
+  type-aliases-package: com.skyc.demo.admin.dao, com.skyc.demo.developers.dao, com.skyc.demo.merchants.dao, com.skyc.demo.user.dao
+  mapper-locations: classpath:mapper/admin/*.xml, mapper/developers/*.xml, mapper/merchants/*.xml, mapper/user/*.xml
   level:
     com:
       tm:
@@ -42,3 +42,9 @@ mybatis:
             user: debug
 
 uploadPath: C:/upload/img
+
+insertSuc: 添加成功！
+insertFAL: 添加失败！
+updateSuc: 修改成功！
+updateFal: 修改失败，请重试！
+checkPass: 请核对密码后重试!

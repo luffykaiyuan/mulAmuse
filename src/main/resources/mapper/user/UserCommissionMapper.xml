@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.user.dao.UserCommissionMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.user.po.UserCommission">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="wait_withdrawal" jdbcType="REAL" property="waitWithdrawal" />
+    <result column="finish_withdrawal" jdbcType="REAL" property="finishWithdrawal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, wait_withdrawal, finish_withdrawal
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_commission
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_commission
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.user.po.UserCommission">
+    insert into user_commission (id, user_id, wait_withdrawal, 
+      finish_withdrawal)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{waitWithdrawal,jdbcType=REAL}, 
+      #{finishWithdrawal,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.UserCommission">
+    insert into user_commission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="waitWithdrawal != null">
+        wait_withdrawal,
+      </if>
+      <if test="finishWithdrawal != null">
+        finish_withdrawal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="waitWithdrawal != null">
+        #{waitWithdrawal,jdbcType=REAL},
+      </if>
+      <if test="finishWithdrawal != null">
+        #{finishWithdrawal,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.UserCommission">
+    update user_commission
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="waitWithdrawal != null">
+        wait_withdrawal = #{waitWithdrawal,jdbcType=REAL},
+      </if>
+      <if test="finishWithdrawal != null">
+        finish_withdrawal = #{finishWithdrawal,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.UserCommission">
+    update user_commission
+    set user_id = #{userId,jdbcType=VARCHAR},
+      wait_withdrawal = #{waitWithdrawal,jdbcType=REAL},
+      finish_withdrawal = #{finishWithdrawal,jdbcType=REAL}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

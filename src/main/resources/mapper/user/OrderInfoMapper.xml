@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.user.dao.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.user.po.OrderInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="product_type" jdbcType="VARCHAR" property="productType" />
+    <result column="product_title" jdbcType="VARCHAR" property="productTitle" />
+    <result column="model_id" jdbcType="VARCHAR" property="modelId" />
+    <result column="model_name" jdbcType="VARCHAR" property="modelName" />
+    <result column="receive_id" jdbcType="VARCHAR" property="receiveId" />
+    <result column="order_count" jdbcType="INTEGER" property="orderCount" />
+    <result column="order_price" jdbcType="REAL" property="orderPrice" />
+    <result column="order_remark" jdbcType="VARCHAR" property="orderRemark" />
+    <result column="post_number" jdbcType="VARCHAR" property="postNumber" />
+    <result column="qrcode_img" jdbcType="VARCHAR" property="qrcodeImg" />
+    <result column="qrcode_number" jdbcType="VARCHAR" property="qrcodeNumber" />
+    <result column="appointment_time" jdbcType="VARCHAR" property="appointmentTime" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_number, user_id, store_id, product_id, product_type, product_title, model_id, 
+    model_name, receive_id, order_count, order_price, order_remark, post_number, qrcode_img, 
+    qrcode_number, appointment_time, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.user.po.OrderInfo">
+    insert into order_info (id, order_number, user_id, 
+      store_id, product_id, product_type, 
+      product_title, model_id, model_name, 
+      receive_id, order_count, order_price, 
+      order_remark, post_number, qrcode_img, 
+      qrcode_number, appointment_time, add_time, 
+      status)
+    values (#{id,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{storeId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
+      #{productTitle,jdbcType=VARCHAR}, #{modelId,jdbcType=VARCHAR}, #{modelName,jdbcType=VARCHAR}, 
+      #{receiveId,jdbcType=VARCHAR}, #{orderCount,jdbcType=INTEGER}, #{orderPrice,jdbcType=REAL}, 
+      #{orderRemark,jdbcType=VARCHAR}, #{postNumber,jdbcType=VARCHAR}, #{qrcodeImg,jdbcType=VARCHAR}, 
+      #{qrcodeNumber,jdbcType=VARCHAR}, #{appointmentTime,jdbcType=VARCHAR}, #{addTime,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.OrderInfo">
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productType != null">
+        product_type,
+      </if>
+      <if test="productTitle != null">
+        product_title,
+      </if>
+      <if test="modelId != null">
+        model_id,
+      </if>
+      <if test="modelName != null">
+        model_name,
+      </if>
+      <if test="receiveId != null">
+        receive_id,
+      </if>
+      <if test="orderCount != null">
+        order_count,
+      </if>
+      <if test="orderPrice != null">
+        order_price,
+      </if>
+      <if test="orderRemark != null">
+        order_remark,
+      </if>
+      <if test="postNumber != null">
+        post_number,
+      </if>
+      <if test="qrcodeImg != null">
+        qrcode_img,
+      </if>
+      <if test="qrcodeNumber != null">
+        qrcode_number,
+      </if>
+      <if test="appointmentTime != null">
+        appointment_time,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productTitle != null">
+        #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null">
+        #{modelId,jdbcType=VARCHAR},
+      </if>
+      <if test="modelName != null">
+        #{modelName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null">
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCount != null">
+        #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null">
+        #{orderPrice,jdbcType=REAL},
+      </if>
+      <if test="orderRemark != null">
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="postNumber != null">
+        #{postNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcodeImg != null">
+        #{qrcodeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcodeNumber != null">
+        #{qrcodeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentTime != null">
+        #{appointmentTime,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.OrderInfo">
+    update order_info
+    <set>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        product_type = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productTitle != null">
+        product_title = #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="modelId != null">
+        model_id = #{modelId,jdbcType=VARCHAR},
+      </if>
+      <if test="modelName != null">
+        model_name = #{modelName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null">
+        receive_id = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCount != null">
+        order_count = #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null">
+        order_price = #{orderPrice,jdbcType=REAL},
+      </if>
+      <if test="orderRemark != null">
+        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="postNumber != null">
+        post_number = #{postNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcodeImg != null">
+        qrcode_img = #{qrcodeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcodeNumber != null">
+        qrcode_number = #{qrcodeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentTime != null">
+        appointment_time = #{appointmentTime,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.OrderInfo">
+    update order_info
+    set order_number = #{orderNumber,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      product_type = #{productType,jdbcType=VARCHAR},
+      product_title = #{productTitle,jdbcType=VARCHAR},
+      model_id = #{modelId,jdbcType=VARCHAR},
+      model_name = #{modelName,jdbcType=VARCHAR},
+      receive_id = #{receiveId,jdbcType=VARCHAR},
+      order_count = #{orderCount,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=REAL},
+      order_remark = #{orderRemark,jdbcType=VARCHAR},
+      post_number = #{postNumber,jdbcType=VARCHAR},
+      qrcode_img = #{qrcodeImg,jdbcType=VARCHAR},
+      qrcode_number = #{qrcodeNumber,jdbcType=VARCHAR},
+      appointment_time = #{appointmentTime,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

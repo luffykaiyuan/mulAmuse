@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.user.dao.CommissionLogMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.user.po.CommissionLog">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="provide_id" jdbcType="VARCHAR" property="provideId" />
+    <result column="provide_name" jdbcType="VARCHAR" property="provideName" />
+    <result column="get_id" jdbcType="VARCHAR" property="getId" />
+    <result column="get_name" jdbcType="VARCHAR" property="getName" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, provide_id, provide_name, get_id, get_name, add_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from commission_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from commission_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.skyc.demo.user.po.CommissionLog">
+    insert into commission_log (id, provide_id, provide_name, 
+      get_id, get_name, add_time, 
+      status)
+    values (#{id,jdbcType=VARCHAR}, #{provideId,jdbcType=VARCHAR}, #{provideName,jdbcType=VARCHAR}, 
+      #{getId,jdbcType=VARCHAR}, #{getName,jdbcType=VARCHAR}, #{addTime,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.CommissionLog">
+    insert into commission_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="provideId != null">
+        provide_id,
+      </if>
+      <if test="provideName != null">
+        provide_name,
+      </if>
+      <if test="getId != null">
+        get_id,
+      </if>
+      <if test="getName != null">
+        get_name,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="provideId != null">
+        #{provideId,jdbcType=VARCHAR},
+      </if>
+      <if test="provideName != null">
+        #{provideName,jdbcType=VARCHAR},
+      </if>
+      <if test="getId != null">
+        #{getId,jdbcType=VARCHAR},
+      </if>
+      <if test="getName != null">
+        #{getName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.CommissionLog">
+    update commission_log
+    <set>
+      <if test="provideId != null">
+        provide_id = #{provideId,jdbcType=VARCHAR},
+      </if>
+      <if test="provideName != null">
+        provide_name = #{provideName,jdbcType=VARCHAR},
+      </if>
+      <if test="getId != null">
+        get_id = #{getId,jdbcType=VARCHAR},
+      </if>
+      <if test="getName != null">
+        get_name = #{getName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.CommissionLog">
+    update commission_log
+    set provide_id = #{provideId,jdbcType=VARCHAR},
+      provide_name = #{provideName,jdbcType=VARCHAR},
+      get_id = #{getId,jdbcType=VARCHAR},
+      get_name = #{getName,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
