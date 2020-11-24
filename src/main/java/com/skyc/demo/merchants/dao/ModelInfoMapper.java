@@ -1,17 +1,21 @@
 package com.skyc.demo.merchants.dao;
 
 import com.skyc.demo.merchants.po.ModelInfo;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
+@Mapper
 public interface ModelInfoMapper {
-    int deleteByPrimaryKey(String id);
 
-    int insert(ModelInfo record);
+    int insertModel(ModelInfo modelInfo);
 
-    int insertSelective(ModelInfo record);
+    List<ModelInfo> selectModelByProduct(String productId);
 
-    ModelInfo selectByPrimaryKey(String id);
+    int updateModel(ModelInfo modelInfo);
 
-    int updateByPrimaryKeySelective(ModelInfo record);
+    int deleteModel(String id);
 
-    int updateByPrimaryKey(ModelInfo record);
 }

@@ -13,25 +13,13 @@
   <sql id="Base_Column_List">
     id, product_id, model_name, model_stock, model_price, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectModelByProduct" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from model_info
-    where id = #{id,jdbcType=VARCHAR}
+    where product_id = #{productId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from model_info
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.merchants.po.ModelInfo">
-    insert into model_info (id, product_id, model_name, 
-      model_stock, model_price, add_time, 
-      status)
-    values (#{id,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{modelName,jdbcType=VARCHAR}, 
-      #{modelStock,jdbcType=INTEGER}, #{modelPrice,jdbcType=REAL}, #{addTime,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.merchants.po.ModelInfo">
+  <insert id="insertModel" parameterType="com.skyc.demo.merchants.po.ModelInfo">
     insert into model_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +68,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.merchants.po.ModelInfo">
+  <update id="updateModel" parameterType="com.skyc.demo.merchants.po.ModelInfo">
     update model_info
     <set>
       <if test="productId != null">
@@ -104,14 +92,9 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.merchants.po.ModelInfo">
+  <update id="updateModel" parameterType="java.lang.String">
     update model_info
-    set product_id = #{productId,jdbcType=VARCHAR},
-      model_name = #{modelName,jdbcType=VARCHAR},
-      model_stock = #{modelStock,jdbcType=INTEGER},
-      model_price = #{modelPrice,jdbcType=REAL},
-      add_time = #{addTime,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
+    set status = '0'
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
