@@ -92,7 +92,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateModel" parameterType="java.lang.String">
+  <update id="deleteModel" parameterType="java.lang.String">
     update model_info
     set status = '0'
     where id = #{id,jdbcType=VARCHAR}

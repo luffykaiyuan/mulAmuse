@@ -27,33 +27,19 @@
     model_name, receive_id, order_count, order_price, order_remark, post_number, qrcode_img, 
     qrcode_number, appointment_time, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from order_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from order_info
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.user.po.OrderInfo">
-    insert into order_info (id, order_number, user_id, 
-      store_id, product_id, product_type, 
-      product_title, model_id, model_name, 
-      receive_id, order_count, order_price, 
-      order_remark, post_number, qrcode_img, 
-      qrcode_number, appointment_time, add_time, 
-      status)
-    values (#{id,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{storeId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
-      #{productTitle,jdbcType=VARCHAR}, #{modelId,jdbcType=VARCHAR}, #{modelName,jdbcType=VARCHAR}, 
-      #{receiveId,jdbcType=VARCHAR}, #{orderCount,jdbcType=INTEGER}, #{orderPrice,jdbcType=REAL}, 
-      #{orderRemark,jdbcType=VARCHAR}, #{postNumber,jdbcType=VARCHAR}, #{qrcodeImg,jdbcType=VARCHAR}, 
-      #{qrcodeNumber,jdbcType=VARCHAR}, #{appointmentTime,jdbcType=VARCHAR}, #{addTime,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.OrderInfo">
+  <select id="selectUserOrder" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertOrder" parameterType="com.skyc.demo.user.po.OrderInfo">
     insert into order_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -174,7 +160,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.OrderInfo">
+  <update id="updateOrder" parameterType="com.skyc.demo.user.po.OrderInfo">
     update order_info
     <set>
       <if test="orderNumber != null">
@@ -232,28 +218,6 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.OrderInfo">
-    update order_info
-    set order_number = #{orderNumber,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=VARCHAR},
-      store_id = #{storeId,jdbcType=VARCHAR},
-      product_id = #{productId,jdbcType=VARCHAR},
-      product_type = #{productType,jdbcType=VARCHAR},
-      product_title = #{productTitle,jdbcType=VARCHAR},
-      model_id = #{modelId,jdbcType=VARCHAR},
-      model_name = #{modelName,jdbcType=VARCHAR},
-      receive_id = #{receiveId,jdbcType=VARCHAR},
-      order_count = #{orderCount,jdbcType=INTEGER},
-      order_price = #{orderPrice,jdbcType=REAL},
-      order_remark = #{orderRemark,jdbcType=VARCHAR},
-      post_number = #{postNumber,jdbcType=VARCHAR},
-      qrcode_img = #{qrcodeImg,jdbcType=VARCHAR},
-      qrcode_number = #{qrcodeNumber,jdbcType=VARCHAR},
-      appointment_time = #{appointmentTime,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

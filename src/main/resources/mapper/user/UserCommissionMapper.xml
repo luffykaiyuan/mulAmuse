@@ -10,23 +10,19 @@
   <sql id="Base_Column_List">
     id, user_id, wait_withdrawal, finish_withdrawal
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user_commission
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from user_commission
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.user.po.UserCommission">
-    insert into user_commission (id, user_id, wait_withdrawal, 
-      finish_withdrawal)
-    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{waitWithdrawal,jdbcType=REAL}, 
-      #{finishWithdrawal,jdbcType=REAL})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.UserCommission">
+  <select id="selectUserCommission" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_commission
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertCommission" parameterType="com.skyc.demo.user.po.UserCommission">
     insert into user_commission
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -72,7 +68,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.UserCommission">
+  <update id="updateCommission" parameterType="com.skyc.demo.user.po.UserCommission">
     update user_commission
     set user_id = #{userId,jdbcType=VARCHAR},
       wait_withdrawal = #{waitWithdrawal,jdbcType=REAL},

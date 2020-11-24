@@ -1,17 +1,19 @@
 package com.skyc.demo.user.dao;
 
 import com.skyc.demo.user.po.UserCommission;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@Mapper
 public interface UserCommissionMapper {
-    int deleteByPrimaryKey(String id);
 
-    int insert(UserCommission record);
+    int insertCommission(UserCommission userCommission);
 
-    int insertSelective(UserCommission record);
+    UserCommission selectById(String id);
 
-    UserCommission selectByPrimaryKey(String id);
+    UserCommission selectUserCommission(String userId);
 
-    int updateByPrimaryKeySelective(UserCommission record);
+    int updateCommission(UserCommission userCommission);
 
-    int updateByPrimaryKey(UserCommission record);
 }

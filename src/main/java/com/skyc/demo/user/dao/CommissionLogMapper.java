@@ -1,17 +1,21 @@
 package com.skyc.demo.user.dao;
 
 import com.skyc.demo.user.po.CommissionLog;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
+@Mapper
 public interface CommissionLogMapper {
-    int deleteByPrimaryKey(String id);
 
-    int insert(CommissionLog record);
+    int insertCommissionLog(CommissionLog commissionLog);
 
-    int insertSelective(CommissionLog record);
+    CommissionLog selectById(String id);
 
-    CommissionLog selectByPrimaryKey(String id);
+    List<CommissionLog> selectUserCommissionLog(String getId);
 
-    int updateByPrimaryKeySelective(CommissionLog record);
+    int updateCommissionLog(CommissionLog commissionLog);
 
-    int updateByPrimaryKey(CommissionLog record);
 }

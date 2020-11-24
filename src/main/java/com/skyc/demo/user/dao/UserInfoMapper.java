@@ -1,17 +1,29 @@
 package com.skyc.demo.user.dao;
 
 import com.skyc.demo.user.po.UserInfo;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
+@Mapper
 public interface UserInfoMapper {
-    int deleteByPrimaryKey(String id);
 
-    int insert(UserInfo record);
+    int insertUser(UserInfo userInfo);
 
-    int insertSelective(UserInfo record);
+    List<UserInfo> selectAllUser();
 
-    UserInfo selectByPrimaryKey(String id);
+    List<UserInfo> selectAllNormal();
 
-    int updateByPrimaryKeySelective(UserInfo record);
+    List<UserInfo> selectUserSons(String fatherId);
 
-    int updateByPrimaryKey(UserInfo record);
+    UserInfo selectById(String id);
+
+    int updateUser(UserInfo userInfo);
+
+    int deleteUser(String id);
+
+    int updateUserTitle(UserInfo userInfo);
+
 }

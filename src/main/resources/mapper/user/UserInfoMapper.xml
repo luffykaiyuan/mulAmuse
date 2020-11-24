@@ -28,33 +28,34 @@
     user_title, user_count, user_invite, invite_number, father_id, father_title, father_support, 
     grand_id, grand_title, grand_support, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectAllUser" resultMap="BaseResultMap">
     select 
+    <include refid="Base_Column_List" />
+    from user_info
+    order by add_time desc
+  </select>
+  <select id="selectAllNormal" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where status = '1'
+    order by add_time desc
+  </select>
+  <select id="selectUserSons" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where status = '1'
+    and father_id = #{fatherId,jdbcType=VARCHAR}
+    order by add_time desc
+  </select>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from user_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from user_info
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.user.po.UserInfo">
-    insert into user_info (id, user_name, password, 
-      wechat_number, head_img, nick_name, 
-      user_phone, user_rank, user_title, 
-      user_count, user_invite, invite_number, 
-      father_id, father_title, father_support, 
-      grand_id, grand_title, grand_support, 
-      add_time, status)
-    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{wechatNumber,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{userPhone,jdbcType=VARCHAR}, #{userRank,jdbcType=VARCHAR}, #{userTitle,jdbcType=VARCHAR}, 
-      #{userCount,jdbcType=REAL}, #{userInvite,jdbcType=VARCHAR}, #{inviteNumber,jdbcType=INTEGER}, 
-      #{fatherId,jdbcType=VARCHAR}, #{fatherTitle,jdbcType=VARCHAR}, #{fatherSupport,jdbcType=REAL}, 
-      #{grandId,jdbcType=VARCHAR}, #{grandTitle,jdbcType=VARCHAR}, #{grandSupport,jdbcType=REAL}, 
-      #{addTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.UserInfo">
+  <insert id="insertUser" parameterType="com.skyc.demo.user.po.UserInfo">
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -181,7 +182,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.UserInfo">
+  <update id="updateUser" parameterType="com.skyc.demo.user.po.UserInfo">
     update user_info
     <set>
       <if test="userName != null">
@@ -244,27 +245,14 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.UserInfo">
+  <update id="deleteUser" parameterType="java.lang.String">
     update user_info
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      wechat_number = #{wechatNumber,jdbcType=VARCHAR},
-      head_img = #{headImg,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR},
-      user_phone = #{userPhone,jdbcType=VARCHAR},
-      user_rank = #{userRank,jdbcType=VARCHAR},
-      user_title = #{userTitle,jdbcType=VARCHAR},
-      user_count = #{userCount,jdbcType=REAL},
-      user_invite = #{userInvite,jdbcType=VARCHAR},
-      invite_number = #{inviteNumber,jdbcType=INTEGER},
-      father_id = #{fatherId,jdbcType=VARCHAR},
-      father_title = #{fatherTitle,jdbcType=VARCHAR},
-      father_support = #{fatherSupport,jdbcType=REAL},
-      grand_id = #{grandId,jdbcType=VARCHAR},
-      grand_title = #{grandTitle,jdbcType=VARCHAR},
-      grand_support = #{grandSupport,jdbcType=REAL},
-      add_time = #{addTime,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
+    set status = '0'
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateUserTitle"  parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    set user_title = #{userTitle,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

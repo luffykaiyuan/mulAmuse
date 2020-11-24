@@ -15,25 +15,19 @@
     id, user_id, receive_name, receive_phone, receive_address, default_status, add_time, 
     status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from receive_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from receive_info
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.user.po.ReceiveInfo">
-    insert into receive_info (id, user_id, receive_name, 
-      receive_phone, receive_address, default_status, 
-      add_time, status)
-    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{receiveName,jdbcType=VARCHAR}, 
-      #{receivePhone,jdbcType=VARCHAR}, #{receiveAddress,jdbcType=VARCHAR}, #{defaultStatus,jdbcType=VARCHAR}, 
-      #{addTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.ReceiveInfo">
+  <select id="selectUserReceive" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from receive_info
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertReceive" parameterType="com.skyc.demo.user.po.ReceiveInfo">
     insert into receive_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -88,7 +82,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.ReceiveInfo">
+  <update id="updateReceive" parameterType="com.skyc.demo.user.po.ReceiveInfo">
     update receive_info
     <set>
       <if test="userId != null">
@@ -113,17 +107,6 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.ReceiveInfo">
-    update receive_info
-    set user_id = #{userId,jdbcType=VARCHAR},
-      receive_name = #{receiveName,jdbcType=VARCHAR},
-      receive_phone = #{receivePhone,jdbcType=VARCHAR},
-      receive_address = #{receiveAddress,jdbcType=VARCHAR},
-      default_status = #{defaultStatus,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

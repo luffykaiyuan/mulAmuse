@@ -1,17 +1,21 @@
 package com.skyc.demo.user.dao;
 
 import com.skyc.demo.user.po.ReceiveInfo;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
+@Mapper
 public interface ReceiveInfoMapper {
-    int deleteByPrimaryKey(String id);
 
-    int insert(ReceiveInfo record);
+    int insertReceive(ReceiveInfo receiveInfo);
 
-    int insertSelective(ReceiveInfo record);
+    ReceiveInfo selectById(String id);
 
-    ReceiveInfo selectByPrimaryKey(String id);
+    List<ReceiveInfo> selectUserReceive(String userId);
 
-    int updateByPrimaryKeySelective(ReceiveInfo record);
+    int updateReceive(ReceiveInfo receiveInfo);
 
-    int updateByPrimaryKey(ReceiveInfo record);
 }

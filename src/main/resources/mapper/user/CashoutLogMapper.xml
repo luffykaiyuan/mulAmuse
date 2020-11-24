@@ -11,23 +11,19 @@
   <sql id="Base_Column_List">
     id, user_id, money_number, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from cashout_log
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from cashout_log
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.user.po.CashoutLog">
-    insert into cashout_log (id, user_id, money_number, 
-      add_time, status)
-    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{moneyNumber,jdbcType=REAL}, 
-      #{addTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.CashoutLog">
+  <select id="selectUserCashout" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cashout_log
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertCashoutLog" parameterType="com.skyc.demo.user.po.CashoutLog">
     insert into cashout_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -64,7 +60,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.CashoutLog">
+  <update id="updateCashoutLog" parameterType="com.skyc.demo.user.po.CashoutLog">
     update cashout_log
     <set>
       <if test="userId != null">
@@ -80,14 +76,6 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.CashoutLog">
-    update cashout_log
-    set user_id = #{userId,jdbcType=VARCHAR},
-      money_number = #{moneyNumber,jdbcType=REAL},
-      add_time = #{addTime,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

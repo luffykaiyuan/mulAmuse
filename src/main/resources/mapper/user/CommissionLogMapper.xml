@@ -13,25 +13,19 @@
   <sql id="Base_Column_List">
     id, provide_id, provide_name, get_id, get_name, add_time, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from commission_log
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from commission_log
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.user.po.CommissionLog">
-    insert into commission_log (id, provide_id, provide_name, 
-      get_id, get_name, add_time, 
-      status)
-    values (#{id,jdbcType=VARCHAR}, #{provideId,jdbcType=VARCHAR}, #{provideName,jdbcType=VARCHAR}, 
-      #{getId,jdbcType=VARCHAR}, #{getName,jdbcType=VARCHAR}, #{addTime,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.CommissionLog">
+  <select id="selectUserCommissionLog" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from commission_log
+    where get_id = #{getId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertCommissionLog" parameterType="com.skyc.demo.user.po.CommissionLog">
     insert into commission_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +74,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.CommissionLog">
+  <update id="updateCommissionLog" parameterType="com.skyc.demo.user.po.CommissionLog">
     update commission_log
     <set>
       <if test="provideId != null">
@@ -102,16 +96,6 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.CommissionLog">
-    update commission_log
-    set provide_id = #{provideId,jdbcType=VARCHAR},
-      provide_name = #{provideName,jdbcType=VARCHAR},
-      get_id = #{getId,jdbcType=VARCHAR},
-      get_name = #{getName,jdbcType=VARCHAR},
-      add_time = #{addTime,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
