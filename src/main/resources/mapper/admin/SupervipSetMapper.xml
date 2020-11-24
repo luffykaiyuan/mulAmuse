@@ -10,54 +10,13 @@
   <sql id="Base_Column_List">
     id, supervip_money, dicount_number, invite_number
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectSupervipSet" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from supervip_set
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from supervip_set
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.admin.po.SupervipSet">
-    insert into supervip_set (id, supervip_money, dicount_number, 
-      invite_number)
-    values (#{id,jdbcType=VARCHAR}, #{supervipMoney,jdbcType=REAL}, #{dicountNumber,jdbcType=INTEGER}, 
-      #{inviteNumber,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.admin.po.SupervipSet">
-    insert into supervip_set
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="supervipMoney != null">
-        supervip_money,
-      </if>
-      <if test="dicountNumber != null">
-        dicount_number,
-      </if>
-      <if test="inviteNumber != null">
-        invite_number,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="supervipMoney != null">
-        #{supervipMoney,jdbcType=REAL},
-      </if>
-      <if test="dicountNumber != null">
-        #{dicountNumber,jdbcType=INTEGER},
-      </if>
-      <if test="inviteNumber != null">
-        #{inviteNumber,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.admin.po.SupervipSet">
+  <update id="updateSupervipSet" parameterType="com.skyc.demo.admin.po.SupervipSet">
     update supervip_set
     <set>
       <if test="supervipMoney != null">
@@ -70,13 +29,6 @@
         invite_number = #{inviteNumber,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.admin.po.SupervipSet">
-    update supervip_set
-    set supervip_money = #{supervipMoney,jdbcType=REAL},
-      dicount_number = #{dicountNumber,jdbcType=INTEGER},
-      invite_number = #{inviteNumber,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -1,17 +1,15 @@
 package com.skyc.demo.admin.dao;
 
 import com.skyc.demo.admin.po.SupervipSet;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@Mapper
 public interface SupervipSetMapper {
-    int deleteByPrimaryKey(String id);
 
-    int insert(SupervipSet record);
+    SupervipSet selectSupervipSet(String id);
 
-    int insertSelective(SupervipSet record);
+    int updateSupervipSet(SupervipSet supervipSet);
 
-    SupervipSet selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(SupervipSet record);
-
-    int updateByPrimaryKey(SupervipSet record);
 }
