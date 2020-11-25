@@ -49,7 +49,7 @@
     and father_id = #{fatherId,jdbcType=VARCHAR}
     order by add_time desc
   </select>
-  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectUerDetail" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user_info
@@ -253,6 +253,12 @@
   <update id="updateUserTitle"  parameterType="com.skyc.demo.user.po.UserInfo">
     update user_info
     set user_title = #{userTitle,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="becomeTalent"  parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    set user_title = #{userTitle,jdbcType=VARCHAR},
+    user_phone = #{userPhone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

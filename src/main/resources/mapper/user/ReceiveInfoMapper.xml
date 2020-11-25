@@ -26,6 +26,25 @@
     <include refid="Base_Column_List" />
     from receive_info
     where user_id = #{userId,jdbcType=VARCHAR}
+    order by add_time desc
+  </select>
+  <select id="selectOtherReceive" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from receive_info
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and status = '1'
+    and default_status = '0'
+    order by add_time desc
+  </select>
+  <select id="selectDefaultReceive" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from receive_info
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and status = '1'
+    and default_status = '1'
+    order by add_time desc
   </select>
   <insert id="insertReceive" parameterType="com.skyc.demo.user.po.ReceiveInfo">
     insert into receive_info
@@ -108,5 +127,21 @@
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateDefaultReceive" parameterType="java.util.List" >
+    update receive_info
+    <set>
+      <trim prefix="default_status=case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.defaultStatus !=null">
+            when user_id=#{item.userId} then #{item.defaultStatus}
+          </if>
+        </foreach>
+      </trim>
+    </set>
+    where user_id in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+      #{item.userId}
+    </foreach>
   </update>
 </mapper>

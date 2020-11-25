@@ -18,12 +18,14 @@ public interface UserInfoMapper {
 
     List<UserInfo> selectUserSons(String fatherId);
 
-    UserInfo selectById(String id);
+    UserInfo selectUerDetail(String id);
 
     int updateUser(UserInfo userInfo);
 
     int deleteUser(String id);
 
     int updateUserTitle(UserInfo userInfo);
+
+    int becomeTalent(UserInfo userInfo);
 
 }

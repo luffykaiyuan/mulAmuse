@@ -12,10 +12,20 @@ public interface OrderInfoMapper {
 
     int insertOrder(OrderInfo orderInfo);
 
-    OrderInfo selectById(String id);
+    OrderInfo selectOrderDetail(String id);
+
+    OrderInfo selectDestoryOrder(String qrcodeNumber);
 
     List<OrderInfo> selectUserOrder(String userId);
 
+    List<OrderInfo> selectStoreOrder(String storeId);
+
     int updateOrder(OrderInfo orderInfo);
+
+    int sendProduct(OrderInfo orderInfo);
+
+    int destoryCodeNumber(OrderInfo orderInfo);
+
+    int getProduct(OrderInfo orderInfo);
 
 }

@@ -14,8 +14,14 @@ public interface ReceiveInfoMapper {
 
     ReceiveInfo selectById(String id);
 
+    List<ReceiveInfo> selectOtherReceive(String userId);
+
+    List<ReceiveInfo> selectDefaultReceive(String userId);
+
     List<ReceiveInfo> selectUserReceive(String userId);
 
     int updateReceive(ReceiveInfo receiveInfo);
+
+    int updateDefaultReceive(List<ReceiveInfo> receiveInfo);
 
 }

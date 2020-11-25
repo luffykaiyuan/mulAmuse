@@ -1,17 +1,17 @@
 package com.skyc.demo.user.dao;
 
 import com.skyc.demo.user.po.SupervipInvite;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@Mapper
 public interface SupervipInviteMapper {
-    int deleteByPrimaryKey(String id);
 
-    int insert(SupervipInvite record);
+    int insertSupervipInvite(SupervipInvite supervipInvite);
 
-    int insertSelective(SupervipInvite record);
+    SupervipInvite selectInvite(String userId);
 
-    SupervipInvite selectByPrimaryKey(String id);
+    int updateSupervipInvite(SupervipInvite supervipInvite);
 
-    int updateByPrimaryKeySelective(SupervipInvite record);
-
-    int updateByPrimaryKey(SupervipInvite record);
 }

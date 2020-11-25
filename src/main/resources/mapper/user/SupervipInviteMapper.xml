@@ -10,23 +10,13 @@
   <sql id="Base_Column_List">
     id, user_id, have_invite, status
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectInvite" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from supervip_invite
-    where id = #{id,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from supervip_invite
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.user.po.SupervipInvite">
-    insert into supervip_invite (id, user_id, have_invite, 
-      status)
-    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{haveInvite,jdbcType=INTEGER}, 
-      #{status,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.SupervipInvite">
+  <insert id="insertSupervipInvite" parameterType="com.skyc.demo.user.po.SupervipInvite">
     insert into supervip_invite
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -57,7 +47,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.SupervipInvite">
+  <update id="updateSupervipInvite" parameterType="com.skyc.demo.user.po.SupervipInvite">
     update supervip_invite
     <set>
       <if test="userId != null">
@@ -70,13 +60,6 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.SupervipInvite">
-    update supervip_invite
-    set user_id = #{userId,jdbcType=VARCHAR},
-      have_invite = #{haveInvite,jdbcType=INTEGER},
-      status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

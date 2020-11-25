@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public class GetRandom {
 
-    public static String getRandomNickname(int length) {
+    public static String getRandomNumber(int length) {
         String val = "";
         Random random = new Random();
         for (int i = 0; i < length; i++) {

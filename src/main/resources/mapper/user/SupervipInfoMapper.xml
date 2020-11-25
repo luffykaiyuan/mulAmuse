@@ -15,17 +15,7 @@
     from supervip_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from supervip_info
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.skyc.demo.user.po.SupervipInfo">
-    insert into supervip_info (id, user_id, have_number
-      )
-    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{haveNumber,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.skyc.demo.user.po.SupervipInfo">
+  <insert id="insertSuperVIP" parameterType="com.skyc.demo.user.po.SupervipInfo">
     insert into supervip_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -50,7 +40,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.user.po.SupervipInfo">
+  <update id="updateSuperVIP" parameterType="com.skyc.demo.user.po.SupervipInfo">
     update supervip_info
     <set>
       <if test="userId != null">
@@ -60,12 +50,6 @@
         have_number = #{haveNumber,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.skyc.demo.user.po.SupervipInfo">
-    update supervip_info
-    set user_id = #{userId,jdbcType=VARCHAR},
-      have_number = #{haveNumber,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
