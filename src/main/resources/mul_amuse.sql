@@ -11,7 +11,7 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 19/11/2020 13:45:58
+ Date: 26/11/2020 20:07:20
 */
 
 SET NAMES utf8mb4;
@@ -153,9 +153,9 @@ CREATE TABLE `product_info`  (
   `product_detail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品详情（如何体现）',
   `max_appointment` int NULL DEFAULT NULL COMMENT '最大预约人数',
   `product_end_time` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品期限',
-  `commission_heigh` float(10, 2) NULL DEFAULT NULL COMMENT '高佣金',
-  `commission_middle` float(10, 2) NULL DEFAULT NULL COMMENT '中佣金',
-  `commission_low` float(10, 2) NULL DEFAULT NULL COMMENT '低拥金',
+  `commission_heigh` float(10, 2) NULL DEFAULT 0.00 COMMENT '高佣金',
+  `commission_middle` float(10, 2) NULL DEFAULT 0.00 COMMENT '中佣金',
+  `commission_low` float(10, 2) NULL DEFAULT 0.00 COMMENT '低拥金',
   `operate_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '操作人ID',
   `add_time` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '添加时间',
   `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.删除，1.正常）',
@@ -274,10 +274,10 @@ CREATE TABLE `user_info`  (
   `user_invite` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邀请码',
   `invite_number` int NULL DEFAULT 0 COMMENT '已邀请人数',
   `father_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '父级ID',
-  `father_title` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '父级头衔',
+  `father_title` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '父级头衔',
   `father_support` float(10, 2) NULL DEFAULT 0.00 COMMENT '给父级的佣金',
   `grand_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '爷级ID',
-  `grand_title` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '爷级头衔',
+  `grand_title` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '爷级头衔',
   `grand_support` float(10, 2) NULL DEFAULT 0.00 COMMENT '给爷级的佣金',
   `add_time` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '添加时间',
   `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.删除，1.正常）',
