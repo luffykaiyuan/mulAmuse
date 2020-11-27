@@ -3,15 +3,17 @@
 <mapper namespace="com.skyc.demo.user.dao.CommissionLogMapper">
   <resultMap id="BaseResultMap" type="com.skyc.demo.user.po.CommissionLog">
     <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="order_number" jdbcType="VARCHAR" property="orderNumber" />
     <result column="provide_id" jdbcType="VARCHAR" property="provideId" />
     <result column="provide_name" jdbcType="VARCHAR" property="provideName" />
     <result column="get_id" jdbcType="VARCHAR" property="getId" />
     <result column="get_name" jdbcType="VARCHAR" property="getName" />
+    <result column="get_money" jdbcType="REAL" property="getMoney" />
     <result column="add_time" jdbcType="VARCHAR" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, provide_id, provide_name, get_id, get_name, add_time, status
+    id, provide_id, order_number, provide_name, get_id, get_name, get_money, add_time, status
   </sql>
   <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -31,6 +33,9 @@
       <if test="id != null">
         id,
       </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
       <if test="provideId != null">
         provide_id,
       </if>
@@ -43,6 +48,9 @@
       <if test="getName != null">
         get_name,
       </if>
+      <if test="getMoney != null">
+        get_money,
+      </if>
       <if test="addTime != null">
         add_time,
       </if>
@@ -53,6 +61,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
       </if>
       <if test="provideId != null">
         #{provideId,jdbcType=VARCHAR},
@@ -65,6 +76,9 @@
       </if>
       <if test="getName != null">
         #{getName,jdbcType=VARCHAR},
+      </if>
+      <if test="getMoney != null">
+        #{getMoney,jdbcType=REAL},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=VARCHAR},
@@ -89,6 +103,9 @@
       <if test="getName != null">
         get_name = #{getName,jdbcType=VARCHAR},
       </if>
+      <if test="getMoney != null">
+        get_money = #{getMoney,jdbcType=REAL},
+      </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=VARCHAR},
       </if>
@@ -97,5 +114,10 @@
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="cashoutFinish" parameterType="java.lang.String" >
+    update commission_log
+    set status = '2'
+    where get_id = #{getId,jdbcType=VARCHAR}
   </update>
 </mapper>

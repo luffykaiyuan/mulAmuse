@@ -15,6 +15,7 @@
     <include refid="Base_Column_List" />
     from supervip_invite
     where user_id = #{userId,jdbcType=VARCHAR}
+    and status = '1'
   </select>
   <insert id="insertSupervipInvite" parameterType="com.skyc.demo.user.po.SupervipInvite">
     insert into supervip_invite

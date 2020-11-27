@@ -28,4 +28,6 @@ public interface UserInfoMapper {
 
     int becomeTalent(UserInfo userInfo);
 
+    int addSupport(UserInfo userInfo);
+
 }

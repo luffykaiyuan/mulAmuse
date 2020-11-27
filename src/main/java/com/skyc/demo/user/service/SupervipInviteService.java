@@ -1,6 +1,10 @@
 package com.skyc.demo.user.service;
 
+import com.skyc.demo.admin.dao.SupervipSetMapper;
+import com.skyc.demo.admin.po.SupervipSet;
+import com.skyc.demo.user.dao.SupervipInfoMapper;
 import com.skyc.demo.user.dao.SupervipInviteMapper;
+import com.skyc.demo.user.po.SupervipInfo;
 import com.skyc.demo.user.po.SupervipInvite;
 import com.skyc.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,12 @@ public class SupervipInviteService {
 
     @Autowired
     SupervipInviteMapper supervipInviteMapper;
+
+    @Autowired
+    SupervipSetMapper supervipSetMapper;
+
+    @Autowired
+    SupervipInfoMapper supervipInfoMapper;
 
     public SupervipInvite selectInvite(String userId){
         return supervipInviteMapper.selectInvite(userId);
@@ -25,4 +35,13 @@ public class SupervipInviteService {
         return supervipInviteMapper.updateSupervipInvite(supervipInvite);
     }
 
+    public void becomeVip(SupervipInvite supervipInvite){
+        SupervipSet supervipSet = supervipSetMapper.selectSupervipSet("259");
+        supervipInviteMapper.updateSupervipInvite(supervipInvite);
+        SupervipInfo supervipInfo = new SupervipInfo();
+        supervipInfo.setId(UUIDUtils.getUUID(16));
+        supervipInfo.setUserId(supervipInvite.getUserId());
+        supervipInfo.setHaveNumber(supervipSet.getInviteHaveNumber());
+        supervipInfoMapper.insertSuperVIP(supervipInfo);
+    }
 }

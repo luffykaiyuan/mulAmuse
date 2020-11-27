@@ -3,6 +3,8 @@ package com.skyc.demo.user.po;
 public class CommissionLog {
     private String id;
 
+    private String orderNumber;
+
     private String provideId;
 
     private String provideName;
@@ -10,6 +12,8 @@ public class CommissionLog {
     private String getId;
 
     private String getName;
+
+    private float getMoney;
 
     private String addTime;
 
@@ -21,6 +25,14 @@ public class CommissionLog {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
     public String getProvideId() {
@@ -53,6 +65,14 @@ public class CommissionLog {
 
     public void setGetName(String getName) {
         this.getName = getName == null ? null : getName.trim();
+    }
+
+    public void setGetMoney(float getMoney) {
+        this.getMoney = getMoney;
+    }
+
+    public float getGetMoney() {
+        return getMoney;
     }
 
     public String getAddTime() {

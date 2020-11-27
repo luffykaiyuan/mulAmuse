@@ -14,6 +14,11 @@ public class OrderInfoCon {
     @Autowired
     OrderInfoService orderInfoService;
 
+    @PostMapping("/insertOrder")
+    public String insertOrder(@RequestBody OrderInfo orderInfo) throws Exception{
+        return orderInfoService.insertOrder(orderInfo);
+    }
+
     @GetMapping("/selectUserOrder")
     public List<OrderInfo> selectUserOrder(@RequestParam("/userId") String userId){
         return orderInfoService.selectUserOrder(userId);

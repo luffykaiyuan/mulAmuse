@@ -261,4 +261,10 @@
     user_phone = #{userPhone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <update id="addSupport"  parameterType="com.skyc.demo.user.po.UserInfo">
+    update user_info
+    set father_support = #{fatherSupport,jdbcType=REAL},
+    grand_support = #{grandSupport,jdbcType=REAL}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
 </mapper>

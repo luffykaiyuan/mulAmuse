@@ -18,4 +18,5 @@ public interface CommissionLogMapper {
 
     int updateCommissionLog(CommissionLog commissionLog);
 
+    int cashoutFinish(String getId);
 }

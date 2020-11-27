@@ -7,7 +7,11 @@ public class SupervipSet {
 
     private Integer dicountNumber;
 
+    private Integer payHaveNumber;
+
     private Integer inviteNumber;
+
+    private Integer inviteHaveNumber;
 
     public String getId() {
         return id;
@@ -33,11 +37,27 @@ public class SupervipSet {
         this.dicountNumber = dicountNumber;
     }
 
+    public Integer getPayHaveNumber() {
+        return payHaveNumber;
+    }
+
+    public void setPayHaveNumber(Integer payHaveNumber) {
+        this.payHaveNumber = payHaveNumber;
+    }
+
     public Integer getInviteNumber() {
         return inviteNumber;
     }
 
     public void setInviteNumber(Integer inviteNumber) {
         this.inviteNumber = inviteNumber;
+    }
+
+    public void setInviteHaveNumber(Integer inviteHaveNumber) {
+        this.inviteHaveNumber = inviteHaveNumber;
+    }
+
+    public Integer getInviteHaveNumber() {
+        return inviteHaveNumber;
     }
 }

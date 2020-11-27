@@ -16,4 +16,6 @@ public interface UserCommissionMapper {
 
     int updateCommission(UserCommission userCommission);
 
+    void addWaitCommission(Float waitWithdrawal, String userId);
+
 }

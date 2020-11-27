@@ -29,4 +29,9 @@ public class SupervipInviteCon {
         return supervipInviteService.updateSupervipInvite(supervipInvite);
     }
 
+    @PostMapping("/becomeVip")
+    public void becomeVip(@RequestBody SupervipInvite supervipInvite) {
+        supervipInviteService.becomeVip(supervipInvite);
+    }
+
 }

@@ -1,6 +1,10 @@
 package com.skyc.demo.user.service;
 
+import com.skyc.demo.user.dao.SupervipInviteMapper;
+import com.skyc.demo.user.dao.UserCommissionMapper;
 import com.skyc.demo.user.dao.UserInfoMapper;
+import com.skyc.demo.user.po.SupervipInvite;
+import com.skyc.demo.user.po.UserCommission;
 import com.skyc.demo.user.po.UserInfo;
 import com.skyc.demo.util.GetNowDate;
 import com.skyc.demo.util.GetRandom;
@@ -17,10 +21,27 @@ public class UserInfoService {
     @Autowired
     UserInfoMapper userInfoMapper;
 
+    @Autowired
+    UserCommissionMapper userCommissionMapper;
+
+    @Autowired
+    SupervipInviteMapper supervipInviteMapper;
+
     public int insertUser(UserInfo userInfo){
-        userInfo.setId(UUIDUtils.getUUID(16));
+        String userId = UUIDUtils.getUUID(16);
+        userInfo.setId(userId);
         userInfo.setAddTime(GetNowDate.getStringDate());
         userInfo.setUserInvite(GetRandom.getRandomNumber(8));
+        //佣金信息表的数据添加
+        UserCommission userCommission = new UserCommission();
+        userCommission.setId(UUIDUtils.getUUID(16));
+        userCommission.setUserId(userId);
+        userCommissionMapper.insertCommission(userCommission);
+        //超级VIP邀请表添加数据
+        SupervipInvite supervipInvite = new SupervipInvite();
+        supervipInvite.setId(UUIDUtils.getUUID(16));
+        supervipInvite.setUserId(userId);
+        supervipInviteMapper.insertSupervipInvite(supervipInvite);
         return userInfoMapper.insertUser(userInfo);
     }
 

@@ -48,7 +48,6 @@
     <include refid="Base_Column_List" />
     from product_info
     where id = #{id,jdbcType=VARCHAR}
-    order by add_time desc
   </select>
   <insert id="insertProduct" parameterType="com.skyc.demo.merchants.po.ProductInfo">
     insert into product_info

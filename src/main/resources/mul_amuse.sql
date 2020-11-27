@@ -11,7 +11,7 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 26/11/2020 20:07:20
+ Date: 27/11/2020 17:48:58
 */
 
 SET NAMES utf8mb4;
@@ -31,6 +31,10 @@ CREATE TABLE `admin_and_right`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员与权利的中间表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of admin_and_right
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for admin_info
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_info`;
@@ -43,6 +47,10 @@ CREATE TABLE `admin_info`  (
   `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.删除，1.正常）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员登录信息' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of admin_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for cashout_log
@@ -58,19 +66,29 @@ CREATE TABLE `cashout_log`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of cashout_log
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for commission_log
 -- ----------------------------
 DROP TABLE IF EXISTS `commission_log`;
 CREATE TABLE `commission_log`  (
   `id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键',
+  `order_number` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单号',
   `provide_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '提供人ID',
   `provide_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '提供人名称',
   `get_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '获得人ID',
   `get_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '获得人名称',
+  `get_money` float NULL DEFAULT NULL COMMENT '获得金额',
   `add_time` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '添加时间',
-  `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.已提现，1.待提现）',
+  `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.删除，1.待提现，2.已提现）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '提现记录表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of commission_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for file_info
@@ -87,6 +105,11 @@ CREATE TABLE `file_info`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文件上传' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of file_info
+-- ----------------------------
+INSERT INTO `file_info` VALUES ('0a9e7d8892e34251', '298ec9499adc6b1f.jpg', 'c9662730-2a4c-4430-b85c-8fe36e615331.jpg', '\\2020\\11', 39794, '2020-11-22 12:58:53');
+
+-- ----------------------------
 -- Table structure for model_info
 -- ----------------------------
 DROP TABLE IF EXISTS `model_info`;
@@ -100,6 +123,10 @@ CREATE TABLE `model_info`  (
   `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.删除，1.正常）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '型号信息表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of model_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for order_info
@@ -127,6 +154,10 @@ CREATE TABLE `order_info`  (
   `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.删除，1.已支付/待核销/未发货，2.已核销，3.已发货，4.已完成）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单信息' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of order_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for product_info
@@ -163,6 +194,10 @@ CREATE TABLE `product_info`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of product_info
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for receive_info
 -- ----------------------------
 DROP TABLE IF EXISTS `receive_info`;
@@ -179,6 +214,10 @@ CREATE TABLE `receive_info`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '收货地址表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of receive_info
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for right_info
 -- ----------------------------
 DROP TABLE IF EXISTS `right_info`;
@@ -189,6 +228,10 @@ CREATE TABLE `right_info`  (
   `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.删除，1.正常）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '权利表名称' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of right_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for store_info
@@ -210,6 +253,10 @@ CREATE TABLE `store_info`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商家信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of store_info
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for supervip_info
 -- ----------------------------
 DROP TABLE IF EXISTS `supervip_info`;
@@ -221,16 +268,24 @@ CREATE TABLE `supervip_info`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '超级会员信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of supervip_info
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for supervip_invite
 -- ----------------------------
 DROP TABLE IF EXISTS `supervip_invite`;
 CREATE TABLE `supervip_invite`  (
   `id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键',
   `user_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户ID',
-  `have_invite` int NULL DEFAULT NULL COMMENT '已经邀请人数',
+  `have_invite` int NULL DEFAULT 0 COMMENT '已经邀请人数',
   `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.删除，1.正常）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '分享免费获得超级会员表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of supervip_invite
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for supervip_set
@@ -240,9 +295,16 @@ CREATE TABLE `supervip_set`  (
   `id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键',
   `supervip_money` float(10, 2) NULL DEFAULT NULL COMMENT '超级会员价格',
   `dicount_number` int NULL DEFAULT NULL COMMENT '折扣力度、',
+  `pay_have_number` int NULL DEFAULT NULL COMMENT '会用购买后拥有次数',
   `invite_number` int NULL DEFAULT NULL COMMENT '邀请人数',
+  `invite_have_number` int NULL DEFAULT NULL COMMENT '邀请人拥有的次数',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '超级会员折扣设置' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of supervip_set
+-- ----------------------------
+INSERT INTO `supervip_set` VALUES ('259', 30.00, 0, 1, 2, NULL);
 
 -- ----------------------------
 -- Table structure for user_commission
@@ -250,11 +312,15 @@ CREATE TABLE `supervip_set`  (
 DROP TABLE IF EXISTS `user_commission`;
 CREATE TABLE `user_commission`  (
   `id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键',
-  `user_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户ID',
-  `wait_withdrawal` float(10, 2) NULL DEFAULT NULL COMMENT '待提现佣金',
-  `finish_withdrawal` float(10, 2) NULL DEFAULT NULL COMMENT '已提现佣金',
+  `user_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户ID',
+  `wait_withdrawal` float(10, 2) NULL DEFAULT 0.00 COMMENT '待提现佣金',
+  `finish_withdrawal` float(10, 2) NULL DEFAULT 0.00 COMMENT '已提现佣金',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户佣金表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_commission
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user_info
@@ -283,5 +349,9 @@ CREATE TABLE `user_info`  (
   `status` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '状态（0.删除，1.正常）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_info
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;

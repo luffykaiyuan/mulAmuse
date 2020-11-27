@@ -14,4 +14,8 @@ public interface SupervipInfoMapper {
 
     int updateSuperVIP(SupervipInfo supervipInfo);
 
+    int addNumber(String userId);
+
+    int subNumber(String userId);
+
 }

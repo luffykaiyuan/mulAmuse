@@ -14,7 +14,7 @@ public interface ProductInfoMapper {
 
     List<ProductInfo> selectProductByStore(String storeId);
 
-    List<ProductInfo> selectProductById(String id);
+    ProductInfo selectProductById(String id);
 
     int updateProduct(ProductInfo productInfo);
 
