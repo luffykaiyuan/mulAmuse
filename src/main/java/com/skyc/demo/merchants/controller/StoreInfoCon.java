@@ -14,6 +14,12 @@ public class StoreInfoCon {
     @Autowired
     StoreInfoService storeInfoService;
 
+    @CrossOrigin(origins = "*",maxAge = 3600)
+    @GetMapping("/testGet")
+    public String testGet() {
+        return "success";
+    }
+
     @GetMapping("/selectAllNormal")
     public List<StoreInfo> selectAllNormal() {
         return storeInfoService.selectAllNormal();
