@@ -41,7 +41,7 @@ public class StoreInfoService {
 
     public String insertStore(StoreInfo storeInfo){
         StoreInfo storeInfoOld = storeInfoMapper.selectByUsername(storeInfo.getStoreUsername());
-        if (!"".equals(storeInfoOld.getStoreUsername()) && !"".equals(storeInfoOld.getStorePassword())) {
+        if (storeInfoOld == null) {
             storeInfo.setId(UUIDUtils.getUUID(16));
             storeInfo.setAddTime(GetNowDate.getStringDate());
             storeInfoMapper.insertStore(storeInfo);

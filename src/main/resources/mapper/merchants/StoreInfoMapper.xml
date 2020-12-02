@@ -22,7 +22,7 @@
     select 
     <include refid="Base_Column_List" />
     from store_info
-    where status = '0'
+    where status = '1'
     order by add_time desc
   </select>
   <select id="selectAllStore" resultMap="BaseResultMap">

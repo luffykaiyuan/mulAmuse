@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/store")
 public class StoreInfoCon {
@@ -14,10 +15,14 @@ public class StoreInfoCon {
     @Autowired
     StoreInfoService storeInfoService;
 
-    @CrossOrigin(origins = "*",maxAge = 3600)
     @GetMapping("/testGet")
     public String testGet() {
         return "success";
+    }
+
+    @PostMapping("/testPost")
+    public StoreInfo testPost(@RequestBody StoreInfo storeInfo){
+        return storeInfo;
     }
 
     @GetMapping("/selectAllNormal")
