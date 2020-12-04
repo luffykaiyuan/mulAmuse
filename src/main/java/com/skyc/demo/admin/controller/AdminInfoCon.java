@@ -5,8 +5,10 @@ import com.skyc.demo.admin.service.AdminInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/admin")
 public class AdminInfoCon {
@@ -35,7 +37,7 @@ public class AdminInfoCon {
     }
 
     @GetMapping("/deleteAdmin")
-    public int deleteAdmin(@RequestParam("/id") String id){
+    public int deleteAdmin(@PathParam("/id") String id){
         return adminInfoService.deleteAdmin(id);
     }
 
@@ -45,10 +47,14 @@ public class AdminInfoCon {
     }
 
 
+    @GetMapping("/selectByUsername")
+    public AdminInfo selectByUsername(@PathParam("/adminUsername") String adminUsername){
+        return adminInfoService.selectByUsername(adminUsername);
+    }
 
     //备用方法，通过id查询管理员信息
     @GetMapping("/selectById")
-    public AdminInfo selectById(@RequestParam("/id") String id){
+    public AdminInfo selectById(@PathParam("/id") String id){
         return adminInfoService.selectById(id);
     }
 }

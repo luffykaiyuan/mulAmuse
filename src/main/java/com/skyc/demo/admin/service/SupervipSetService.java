@@ -5,13 +5,15 @@ import com.skyc.demo.admin.po.SupervipSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SupervipSetService {
 
     @Autowired
     SupervipSetMapper supervipSetMapper;
 
-    public SupervipSet selectSupervipSet(String id){
+    public List<SupervipSet> selectSupervipSet(String id){
         return supervipSetMapper.selectSupervipSet(id);
     }
 

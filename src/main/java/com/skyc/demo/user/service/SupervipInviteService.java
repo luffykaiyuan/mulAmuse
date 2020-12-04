@@ -10,6 +10,8 @@ import com.skyc.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SupervipInviteService {
 
@@ -36,12 +38,12 @@ public class SupervipInviteService {
     }
 
     public void becomeVip(SupervipInvite supervipInvite){
-        SupervipSet supervipSet = supervipSetMapper.selectSupervipSet("259");
+        List<SupervipSet> supervipSet = supervipSetMapper.selectSupervipSet("259");
         supervipInviteMapper.updateSupervipInvite(supervipInvite);
         SupervipInfo supervipInfo = new SupervipInfo();
         supervipInfo.setId(UUIDUtils.getUUID(16));
         supervipInfo.setUserId(supervipInvite.getUserId());
-        supervipInfo.setHaveNumber(supervipSet.getInviteHaveNumber());
+        supervipInfo.setHaveNumber(supervipSet.get(0).getInviteHaveNumber());
         supervipInfoMapper.insertSuperVIP(supervipInfo);
     }
 }

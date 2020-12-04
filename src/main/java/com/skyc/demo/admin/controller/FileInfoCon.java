@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/file")
 public class FileInfoCon {

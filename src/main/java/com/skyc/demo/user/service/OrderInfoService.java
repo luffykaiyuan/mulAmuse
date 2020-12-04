@@ -105,6 +105,10 @@ public class OrderInfoService {
         return "下单成功！！！";
     }
 
+    public List<OrderInfo> selectAllNormal(){
+        return orderInfoMapper.selectAllNormal();
+    }
+
     public List<OrderInfo> selectUserOrder(String userId){
         return orderInfoMapper.selectUserOrder(userId);
     }

@@ -25,6 +25,10 @@ public class ProductInfoService {
         return productInfoMapper.selectProductByStore(storeId);
     }
 
+    public ProductInfo selectProductById(String id){
+        return productInfoMapper.selectProductById(id);
+    }
+
     public String insertProduct(ProductInfo productInfo){
         productInfo.setId(UUIDUtils.getUUID(16));
         productInfo.setAddTime(GetNowDate.getStringDate());

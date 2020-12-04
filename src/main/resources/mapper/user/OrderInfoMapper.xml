@@ -33,6 +33,12 @@
     from order_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectAllNormal" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    and status != '0'
+  </select>
   <select id="selectUserOrder" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

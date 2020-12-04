@@ -5,6 +5,10 @@ import com.skyc.demo.admin.service.SupervipSetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+import java.util.List;
+
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/supervipSet")
 public class SupervipSetCon {
@@ -13,7 +17,7 @@ public class SupervipSetCon {
     SupervipSetService supervipSetService;
 
     @GetMapping("/selectSupervipSet")
-    public SupervipSet selectSupervipSet(@RequestParam("/id") String id){
+    public List<SupervipSet> selectSupervipSet(@PathParam("/id") String id){
         return supervipSetService.selectSupervipSet(id);
     }
 

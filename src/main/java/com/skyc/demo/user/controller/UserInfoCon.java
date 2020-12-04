@@ -5,8 +5,10 @@ import com.skyc.demo.user.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserInfoCon {
@@ -30,12 +32,12 @@ public class UserInfoCon {
     }
 
     @GetMapping("/selectUserSons")
-    public List<UserInfo> selectUserSons(@RequestParam("/fatherId") String fatherId){
+    public List<UserInfo> selectUserSons(@PathParam("/fatherId") String fatherId){
         return userInfoService.selectUserSons(fatherId);
     }
 
     @GetMapping("/selectById")
-    public UserInfo selectUerDetail(@RequestParam("/id") String id){
+    public UserInfo selectUerDetail(@PathParam("/id") String id){
         return userInfoService.selectUerDetail(id);
 
     }

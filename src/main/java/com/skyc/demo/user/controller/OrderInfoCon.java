@@ -5,8 +5,10 @@ import com.skyc.demo.user.service.OrderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/order")
 public class OrderInfoCon {
@@ -19,18 +21,23 @@ public class OrderInfoCon {
         return orderInfoService.insertOrder(orderInfo);
     }
 
+    @GetMapping("/selectAllNormal")
+    public List<OrderInfo> selectAllNormal(){
+        return orderInfoService.selectAllNormal();
+    }
+
     @GetMapping("/selectUserOrder")
-    public List<OrderInfo> selectUserOrder(@RequestParam("/userId") String userId){
+    public List<OrderInfo> selectUserOrder(@PathParam("/userId") String userId){
         return orderInfoService.selectUserOrder(userId);
     }
 
     @GetMapping("/selectStoreOrder")
-    public List<OrderInfo> selectStoreOrder(@RequestParam("/storeId") String storeId){
+    public List<OrderInfo> selectStoreOrder(@PathParam("/storeId") String storeId){
         return orderInfoService.selectStoreOrder(storeId);
     }
 
     @GetMapping("/selectOrderDetail")
-    public OrderInfo selectOrderDetail(@RequestParam("/id") String id){
+    public OrderInfo selectOrderDetail(@PathParam("/id") String id){
         return orderInfoService.selectOrderDetail(id);
     }
 
@@ -40,7 +47,7 @@ public class OrderInfoCon {
     }
 
     @PostMapping("/destoryCodeNumber")
-    public String destoryCodeNumber(@RequestParam("/qrcodeNumber") String qrcodeNumber){
+    public String destoryCodeNumber(@PathParam("/qrcodeNumber") String qrcodeNumber){
         return orderInfoService.destoryCodeNumber(qrcodeNumber);
     }
 

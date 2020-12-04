@@ -3,11 +3,9 @@ package com.skyc.demo.user.controller;
 import com.skyc.demo.user.po.SupervipInfo;
 import com.skyc.demo.user.service.SupervipInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/supervipInfo")
 public class SupervipInfoCon {

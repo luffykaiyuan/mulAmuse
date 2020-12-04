@@ -5,8 +5,10 @@ import com.skyc.demo.merchants.service.ModelInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/model")
 public class ModelInfoCon {
@@ -20,7 +22,7 @@ public class ModelInfoCon {
     }
 
     @GetMapping("/selectModelByProduct")
-    public List<ModelInfo> selectModelByProduct(@RequestParam("/productId") String productId){
+    public List<ModelInfo> selectModelByProduct(@PathParam("/productId") String productId){
         return modelInfoService.selectModelByProduct(productId);
     }
 
@@ -30,7 +32,7 @@ public class ModelInfoCon {
     }
 
     @GetMapping("/deleteModel")
-    public int deleteModel(@RequestParam("/id") String id){
+    public int deleteModel(@PathParam("/id") String id){
         return modelInfoService.deleteModel(id);
     }
 }

@@ -47,6 +47,10 @@ public class AdminInfoService {
         return adminInfoMapper.selectById(id);
     }
 
+    public AdminInfo selectByUsername(String adminUsername){
+        return adminInfoMapper.selectByUsername(adminUsername);
+    }
+
 
     public List<AdminInfo> selectAllAdmin(){
         return adminInfoMapper.selectAllAdmin();
@@ -71,12 +75,12 @@ public class AdminInfoService {
     }
 
     public String loginAdmin(AdminInfo adminInfo){
-        AdminInfo adminInfoOld = adminInfoMapper.selectByUsername(adminInfo.getId());
-        if ("".equals(adminInfoOld.getAdminUsername())){
+        AdminInfo adminInfoOld = adminInfoMapper.selectByUsername(adminInfo.getAdminUsername());
+        if (null == adminInfoOld){
             return checkUsername;
         }else{
-            if (adminInfoOld.equals(adminInfo.getAdminPassword())){
-                return "";
+            if (adminInfoOld.getAdminPassword().equals(adminInfo.getAdminPassword())){
+                return "admin";
             }else {
                 return checkPass;
             }

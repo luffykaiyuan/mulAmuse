@@ -16,6 +16,8 @@ public interface OrderInfoMapper {
 
     OrderInfo selectDestoryOrder(String qrcodeNumber);
 
+    List<OrderInfo> selectAllNormal();
+
     List<OrderInfo> selectUserOrder(String userId);
 
     List<OrderInfo> selectStoreOrder(String storeId);

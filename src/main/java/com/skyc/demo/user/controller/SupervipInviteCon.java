@@ -6,6 +6,9 @@ import com.skyc.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/supervipInvite")
 public class SupervipInviteCon {
@@ -14,7 +17,7 @@ public class SupervipInviteCon {
     SupervipInviteService supervipInviteService;
 
     @GetMapping("/selectInvite")
-    public SupervipInvite selectInvite(@RequestParam("/userId") String userId){
+    public SupervipInvite selectInvite(@PathParam("/userId") String userId){
         return supervipInviteService.selectInvite(userId);
     }
 

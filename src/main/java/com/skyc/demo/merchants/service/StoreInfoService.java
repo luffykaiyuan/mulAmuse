@@ -66,11 +66,11 @@ public class StoreInfoService {
 
     public String loginStore(StoreInfo storeInfo){
         StoreInfo storeInfoOld = storeInfoMapper.selectByUsername(storeInfo.getStoreUsername());
-        if ("".equals(storeInfoOld.getStoreUsername())){
+        if (null == storeInfoOld){
             return checkUsername;
         }else {
-            if (storeInfoOld.equals(storeInfo.getStoreUsername())){
-                return "";
+            if (storeInfoOld.getStorePassword().equals(storeInfo.getStorePassword())){
+                return "store";
             }else {
                 return checkPass;
             }

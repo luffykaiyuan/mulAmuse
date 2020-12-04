@@ -5,8 +5,10 @@ import com.skyc.demo.user.service.ReceiveInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/receiveInfo")
 public class ReceiveInfoCon {
@@ -20,12 +22,12 @@ public class ReceiveInfoCon {
     }
 
         @GetMapping("/selectUserReceive")
-    public List<ReceiveInfo> selectUserReceive(@RequestParam("/userId") String userId){
+    public List<ReceiveInfo> selectUserReceive(@PathParam("/userId") String userId){
         return receiveInfoService.selectUserReceive(userId);
     }
 
     @GetMapping("/selectReceiveList")
-    public List<ReceiveInfo> selectReceiveList(@RequestParam("/userId") String userId){
+    public List<ReceiveInfo> selectReceiveList(@PathParam("/userId") String userId){
         return receiveInfoService.selectReceiveList(userId);
     }
 
