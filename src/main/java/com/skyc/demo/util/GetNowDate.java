@@ -14,7 +14,7 @@ public class GetNowDate {
     public static String getStringDate() {
         Date date = new Date();
         SimpleDateFormat sdf
-                = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(date);
     }
 

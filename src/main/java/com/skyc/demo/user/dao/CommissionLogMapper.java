@@ -14,7 +14,9 @@ public interface CommissionLogMapper {
 
     CommissionLog selectById(String id);
 
-    List<CommissionLog> selectUserCommissionLog(String getId);
+    List<CommissionLog> selectWaitCommissionLog(String getId);
+
+    List<CommissionLog> selectFinishCommissionLog(String getId);
 
     int updateCommissionLog(CommissionLog commissionLog);
 

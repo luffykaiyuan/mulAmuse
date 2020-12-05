@@ -36,16 +36,19 @@ public class UserInfoCon {
         return userInfoService.selectUserSons(fatherId);
     }
 
-    @GetMapping("/selectById")
+    @GetMapping("/selectUerDetail")
     public UserInfo selectUerDetail(@PathParam("/id") String id){
         return userInfoService.selectUerDetail(id);
+    }
 
+    @GetMapping("/selectUerByUsername")
+    public List<UserInfo> selectUerByUsername(@PathParam("/userName") String userName){
+        return userInfoService.selectUerByUsername(userName);
     }
 
     @PostMapping("/updateUser")
     public int updateUser(@RequestBody UserInfo userInfo){
         return userInfoService.updateUser(userInfo);
-
     }
 
     @PostMapping("/updateUserTitle")

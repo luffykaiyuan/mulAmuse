@@ -55,6 +55,12 @@
     from user_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectUerByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
   <insert id="insertUser" parameterType="com.skyc.demo.user.po.UserInfo">
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">

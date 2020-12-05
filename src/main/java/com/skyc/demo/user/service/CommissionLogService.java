@@ -14,7 +14,9 @@ public class CommissionLogService {
     CommissionLogMapper commissionLogMapper;
 
     public List<CommissionLog> selectUserCommissionLog(String getId){
-        return commissionLogMapper.selectUserCommissionLog(getId);
+        List<CommissionLog> list = commissionLogMapper.selectWaitCommissionLog(getId);
+        list.addAll(commissionLogMapper.selectFinishCommissionLog(getId));
+        return list;
     }
 
 

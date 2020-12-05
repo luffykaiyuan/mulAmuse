@@ -59,7 +59,10 @@ public class UserInfoService {
 
     public UserInfo selectUerDetail(String id){
         return userInfoMapper.selectUerDetail(id);
+    }
 
+    public List<UserInfo> selectUerByUsername(String userName){
+        return userInfoMapper.selectUerByUsername(userName);
     }
 
     public int updateUser(UserInfo userInfo){

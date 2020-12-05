@@ -21,11 +21,21 @@
     from commission_log
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <select id="selectUserCommissionLog" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectWaitCommissionLog" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from commission_log
     where get_id = #{getId,jdbcType=VARCHAR}
+    and status = "1"
+    order by add_time desc
+  </select>
+  <select id="selectFinishCommissionLog" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from commission_log
+    where get_id = #{getId,jdbcType=VARCHAR}
+    and status = "2"
+    order by add_time desc
   </select>
   <insert id="insertCommissionLog" parameterType="com.skyc.demo.user.po.CommissionLog">
     insert into commission_log
