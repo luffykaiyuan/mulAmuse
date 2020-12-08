@@ -36,6 +36,26 @@ public class OrderInfoCon {
         return orderInfoService.selectStoreOrder(storeId);
     }
 
+    @GetMapping("/selectStoreNetOrder")
+    public List<OrderInfo> selectStoreNetOrder(@PathParam("/storeId") String storeId){
+        return orderInfoService.selectStoreNetOrder(storeId);
+    }
+
+    @GetMapping("/selectStoreRealOrder")
+    public List<OrderInfo> selectStoreRealOrder(@PathParam("/storeId") String storeId){
+        return orderInfoService.selectStoreRealOrder(storeId);
+    }
+
+    @GetMapping("/selectStoreAppointOrder")
+    public List<OrderInfo> selectStoreAppointOrder(@PathParam("/storeId") String storeId){
+        return orderInfoService.selectStoreAppointOrder(storeId);
+    }
+
+    @GetMapping("/selectOrderByNum")
+    public List<OrderInfo> selectOrderByNum(@PathParam("/orderNumber") String orderNumber){
+        return orderInfoService.selectOrderByNum(orderNumber);
+    }
+
     @GetMapping("/selectOrderDetail")
     public OrderInfo selectOrderDetail(@PathParam("/id") String id){
         return orderInfoService.selectOrderDetail(id);
@@ -46,9 +66,14 @@ public class OrderInfoCon {
         return orderInfoService.sendProduct(orderInfo);
     }
 
-    @PostMapping("/destoryCodeNumber")
+    @GetMapping("/destoryCodeNumber")
     public String destoryCodeNumber(@PathParam("/qrcodeNumber") String qrcodeNumber){
         return orderInfoService.destoryCodeNumber(qrcodeNumber);
+    }
+
+    @PostMapping("/checkTime")
+    public int checkTime(@RequestBody OrderInfo orderInfo){
+        return orderInfoService.checkTime(orderInfo);
     }
 
     @PostMapping("/getProduct")

@@ -12,7 +12,7 @@ public interface ReceiveInfoMapper {
 
     int insertReceive(ReceiveInfo receiveInfo);
 
-    ReceiveInfo selectById(String id);
+    List<ReceiveInfo> selectById(String id);
 
     List<ReceiveInfo> selectOtherReceive(String userId);
 

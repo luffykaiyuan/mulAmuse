@@ -53,6 +53,42 @@
     where store_id = #{storeId,jdbcType=VARCHAR}
     and status != '0'
   </select>
+  <select id="selectStoreNetOrder" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    where store_id = #{storeId,jdbcType=VARCHAR}
+    and status = '1'
+    and product_type = '0'
+  </select>
+  <select id="selectStoreRealOrder" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    where store_id = #{storeId,jdbcType=VARCHAR}
+    and status = '1'
+    and product_type = '1'
+  </select>
+  <select id="selectStoreAppointOrder" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    where store_id = #{storeId,jdbcType=VARCHAR}
+    and status = '1'
+    and product_type = '2'
+  </select>
+  <select id="selectOrderByNum" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    where order_number = #{orderNumber,jdbcType=VARCHAR}
+  </select>
+  <select id="selectOneOrder" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    where order_number = #{orderNumber,jdbcType=VARCHAR}
+  </select>
   <select id="selectDestoryOrder" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -250,6 +286,11 @@
   <update id="destoryCodeNumber" parameterType="com.skyc.demo.user.po.OrderInfo">
     update order_info
     set status = '2'
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="checkTime" parameterType="com.skyc.demo.user.po.OrderInfo">
+    update order_info
+    set appointment_time = #{appointmentTime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="getProduct" parameterType="com.skyc.demo.user.po.OrderInfo">

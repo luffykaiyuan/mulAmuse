@@ -22,11 +22,23 @@ public interface OrderInfoMapper {
 
     List<OrderInfo> selectStoreOrder(String storeId);
 
+    List<OrderInfo> selectStoreNetOrder(String storeId);
+
+    List<OrderInfo> selectStoreRealOrder(String storeId);
+
+    List<OrderInfo> selectOrderByNum(String orderNumber);
+
+    OrderInfo selectOneOrder(String orderNumber);
+
+    List<OrderInfo> selectStoreAppointOrder(String storeId);
+
     int updateOrder(OrderInfo orderInfo);
 
     int sendProduct(OrderInfo orderInfo);
 
     int destoryCodeNumber(OrderInfo orderInfo);
+
+    int checkTime(OrderInfo orderInfo);
 
     int getProduct(OrderInfo orderInfo);
 

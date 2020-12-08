@@ -16,16 +16,6 @@ public class StoreInfoCon {
     @Autowired
     StoreInfoService storeInfoService;
 
-    @GetMapping("/testGet")
-    public String testGet() {
-        return "success";
-    }
-
-    @PostMapping("/testPost")
-    public StoreInfo testPost(@RequestBody StoreInfo storeInfo){
-        return storeInfo;
-    }
-
     @GetMapping("/selectAllNormal")
     public List<StoreInfo> selectAllNormal() {
         return storeInfoService.selectAllNormal();
@@ -34,6 +24,16 @@ public class StoreInfoCon {
     @GetMapping("/selectAllStore")
     public List<StoreInfo> selectAllStore() {
         return storeInfoService.selectAllStore();
+    }
+
+    @GetMapping("/selectByUsername")
+    public StoreInfo selectByUsername(@PathParam("/storeUsername") String storeUsername) {
+        return storeInfoService.selectByUsername(storeUsername);
+    }
+
+    @GetMapping("/selectById")
+    public List<StoreInfo> selectById(@PathParam("/id") String id) {
+        return storeInfoService.selectById(id);
     }
 
     @PostMapping("/insertStore")

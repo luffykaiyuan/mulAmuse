@@ -39,6 +39,14 @@ public class StoreInfoService {
         return storeInfoMapper.selectAllStore();
     }
 
+    public StoreInfo selectByUsername(String storeUsername) {
+        return storeInfoMapper.selectByUsername(storeUsername);
+    }
+
+    public List<StoreInfo> selectById(String id) {
+        return storeInfoMapper.selectById(id);
+    }
+
     public String insertStore(StoreInfo storeInfo){
         StoreInfo storeInfoOld = storeInfoMapper.selectByUsername(storeInfo.getStoreUsername());
         if (storeInfoOld == null) {

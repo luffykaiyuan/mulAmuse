@@ -16,6 +16,8 @@ public interface StoreInfoMapper {
 
     StoreInfo selectByUsername(String storeUsername);
 
+    List<StoreInfo> selectById(String id);
+
     int insertStore(StoreInfo storeInfo);
 
     int updateStore(StoreInfo storeInfo);

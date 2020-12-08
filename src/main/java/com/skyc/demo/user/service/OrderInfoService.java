@@ -54,7 +54,7 @@ public class OrderInfoService {
         orderInfo.setId(UUIDUtils.getUUID(16));
         String orderNumber = GetRandom.getRandomNumber(10);
         orderInfo.setOrderNumber(orderNumber);
-        orderInfo.setAddTime(GetNowDate.getStringDate());
+        orderInfo.setAddTime(GetNowDate.getDetailStringDate());
         if ("0".equals(orderInfo.getProductType())){
             //虚拟产品
             String qrcodeNumber = GetRandom.getRandomNumber(8);
@@ -117,6 +117,22 @@ public class OrderInfoService {
         return orderInfoMapper.selectStoreOrder(storeId);
     }
 
+    public List<OrderInfo> selectStoreNetOrder(String storeId){
+        return orderInfoMapper.selectStoreNetOrder(storeId);
+    }
+
+    public List<OrderInfo> selectStoreRealOrder(String storeId){
+        return orderInfoMapper.selectStoreRealOrder(storeId);
+    }
+
+    public List<OrderInfo> selectStoreAppointOrder(String storeId){
+        return orderInfoMapper.selectStoreAppointOrder(storeId);
+    }
+
+    public List<OrderInfo> selectOrderByNum(String orderNumber){
+        return orderInfoMapper.selectOrderByNum(orderNumber);
+    }
+
     public OrderInfo selectOrderDetail(String id){
         return orderInfoMapper.selectOrderDetail(id);
     }
@@ -139,6 +155,11 @@ public class OrderInfoService {
             return destorySuc;
         }
     }
+
+    public int checkTime(OrderInfo orderInfo){
+        return orderInfoMapper.checkTime(orderInfo);
+    }
+
 
     public int getProduct(OrderInfo orderInfo){
         return orderInfoMapper.getProduct(orderInfo);

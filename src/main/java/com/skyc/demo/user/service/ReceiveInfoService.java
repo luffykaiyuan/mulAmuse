@@ -21,6 +21,10 @@ public class ReceiveInfoService {
         return receiveInfoMapper.insertReceive(receiveInfo);
     }
 
+    public List<ReceiveInfo> selectById(String id){
+        return receiveInfoMapper.selectById(id);
+    }
+
     public List<ReceiveInfo> selectUserReceive(String userId){
         return receiveInfoMapper.selectUserReceive(userId);
     }

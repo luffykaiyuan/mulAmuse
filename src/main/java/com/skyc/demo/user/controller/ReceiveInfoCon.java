@@ -21,7 +21,12 @@ public class ReceiveInfoCon {
         return receiveInfoService.insertReceive(receiveInfo);
     }
 
-        @GetMapping("/selectUserReceive")
+    @GetMapping("/selectById")
+    public List<ReceiveInfo> selectById(@PathParam("/id") String id){
+        return receiveInfoService.selectById(id);
+    }
+
+    @GetMapping("/selectUserReceive")
     public List<ReceiveInfo> selectUserReceive(@PathParam("/userId") String userId){
         return receiveInfoService.selectUserReceive(userId);
     }
