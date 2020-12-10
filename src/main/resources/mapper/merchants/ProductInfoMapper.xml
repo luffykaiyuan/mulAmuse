@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.skyc.demo.merchants.po.ProductInfo">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
     <result column="product_type" jdbcType="VARCHAR" property="productType" />
     <result column="product_free" jdbcType="VARCHAR" property="productFree" />
     <result column="product_cover_img" jdbcType="VARCHAR" property="productCoverImg" />
@@ -25,16 +26,17 @@
     <result column="commission_heigh" jdbcType="REAL" property="commissionHeigh" />
     <result column="commission_middle" jdbcType="REAL" property="commissionMiddle" />
     <result column="commission_low" jdbcType="REAL" property="commissionLow" />
+    <result column="sale_out" jdbcType="VARCHAR" property="saleOut" />
     <result column="operate_id" jdbcType="VARCHAR" property="operateId" />
     <result column="add_time" jdbcType="VARCHAR" property="addTime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, store_id, product_type, product_free, product_cover_img, product_main_img1, product_main_img2, 
+    id, store_id, store_name, product_type, product_free, product_cover_img, product_main_img1, product_main_img2,
     product_main_img3, product_main_img4, product_main_img5, product_title, product_sale_status, 
     product_sale_time, product_original_price, product_now_price, product_vip_price, 
     product_sale_volume, product_detail, max_appointment, product_end_time, commission_heigh, 
-    commission_middle, commission_low, operate_id, add_time, status
+    commission_middle, commission_low, sale_out, operate_id, add_time, status
   </sql>
   <select id="selectProductByStore" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -49,6 +51,13 @@
     from product_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectIndexProduct" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where status = '1'
+    order by sale_out
+  </select>
   <insert id="insertProduct" parameterType="com.skyc.demo.merchants.po.ProductInfo">
     insert into product_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -57,6 +66,9 @@
       </if>
       <if test="storeId != null">
         store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
       </if>
       <if test="productType != null">
         product_type,
@@ -124,6 +136,9 @@
       <if test="operateId != null">
         operate_id,
       </if>
+      <if test="saleOut != null">
+        sale_out,
+      </if>
       <if test="addTime != null">
         add_time,
       </if>
@@ -137,6 +152,9 @@
       </if>
       <if test="storeId != null">
         #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
       </if>
       <if test="productType != null">
         #{productType,jdbcType=VARCHAR},
@@ -204,6 +222,9 @@
       <if test="operateId != null">
         #{operateId,jdbcType=VARCHAR},
       </if>
+      <if test="saleOut != null">
+        #{saleOut,jdbcType=VARCHAR},
+      </if>
       <if test="addTime != null">
         #{addTime,jdbcType=VARCHAR},
       </if>
@@ -217,6 +238,9 @@
     <set>
       <if test="storeId != null">
         store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
       </if>
       <if test="productType != null">
         product_type = #{productType,jdbcType=VARCHAR},
@@ -284,6 +308,9 @@
       <if test="operateId != null">
         operate_id = #{operateId,jdbcType=VARCHAR},
       </if>
+      <if test="saleOut != null">
+        sale_out = #{saleOut,jdbcType=VARCHAR},
+      </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=VARCHAR},
       </if>
@@ -296,6 +323,16 @@
   <update id="deleteProduct" parameterType="java.lang.String">
     update product_info
     set status = '0'
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="saleIn" parameterType="java.lang.String">
+    update product_info
+    set sale_out = '0'
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="saleOut" parameterType="java.lang.String">
+    update product_info
+    set sale_out = '1'
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

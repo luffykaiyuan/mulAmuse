@@ -5,6 +5,8 @@ public class ProductInfo {
 
     private String storeId;
 
+    private String storeName;
+
     private String productType;
 
     private String productFree;
@@ -47,6 +49,8 @@ public class ProductInfo {
 
     private Float commissionLow;
 
+    private String saleOut;
+
     private String operateId;
 
     private String addTime;
@@ -67,6 +71,14 @@ public class ProductInfo {
 
     public void setStoreId(String storeId) {
         this.storeId = storeId == null ? null : storeId.trim();
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     public String getProductType() {
@@ -235,6 +247,14 @@ public class ProductInfo {
 
     public void setCommissionLow(Float commissionLow) {
         this.commissionLow = commissionLow;
+    }
+
+    public String getSaleOut() {
+        return saleOut;
+    }
+
+    public void setSaleOut(String saleOut) {
+        this.saleOut = saleOut;
     }
 
     public String getOperateId() {

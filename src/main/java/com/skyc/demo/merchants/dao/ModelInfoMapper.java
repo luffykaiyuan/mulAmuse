@@ -12,10 +12,13 @@ public interface ModelInfoMapper {
 
     int insertModel(ModelInfo modelInfo);
 
+    ModelInfo selectOneModel(String id);
+
     List<ModelInfo> selectModelByProduct(String productId);
 
     int updateModel(ModelInfo modelInfo);
 
     int deleteModel(String id);
 
+    int subStock(ModelInfo modelInfo);
 }

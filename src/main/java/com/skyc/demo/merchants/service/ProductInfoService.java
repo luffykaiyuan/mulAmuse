@@ -1,6 +1,8 @@
 package com.skyc.demo.merchants.service;
 
+import com.skyc.demo.merchants.dao.ModelInfoMapper;
 import com.skyc.demo.merchants.dao.ProductInfoMapper;
+import com.skyc.demo.merchants.po.ModelInfo;
 import com.skyc.demo.merchants.po.ProductInfo;
 import com.skyc.demo.util.GetNowDate;
 import com.skyc.demo.util.UUIDUtils;
@@ -16,6 +18,9 @@ public class ProductInfoService {
     @Autowired
     ProductInfoMapper productInfoMapper;
 
+    @Autowired
+    ModelInfoMapper modelInfoMapper;
+
     @Value("${insertSuc}")
     String insertSuc;
     @Value("${insertFAL}")
@@ -27,6 +32,10 @@ public class ProductInfoService {
 
     public ProductInfo selectProductById(String id){
         return productInfoMapper.selectProductById(id);
+    }
+
+    public List<ProductInfo> selectIndexProduct(){
+        return productInfoMapper.selectIndexProduct();
     }
 
     public String insertProduct(ProductInfo productInfo){

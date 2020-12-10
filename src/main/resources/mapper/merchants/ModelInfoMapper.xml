@@ -13,6 +13,12 @@
   <sql id="Base_Column_List">
     id, product_id, model_name, model_stock, model_price, add_time, status
   </sql>
+  <select id="selectOneModel" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from model_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
   <select id="selectModelByProduct" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -95,6 +101,11 @@
   <update id="deleteModel" parameterType="java.lang.String">
     update model_info
     set status = '0'
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="subStock" parameterType="com.skyc.demo.merchants.po.ModelInfo">
+    update model_info
+    set model_stock = #{modelStock,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

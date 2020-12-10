@@ -16,7 +16,13 @@ public interface ProductInfoMapper {
 
     ProductInfo selectProductById(String id);
 
+    List<ProductInfo> selectIndexProduct();
+
     int updateProduct(ProductInfo productInfo);
 
     int deleteProduct(String id);
+
+    int saleIn(String id);
+
+    int saleOut(String id);
 }

@@ -27,6 +27,13 @@ public class UserInfoService {
     @Autowired
     SupervipInviteMapper supervipInviteMapper;
 
+    @Value("${checkUsername}")
+    String checkUsername;
+    @Value("${repeatUsername}")
+    String repeatUsername;
+    @Value("${checkPass}")
+    String checkPass;
+
     public int insertUser(UserInfo userInfo){
         String userId = UUIDUtils.getUUID(16);
         userInfo.setId(userId);
@@ -73,12 +80,29 @@ public class UserInfoService {
         return userInfoMapper.deleteUser(id);
     }
 
+    public UserInfo selectUserById(String id){
+        return userInfoMapper.selectUserById(id);
+    }
+
     public int updateUserTitle(UserInfo userInfo){
         return userInfoMapper.updateUserTitle(userInfo);
     }
 
     public int becomeTalent(UserInfo userInfo){
         return userInfoMapper.becomeTalent(userInfo);
+    }
+
+    public String loginUser(UserInfo userInfo){
+        UserInfo storeInfoOld = userInfoMapper.selectOneUser(userInfo.getUserName());
+        if (null == storeInfoOld){
+            return checkUsername;
+        }else {
+            if (storeInfoOld.getPassword().equals(userInfo.getPassword())){
+                return "user";
+            }else {
+                return checkPass;
+            }
+        }
     }
 
 }

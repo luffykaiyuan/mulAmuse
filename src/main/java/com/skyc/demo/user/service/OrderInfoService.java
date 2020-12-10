@@ -1,8 +1,11 @@
 package com.skyc.demo.user.service;
 
 import com.skyc.demo.admin.service.FileInfoService;
+import com.skyc.demo.merchants.dao.ModelInfoMapper;
 import com.skyc.demo.merchants.dao.ProductInfoMapper;
+import com.skyc.demo.merchants.po.ModelInfo;
 import com.skyc.demo.merchants.po.ProductInfo;
+import com.skyc.demo.merchants.service.ModelInfoService;
 import com.skyc.demo.user.dao.CommissionLogMapper;
 import com.skyc.demo.user.dao.OrderInfoMapper;
 import com.skyc.demo.user.dao.UserCommissionMapper;
@@ -40,6 +43,12 @@ public class OrderInfoService {
 
     @Autowired
     CommissionLogMapper commissionLogMapper;
+
+    @Autowired
+    ModelInfoMapper modelInfoMapper;
+
+    @Autowired
+    ModelInfoService modelInfoService;
 
     @Value("${sendSuc}")
     String sendSuc;
@@ -102,6 +111,10 @@ public class OrderInfoService {
         userInfo.setFatherSupport(userInfo.getFatherSupport() + allCommission[1]);
         userInfo.setGrandSupport(userInfo.getGrandSupport() + allCommission[2]);
         userInfoMapper.addSupport(userInfo);
+        //减少库存
+        ModelInfo modelInfo = modelInfoMapper.selectOneModel(orderInfo.getModelId());
+        modelInfoMapper.subStock(modelInfo);
+        modelInfoService.checkStock(orderInfo.getProductId());
         return "下单成功！！！";
     }
 

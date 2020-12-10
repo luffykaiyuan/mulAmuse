@@ -46,6 +46,11 @@ public class UserInfoCon {
         return userInfoService.selectUerByUsername(userName);
     }
 
+    @GetMapping("/selectUserById")
+    public UserInfo selectUserById(@PathParam("/id") String id){
+        return userInfoService.selectUserById(id);
+    }
+
     @PostMapping("/updateUser")
     public int updateUser(@RequestBody UserInfo userInfo){
         return userInfoService.updateUser(userInfo);
@@ -59,6 +64,11 @@ public class UserInfoCon {
     @PostMapping("/becomeTalent")
     public int becomeTalent(@RequestBody UserInfo userInfo){
         return userInfoService.becomeTalent(userInfo);
+    }
+
+    @PostMapping("/loginUser")
+    public String loginUser(@RequestBody UserInfo userInfo){
+        return userInfoService.loginUser(userInfo);
     }
 
     //备用方法，通过id删除用户信息

@@ -28,18 +28,18 @@ spring:
 mybatis:
   type-aliases-package: com.skyc.demo.admin.dao, com.skyc.demo.developers.dao, com.skyc.demo.merchants.dao, com.skyc.demo.user.dao
   mapper-locations: classpath:mapper/admin/*.xml, mapper/developers/*.xml, mapper/merchants/*.xml, mapper/user/*.xml
+
+logging:
   level:
     com:
-      tm:
-        huanglu:
-          dao:
-            factory: debug
-            file: debug
-            log: debug
-            problem: debug
-            product: debug
-            tm: debug
-            user: debug
+      skyc:
+        demo:
+          user:
+            dao: debug
+          admin:
+            dao: debug
+          merchants:
+            dao: debug
 
 uploadPath: C:/upload/img
 
@@ -56,3 +56,4 @@ sendSuc: 发货成功。
 sendFal: 发货失败，请重试！！
 destorySuc: 核销成功。
 destoryFal: 核销失败，请确认核销码是否正确。
+

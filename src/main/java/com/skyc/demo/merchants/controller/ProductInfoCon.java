@@ -26,6 +26,11 @@ public class ProductInfoCon {
         return productInfoService.selectProductById(id);
     }
 
+    @GetMapping("/selectIndexProduct")
+    public List<ProductInfo> selectIndexProduct(){
+        return productInfoService.selectIndexProduct();
+    }
+
     @PostMapping("/insertProduct")
     public String insertProduct(@RequestBody ProductInfo productInfo){
         return productInfoService.insertProduct(productInfo);

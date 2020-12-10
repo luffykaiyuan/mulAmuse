@@ -133,15 +133,13 @@
     <set>
       <trim prefix="default_status=case" suffix="end,">
         <foreach collection="list" item="item" index="index">
-          <if test="item.defaultStatus !=null">
-            when user_id=#{item.userId} then #{item.defaultStatus}
-          </if>
+            when id=#{item.id} then #{item.defaultStatus}
         </foreach>
       </trim>
     </set>
-    where user_id in
+    where id in
     <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
-      #{item.userId}
+      #{item.id}
     </foreach>
   </update>
 </mapper>

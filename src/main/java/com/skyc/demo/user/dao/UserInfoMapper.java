@@ -22,6 +22,10 @@ public interface UserInfoMapper {
 
     List<UserInfo> selectUerByUsername(String userName);
 
+    UserInfo selectOneUser(String userName);
+
+    UserInfo selectUserById(String id);
+
     int updateUser(UserInfo userInfo);
 
     int deleteUser(String id);
