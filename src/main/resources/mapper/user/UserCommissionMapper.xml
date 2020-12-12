@@ -75,9 +75,9 @@
       finish_withdrawal = #{finishWithdrawal,jdbcType=REAL}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="addWaitCommission" parameterType="java.lang.String">
+  <update id="addWaitCommission">
     update user_commission
-    set wait_withdrawal = #{waitWithdrawal,jdbcType=REAL},
+    set wait_withdrawal = wait_withdrawal + #{waitWithdrawal,jdbcType=REAL}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

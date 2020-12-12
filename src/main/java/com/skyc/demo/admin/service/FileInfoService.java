@@ -27,6 +27,8 @@ public class FileInfoService {
 
     @Value("${uploadPath}")
     String getPath;
+    @Value("${forePath}")
+    String forePath;
 
     public String createQRCode(String text) throws Exception {
         // 嵌入二维码的图片路径

@@ -20,6 +20,7 @@ import com.skyc.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 
@@ -59,6 +60,9 @@ public class OrderInfoService {
     @Value("${destoryFal}")
     String destoryFal;
 
+    @Value("${forePath}")
+    String forePath;
+
     public String insertOrder(OrderInfo orderInfo) throws Exception{
         orderInfo.setId(UUIDUtils.getUUID(16));
         String orderNumber = GetRandom.getRandomNumber(10);
@@ -67,7 +71,7 @@ public class OrderInfoService {
         if ("0".equals(orderInfo.getProductType())){
             //虚拟产品
             String qrcodeNumber = GetRandom.getRandomNumber(8);
-            String qrcodeId = fileInfoService.createQRCode(qrcodeNumber);
+            String qrcodeId = fileInfoService.createQRCode(forePath + qrcodeNumber + "\\");
             orderInfo.setQrcodeImg(qrcodeId);
             orderInfo.setQrcodeNumber(qrcodeNumber);
         } else if ("1".equals(orderInfo.getProductType())){
@@ -81,38 +85,56 @@ public class OrderInfoService {
             return "订单提交失败!";
         }
         orderInfoMapper.insertOrder(orderInfo);
-        //下单后更新佣金
         UserInfo userInfo = userInfoMapper.selectUerDetail(orderInfo.getUserId());
-        ProductInfo productInfo = productInfoMapper.selectProductById(orderInfo.getId());
+        ProductInfo productInfo = productInfoMapper.selectProductById(orderInfo.getProductId());
         float[] allCommission = GetCommission.getProductCommission(userInfo, productInfo);
         userCommissionMapper.addWaitCommission(allCommission[0], userInfo.getId());
-        userCommissionMapper.addWaitCommission(allCommission[1], userInfo.getFatherId());
-        userCommissionMapper.addWaitCommission(allCommission[2], userInfo.getGrandId());
-        //更新日志表
-        CommissionLog fatherLog = new CommissionLog();
-        fatherLog.setId(UUIDUtils.getUUID(16));
-        fatherLog.setOrderNumber(orderNumber);
-        fatherLog.setProvideId(userInfo.getId());
-        fatherLog.setProvideName(userInfo.getNickName());
-        fatherLog.setGetId(userInfo.getFatherId());
-        fatherLog.setGetMoney(allCommission[1]);
-        fatherLog.setAddTime(GetNowDate.getStringDate());
-        commissionLogMapper.insertCommissionLog(fatherLog);
-        CommissionLog grandLog = new CommissionLog();
-        grandLog.setId(UUIDUtils.getUUID(16));
-        grandLog.setOrderNumber(orderNumber);
-        grandLog.setProvideId(userInfo.getId());
-        grandLog.setProvideName(userInfo.getNickName());
-        grandLog.setGetId(userInfo.getGrandId());
-        grandLog.setGetMoney(allCommission[2]);
-        grandLog.setAddTime(GetNowDate.getStringDate());
-        commissionLogMapper.insertCommissionLog(grandLog);
-        //更新用户信息表
-        userInfo.setFatherSupport(userInfo.getFatherSupport() + allCommission[1]);
-        userInfo.setGrandSupport(userInfo.getGrandSupport() + allCommission[2]);
+        CommissionLog myLog = new CommissionLog();
+        myLog.setId(UUIDUtils.getUUID(16));
+        myLog.setOrderNumber(orderNumber);
+        myLog.setProvideId(userInfo.getId());
+        myLog.setProvideName(userInfo.getUserName());
+        myLog.setGetId(userInfo.getId());
+        myLog.setGetName(userInfo.getUserName());
+        myLog.setGetMoney(allCommission[0]);
+        myLog.setAddTime(GetNowDate.getStringDate());
+        commissionLogMapper.insertCommissionLog(myLog);
+        if (!StringUtils.isEmpty(userInfo.getFatherId())){
+            //下单后更新佣金
+            userCommissionMapper.addWaitCommission(allCommission[1], userInfo.getFatherId());
+            //更新日志表
+            CommissionLog fatherLog = new CommissionLog();
+            fatherLog.setId(UUIDUtils.getUUID(16));
+            fatherLog.setOrderNumber(orderNumber);
+            fatherLog.setProvideId(userInfo.getId());
+            fatherLog.setProvideName(userInfo.getUserName());
+            fatherLog.setGetId(userInfo.getFatherId());
+            fatherLog.setGetMoney(allCommission[1]);
+            fatherLog.setAddTime(GetNowDate.getStringDate());
+            commissionLogMapper.insertCommissionLog(fatherLog);
+            //更新用户信息表
+            userInfo.setFatherSupport(userInfo.getFatherSupport() + allCommission[1]);
+        }
+        if (!StringUtils.isEmpty(userInfo.getGrandId())){
+            //下单后更新佣金
+            userCommissionMapper.addWaitCommission(allCommission[2], userInfo.getGrandId());
+            //更新日志表
+            CommissionLog grandLog = new CommissionLog();
+            grandLog.setId(UUIDUtils.getUUID(16));
+            grandLog.setOrderNumber(orderNumber);
+            grandLog.setProvideId(userInfo.getId());
+            grandLog.setProvideName(userInfo.getUserName());
+            grandLog.setGetId(userInfo.getGrandId());
+            grandLog.setGetMoney(allCommission[2]);
+            grandLog.setAddTime(GetNowDate.getStringDate());
+            commissionLogMapper.insertCommissionLog(grandLog);
+            //更新用户信息表
+            userInfo.setGrandSupport(userInfo.getGrandSupport() + allCommission[2]);
+        }
         userInfoMapper.addSupport(userInfo);
-        //减少库存
+//        //减少库存
         ModelInfo modelInfo = modelInfoMapper.selectOneModel(orderInfo.getModelId());
+        modelInfo.setModelStock(modelInfo.getModelStock() - orderInfo.getOrderCount());
         modelInfoMapper.subStock(modelInfo);
         modelInfoService.checkStock(orderInfo.getProductId());
         return "下单成功！！！";

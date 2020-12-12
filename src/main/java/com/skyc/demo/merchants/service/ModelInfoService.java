@@ -30,6 +30,10 @@ public class ModelInfoService {
         return modelInfoMapper.selectModelByProduct(productId);
     }
 
+    public ModelInfo selectOneModel(String id){
+        return modelInfoMapper.selectOneModel(id);
+    }
+
     public int updateModel(ModelInfo modelInfo){
         int flag = modelInfoMapper.updateModel(modelInfo);
         checkStock(modelInfo.getProductId());

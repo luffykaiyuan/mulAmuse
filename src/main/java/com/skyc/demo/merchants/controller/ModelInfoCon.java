@@ -26,6 +26,11 @@ public class ModelInfoCon {
         return modelInfoService.selectModelByProduct(productId);
     }
 
+    @GetMapping("/selectOneModel")
+    public ModelInfo selectOneModel(@PathParam("/id") String id){
+        return modelInfoService.selectOneModel(id);
+    }
+
     @PostMapping("/updateModel")
     public int updateModel(@RequestBody ModelInfo modelInfo){
         return modelInfoService.updateModel(modelInfo);
