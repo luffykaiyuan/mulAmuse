@@ -30,12 +30,24 @@ public class ProductInfoService {
         return productInfoMapper.selectProductByStore(storeId);
     }
 
+    public List<ProductInfo> selectIndexProductByStore(String storeId){
+        return productInfoMapper.selectIndexProductByStore(storeId);
+    }
+
+    public List<ProductInfo> selectSuperProductByStore(String storeId){
+        return productInfoMapper.selectSuperProductByStore(storeId);
+    }
+
     public ProductInfo selectProductById(String id){
         return productInfoMapper.selectProductById(id);
     }
 
     public List<ProductInfo> selectIndexProduct(){
         return productInfoMapper.selectIndexProduct();
+    }
+
+    public List<ProductInfo> selectSuperProduct(){
+        return productInfoMapper.selectSuperProduct();
     }
 
     public String insertProduct(ProductInfo productInfo){

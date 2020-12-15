@@ -3,15 +3,15 @@ package com.skyc.demo.admin.po;
 public class SupervipSet {
     private String id;
 
-    private Float supervipMoney;
+    private String supervipName;
 
-    private Integer dicountNumber;
+    private Float supervipPrice;
 
-    private Integer payHaveNumber;
+    private Integer haveDay;
 
-    private Integer inviteNumber;
+    private Integer haveNumber;
 
-    private Integer inviteHaveNumber;
+    private String status;
 
     public String getId() {
         return id;
@@ -21,43 +21,43 @@ public class SupervipSet {
         this.id = id == null ? null : id.trim();
     }
 
-    public Float getSupervipMoney() {
-        return supervipMoney;
+    public String getSupervipName() {
+        return supervipName;
     }
 
-    public void setSupervipMoney(Float supervipMoney) {
-        this.supervipMoney = supervipMoney;
+    public void setSupervipName(String supervipName) {
+        this.supervipName = supervipName == null ? null : supervipName.trim();
     }
 
-    public Integer getDicountNumber() {
-        return dicountNumber;
+    public Float getSupervipPrice() {
+        return supervipPrice;
     }
 
-    public void setDicountNumber(Integer dicountNumber) {
-        this.dicountNumber = dicountNumber;
+    public void setSupervipPrice(Float supervipPrice) {
+        this.supervipPrice = supervipPrice;
     }
 
-    public Integer getPayHaveNumber() {
-        return payHaveNumber;
+    public Integer getHaveDay() {
+        return haveDay;
     }
 
-    public void setPayHaveNumber(Integer payHaveNumber) {
-        this.payHaveNumber = payHaveNumber;
+    public void setHaveDay(Integer haveDay) {
+        this.haveDay = haveDay;
     }
 
-    public Integer getInviteNumber() {
-        return inviteNumber;
+    public Integer getHaveNumber() {
+        return haveNumber;
     }
 
-    public void setInviteNumber(Integer inviteNumber) {
-        this.inviteNumber = inviteNumber;
+    public void setHaveNumber(Integer haveNumber) {
+        this.haveNumber = haveNumber;
     }
 
-    public void setInviteHaveNumber(Integer inviteHaveNumber) {
-        this.inviteHaveNumber = inviteHaveNumber;
+    public String getStatus() {
+        return status;
     }
 
-    public Integer getInviteHaveNumber() {
-        return inviteHaveNumber;
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 }

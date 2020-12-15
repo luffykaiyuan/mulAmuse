@@ -7,6 +7,8 @@ public class SupervipInfo {
 
     private Integer haveNumber;
 
+    private String endTime;
+
     public String getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class SupervipInfo {
 
     public void setHaveNumber(Integer haveNumber) {
         this.haveNumber = haveNumber;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

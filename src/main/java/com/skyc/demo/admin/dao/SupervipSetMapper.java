@@ -10,8 +10,12 @@ import java.util.List;
 @Mapper
 public interface SupervipSetMapper {
 
-    List<SupervipSet> selectSupervipSet(String id);
+    int insertSelective(SupervipSet record);
 
-    int updateSupervipSet(SupervipSet supervipSet);
+    SupervipSet selectByPrimaryKey(String id);
+
+    List<SupervipSet> selectAllSet();
+
+    int updateByPrimaryKeySelective(SupervipSet record);
 
 }

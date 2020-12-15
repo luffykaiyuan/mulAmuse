@@ -1,7 +1,5 @@
 package com.skyc.demo.user.service;
 
-import com.skyc.demo.admin.dao.SupervipSetMapper;
-import com.skyc.demo.admin.po.SupervipSet;
 import com.skyc.demo.user.dao.SupervipInfoMapper;
 import com.skyc.demo.user.dao.SupervipInviteMapper;
 import com.skyc.demo.user.po.SupervipInfo;
@@ -17,9 +15,6 @@ public class SupervipInviteService {
 
     @Autowired
     SupervipInviteMapper supervipInviteMapper;
-
-    @Autowired
-    SupervipSetMapper supervipSetMapper;
 
     @Autowired
     SupervipInfoMapper supervipInfoMapper;
@@ -38,12 +33,12 @@ public class SupervipInviteService {
     }
 
     public void becomeVip(SupervipInvite supervipInvite){
-        List<SupervipSet> supervipSet = supervipSetMapper.selectSupervipSet("259");
-        supervipInviteMapper.updateSupervipInvite(supervipInvite);
-        SupervipInfo supervipInfo = new SupervipInfo();
-        supervipInfo.setId(UUIDUtils.getUUID(16));
-        supervipInfo.setUserId(supervipInvite.getUserId());
-        supervipInfo.setHaveNumber(supervipSet.get(0).getInviteHaveNumber());
-        supervipInfoMapper.insertSuperVIP(supervipInfo);
+//        List<SupervipSet> supervipSet = supervipSetMapper.selectSupervipSet("259");
+//        supervipInviteMapper.updateSupervipInvite(supervipInvite);
+//        SupervipInfo supervipInfo = new SupervipInfo();
+//        supervipInfo.setId(UUIDUtils.getUUID(16));
+//        supervipInfo.setUserId(supervipInvite.getUserId());
+//        supervipInfo.setHaveNumber(supervipSet.get(0).getInviteHaveNumber());
+//        supervipInfoMapper.insertSuperVIP(supervipInfo);
     }
 }

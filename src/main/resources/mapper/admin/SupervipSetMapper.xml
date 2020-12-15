@@ -3,38 +3,87 @@
 <mapper namespace="com.skyc.demo.admin.dao.SupervipSetMapper">
   <resultMap id="BaseResultMap" type="com.skyc.demo.admin.po.SupervipSet">
     <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="supervip_money" jdbcType="REAL" property="supervipMoney" />
-    <result column="dicount_number" jdbcType="INTEGER" property="dicountNumber" />
-    <result column="pay_have_number" jdbcType="INTEGER" property="payHaveNumber" />
-    <result column="invite_number" jdbcType="INTEGER" property="inviteNumber" />
-    <result column="invite_have_number" jdbcType="INTEGER" property="inviteHaveNumber" />
+    <result column="supervip_name" jdbcType="VARCHAR" property="supervipName" />
+    <result column="supervip_price" jdbcType="REAL" property="supervipPrice" />
+    <result column="have_day" jdbcType="INTEGER" property="haveDay" />
+    <result column="have_number" jdbcType="INTEGER" property="haveNumber" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, supervip_money, dicount_number, pay_have_number, invite_number, invite_have_number
+    id, supervip_name, supervip_price, have_day, have_number, status
   </sql>
-  <select id="selectSupervipSet" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectAllSet" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from supervip_set
+    where status = '1'
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from supervip_set
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <update id="updateSupervipSet" parameterType="com.skyc.demo.admin.po.SupervipSet">
+  <insert id="insertSelective" parameterType="com.skyc.demo.admin.po.SupervipSet">
+    insert into supervip_set
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="supervipName != null">
+        supervip_name,
+      </if>
+      <if test="supervipPrice != null">
+        supervip_price,
+      </if>
+      <if test="haveDay != null">
+        have_day,
+      </if>
+      <if test="haveNumber != null">
+        have_number,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="supervipName != null">
+        #{supervipName,jdbcType=VARCHAR},
+      </if>
+      <if test="supervipPrice != null">
+        #{supervipPrice,jdbcType=REAL},
+      </if>
+      <if test="haveDay != null">
+        #{haveDay,jdbcType=INTEGER},
+      </if>
+      <if test="haveNumber != null">
+        #{haveNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.admin.po.SupervipSet">
     update supervip_set
     <set>
-      <if test="supervipMoney != null">
-        supervip_money = #{supervipMoney,jdbcType=REAL},
+      <if test="supervipName != null">
+        supervip_name = #{supervipName,jdbcType=VARCHAR},
       </if>
-      <if test="dicountNumber != null">
-        dicount_number = #{dicountNumber,jdbcType=INTEGER},
+      <if test="supervipPrice != null">
+        supervip_price = #{supervipPrice,jdbcType=REAL},
       </if>
-      <if test="payHaveNumber != null">
-        pay_have_number = #{payHaveNumber,jdbcType=INTEGER},
+      <if test="haveDay != null">
+        have_day = #{haveDay,jdbcType=INTEGER},
       </if>
-      <if test="inviteNumber != null">
-        invite_number = #{inviteNumber,jdbcType=INTEGER},
+      <if test="haveNumber != null">
+        have_number = #{haveNumber,jdbcType=INTEGER},
       </if>
-      <if test="inviteHaveNumber != null">
-        invite_have_number = #{inviteHaveNumber,jdbcType=INTEGER},
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}

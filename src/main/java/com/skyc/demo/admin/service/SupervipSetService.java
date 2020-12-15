@@ -13,11 +13,7 @@ public class SupervipSetService {
     @Autowired
     SupervipSetMapper supervipSetMapper;
 
-    public List<SupervipSet> selectSupervipSet(String id){
-        return supervipSetMapper.selectSupervipSet(id);
-    }
-
-    public int updateSupervipSet(SupervipSet supervipSet){
-        return supervipSetMapper.updateSupervipSet(supervipSet);
+    public List<SupervipSet> selectAllSet(){
+        return supervipSetMapper.selectAllSet();
     }
 }

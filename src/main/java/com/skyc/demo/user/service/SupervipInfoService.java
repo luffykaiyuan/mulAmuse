@@ -21,4 +21,8 @@ public class SupervipInfoService {
         return supervipInfoMapper.updateSuperVIP(supervipInfo);
     }
 
+    public SupervipInfo selectByUserId(String userId){
+        return supervipInfoMapper.selectByUserId(userId);
+    }
+
 }

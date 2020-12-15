@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.admin.dao.SupervipMoreMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.admin.po.SupervipMore">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="more_name" jdbcType="VARCHAR" property="moreName" />
+    <result column="more_number" jdbcType="INTEGER" property="moreNumber" />
+    <result column="more_price" jdbcType="REAL" property="morePrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, more_name, more_number, more_price
+  </sql>
+  <select id="selectAllMore" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supervip_more
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from supervip_more
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertSelective" parameterType="com.skyc.demo.admin.po.SupervipMore">
+    insert into supervip_more
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moreName != null">
+        more_name,
+      </if>
+      <if test="moreNumber != null">
+        more_number,
+      </if>
+      <if test="morePrice != null">
+        more_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="moreName != null">
+        #{moreName,jdbcType=VARCHAR},
+      </if>
+      <if test="moreNumber != null">
+        #{moreNumber,jdbcType=INTEGER},
+      </if>
+      <if test="morePrice != null">
+        #{morePrice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.admin.po.SupervipMore">
+    update supervip_more
+    <set>
+      <if test="moreName != null">
+        more_name = #{moreName,jdbcType=VARCHAR},
+      </if>
+      <if test="moreNumber != null">
+        more_number = #{moreNumber,jdbcType=INTEGER},
+      </if>
+      <if test="morePrice != null">
+        more_price = #{morePrice,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

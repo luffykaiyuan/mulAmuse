@@ -12,6 +12,8 @@ public interface SupervipInfoMapper {
 
     SupervipInfo selectByPrimaryKey(String id);
 
+    SupervipInfo selectByUserId(String userId);
+
     int updateSuperVIP(SupervipInfo supervipInfo);
 
     int addNumber(String userId);

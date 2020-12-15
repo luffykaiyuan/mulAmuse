@@ -21,6 +21,16 @@ public class ProductInfoCon {
         return productInfoService.selectProductByStore(storeId);
     }
 
+    @GetMapping("/selectIndexProductByStore")
+    public List<ProductInfo> selectIndexProductByStore(@PathParam(value = "/storeId") String storeId){
+        return productInfoService.selectIndexProductByStore(storeId);
+    }
+
+    @GetMapping("/selectSuperProductByStore")
+    public List<ProductInfo> selectSuperProductByStore(@PathParam(value = "/storeId") String storeId){
+        return productInfoService.selectSuperProductByStore(storeId);
+    }
+
     @GetMapping("/selectProductById")
     public ProductInfo selectProductById(@PathParam(value = "/id") String id){
         return productInfoService.selectProductById(id);
@@ -29,6 +39,11 @@ public class ProductInfoCon {
     @GetMapping("/selectIndexProduct")
     public List<ProductInfo> selectIndexProduct(){
         return productInfoService.selectIndexProduct();
+    }
+
+    @GetMapping("/selectSuperProduct")
+    public List<ProductInfo> selectSuperProduct(){
+        return productInfoService.selectSuperProduct();
     }
 
     @PostMapping("/insertProduct")

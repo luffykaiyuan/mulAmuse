@@ -22,20 +22,20 @@
 <!--            <property name="forceBigDecimals" value="false"/>-->
 <!--        </javaTypeResolver>-->
 <!--        &lt;!&ndash; 生成模型的包名和位置&ndash;&gt;-->
-<!--        <javaModelGenerator targetPackage="com.skyc.demo.user.po" targetProject="src/main/java">-->
+<!--        <javaModelGenerator targetPackage="com.skyc.demo.admin.po" targetProject="src/main/java">-->
 <!--            <property name="enableSubPackages" value="true"/>-->
 <!--            <property name="trimStrings" value="true"/>-->
 <!--        </javaModelGenerator>-->
 <!--        &lt;!&ndash; 生成映射文件的包名和位置&ndash;&gt;-->
-<!--        <sqlMapGenerator targetPackage="mapper.user" targetProject="src/main/resources">-->
+<!--        <sqlMapGenerator targetPackage="mapper.admin" targetProject="src/main/resources">-->
 <!--            <property name="enableSubPackages" value="true"/>-->
 <!--        </sqlMapGenerator>-->
 <!--        &lt;!&ndash; 生成DAO的包名和位置&ndash;&gt;-->
-<!--        <javaClientGenerator type="XMLMAPPER" targetPackage="com.skyc.demo.user.dao" targetProject="src/main/java">-->
+<!--        <javaClientGenerator type="XMLMAPPER" targetPackage="com.skyc.demo.admin.dao" targetProject="src/main/java">-->
 <!--            <property name="enableSubPackages" value="true"/>-->
 <!--        </javaClientGenerator>-->
 <!--        &lt;!&ndash; 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名&ndash;&gt;-->
-<!--        <table tableName="user_commission" domainObjectName="UserCommission"-->
+<!--        <table tableName="supervip_more" domainObjectName="SupervipMore"-->
 <!--               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
 <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
 <!--        </table>-->
