@@ -44,6 +44,9 @@ logging:
 uploadPath: C:/upload/img
 forePath: http://localhost:8080/netOrderInfo/
 
+qrcodePath: C:/upload/img/qrcode/
+background: C:/upload/img/2020/12/back1.jpg
+
 insertSuc: 添加成功！
 insertFAL: 添加失败！
 updateSuc: 修改成功！

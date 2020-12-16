@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 import java.io.IOException;
 
 @CrossOrigin(origins = "*",maxAge = 3600)
@@ -25,8 +26,8 @@ public class FileInfoCon {
     }
 
     @RequestMapping("/createQRCode")
-    public void createQRCode() throws Exception {
-        fileInfoService.createQRCode("https://blog.csdn.net/jam_fanatic/article/details/82818857");
+    public void createQRCode(@PathParam("url") String url) throws Exception {
+        fileInfoService.createQRCode(url);
     }
 
     @RequestMapping("/selectFile")
