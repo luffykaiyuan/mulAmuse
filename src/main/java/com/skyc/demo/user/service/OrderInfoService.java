@@ -8,6 +8,7 @@ import com.skyc.demo.merchants.po.ProductInfo;
 import com.skyc.demo.merchants.service.ModelInfoService;
 import com.skyc.demo.user.dao.*;
 import com.skyc.demo.user.po.CommissionLog;
+import com.skyc.demo.user.po.FreeLog;
 import com.skyc.demo.user.po.OrderInfo;
 import com.skyc.demo.user.po.UserInfo;
 import com.skyc.demo.util.GetCommission;
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
+
+import static javafx.scene.input.KeyCode.F;
 
 @Service
 public class OrderInfoService {
@@ -50,6 +53,9 @@ public class OrderInfoService {
 
     @Autowired
     SupervipInfoMapper supervipInfoMapper;
+
+    @Autowired
+    FreeLogMapper freeLogMapper;
 
     @Value("${sendSuc}")
     String sendSuc;
@@ -162,9 +168,16 @@ public class OrderInfoService {
         orderInfoMapper.insertOrder(orderInfo);
         //减少兑换次数
         supervipInfoMapper.subNumber(orderInfo.getUserId());
+        //记录已经购买
+        FreeLog freeLog = new FreeLog();
+        freeLog.setId(UUIDUtils.getUUID(16));
+        freeLog.setProductId(orderInfo.getProductId());
+        freeLog.setUserId(orderInfo.getUserId());
+        freeLog.setAddTime(GetNowDate.getDetailStringDate());
+        freeLogMapper.insertFreeLog(freeLog);
         //减少库存
         ModelInfo modelInfo = modelInfoMapper.selectOneModel(orderInfo.getModelId());
-        modelInfo.setModelStock(modelInfo.getModelStock() - orderInfo.getOrderCount());
+        modelInfo.setModelStock(modelInfo.getModelStock() - 1);
         modelInfoMapper.subStock(modelInfo);
         modelInfoService.checkStock(orderInfo.getProductId());
         return "下单成功！！！";

@@ -42,8 +42,8 @@ public class ProductInfoCon {
     }
 
     @GetMapping("/selectSuperProduct")
-    public List<ProductInfo> selectSuperProduct(){
-        return productInfoService.selectSuperProduct();
+    public List<ProductInfo> selectSuperProduct(@PathParam(value = "/userId") String userId){
+        return productInfoService.selectSuperProduct(userId);
     }
 
     @PostMapping("/insertProduct")

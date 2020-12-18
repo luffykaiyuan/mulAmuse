@@ -4,6 +4,8 @@ import com.skyc.demo.merchants.dao.ModelInfoMapper;
 import com.skyc.demo.merchants.dao.ProductInfoMapper;
 import com.skyc.demo.merchants.po.ModelInfo;
 import com.skyc.demo.merchants.po.ProductInfo;
+import com.skyc.demo.user.dao.FreeLogMapper;
+import com.skyc.demo.user.po.FreeLog;
 import com.skyc.demo.util.GetNowDate;
 import com.skyc.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class ProductInfoService {
 
     @Autowired
     ModelInfoMapper modelInfoMapper;
+
+    @Autowired
+    FreeLogMapper freeLogMapper;
 
     @Value("${insertSuc}")
     String insertSuc;
@@ -46,8 +51,9 @@ public class ProductInfoService {
         return productInfoMapper.selectIndexProduct();
     }
 
-    public List<ProductInfo> selectSuperProduct(){
-        return productInfoMapper.selectSuperProduct();
+    public List<ProductInfo> selectSuperProduct(String userId){
+        List<FreeLog> logs = freeLogMapper.selectByUserId(userId);
+        return productInfoMapper.selectSuperProduct(logs);
     }
 
     public String insertProduct(ProductInfo productInfo){

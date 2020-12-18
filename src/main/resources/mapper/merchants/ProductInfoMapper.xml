@@ -59,6 +59,7 @@
     from product_info
     where store_id = #{storeId,jdbcType=VARCHAR}
     and product_free = '1'
+    and id not in
     order by add_time desc
   </select>
   <select id="selectProductById" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -75,12 +76,18 @@
     and product_free = '0'
     order by sale_out
   </select>
-  <select id="selectSuperProduct" resultMap="BaseResultMap">
+  <select id="selectSuperProduct" parameterType="java.util.List" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from product_info
     where status = '1'
-    and product_free = '1'
+    <if test="list.size() > 0">
+      and product_free = '1'
+      and id not in
+      <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+        #{item.productId}
+      </foreach>
+    </if>
     order by sale_out
   </select>
   <insert id="insertProduct" parameterType="com.skyc.demo.merchants.po.ProductInfo">

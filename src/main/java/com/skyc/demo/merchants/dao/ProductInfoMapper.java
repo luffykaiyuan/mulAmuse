@@ -1,6 +1,7 @@
 package com.skyc.demo.merchants.dao;
 
 import com.skyc.demo.merchants.po.ProductInfo;
+import com.skyc.demo.user.po.FreeLog;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,7 @@ public interface ProductInfoMapper {
 
     List<ProductInfo> selectIndexProduct();
 
-    List<ProductInfo> selectSuperProduct();
+    List<ProductInfo> selectSuperProduct(List<FreeLog> list);
 
     int updateProduct(ProductInfo productInfo);
 
