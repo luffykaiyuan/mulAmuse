@@ -6,10 +6,7 @@ import com.skyc.demo.merchants.dao.ProductInfoMapper;
 import com.skyc.demo.merchants.po.ModelInfo;
 import com.skyc.demo.merchants.po.ProductInfo;
 import com.skyc.demo.merchants.service.ModelInfoService;
-import com.skyc.demo.user.dao.CommissionLogMapper;
-import com.skyc.demo.user.dao.OrderInfoMapper;
-import com.skyc.demo.user.dao.UserCommissionMapper;
-import com.skyc.demo.user.dao.UserInfoMapper;
+import com.skyc.demo.user.dao.*;
 import com.skyc.demo.user.po.CommissionLog;
 import com.skyc.demo.user.po.OrderInfo;
 import com.skyc.demo.user.po.UserInfo;
@@ -50,6 +47,9 @@ public class OrderInfoService {
 
     @Autowired
     ModelInfoService modelInfoService;
+
+    @Autowired
+    SupervipInfoMapper supervipInfoMapper;
 
     @Value("${sendSuc}")
     String sendSuc;
@@ -139,6 +139,37 @@ public class OrderInfoService {
         modelInfoService.checkStock(orderInfo.getProductId());
         return "下单成功！！！";
     }
+
+    public String insertFreeOrder(OrderInfo orderInfo) throws Exception{
+        orderInfo.setId(UUIDUtils.getUUID(16));
+        String orderNumber = GetRandom.getRandomNumber(10);
+        orderInfo.setOrderNumber(orderNumber);
+        orderInfo.setAddTime(GetNowDate.getDetailStringDate());
+        if ("0".equals(orderInfo.getProductType())){
+            //虚拟产品
+            String qrcodeNumber = GetRandom.getRandomNumber(8);
+            String qrcodeId = fileInfoService.createQRCode(forePath + qrcodeNumber + "\\");
+            orderInfo.setQrcodeImg(qrcodeId);
+            orderInfo.setQrcodeNumber(qrcodeNumber);
+        } else if ("1".equals(orderInfo.getProductType())){
+            //实体产品
+        }else if ("2".equals(orderInfo.getProductType())){
+            //预约产品
+        }else{
+            //类型未找到
+            return "订单提交失败!";
+        }
+        orderInfoMapper.insertOrder(orderInfo);
+        //减少兑换次数
+        supervipInfoMapper.subNumber(orderInfo.getUserId());
+        //减少库存
+        ModelInfo modelInfo = modelInfoMapper.selectOneModel(orderInfo.getModelId());
+        modelInfo.setModelStock(modelInfo.getModelStock() - orderInfo.getOrderCount());
+        modelInfoMapper.subStock(modelInfo);
+        modelInfoService.checkStock(orderInfo.getProductId());
+        return "下单成功！！！";
+    }
+
 
     public List<OrderInfo> selectAllNormal(){
         return orderInfoMapper.selectAllNormal();

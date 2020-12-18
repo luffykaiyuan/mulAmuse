@@ -24,6 +24,7 @@
     <include refid="Base_Column_List" />
     from model_info
     where product_id = #{productId,jdbcType=VARCHAR}
+    and status = '1'
   </select>
   <insert id="insertModel" parameterType="com.skyc.demo.merchants.po.ModelInfo">
     insert into model_info

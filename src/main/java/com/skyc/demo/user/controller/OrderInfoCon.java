@@ -21,6 +21,11 @@ public class OrderInfoCon {
         return orderInfoService.insertOrder(orderInfo);
     }
 
+    @PostMapping("/insertFreeOrder")
+    public String insertFreeOrder(@RequestBody OrderInfo orderInfo) throws Exception{
+        return orderInfoService.insertFreeOrder(orderInfo);
+    }
+
     @GetMapping("/selectAllNormal")
     public List<OrderInfo> selectAllNormal(){
         return orderInfoService.selectAllNormal();
