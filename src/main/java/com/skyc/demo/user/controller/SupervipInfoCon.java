@@ -17,7 +17,7 @@ public class SupervipInfoCon {
     SupervipInfoService supervipInfoService;
 
     @PostMapping("/insertSuperVIP")
-    int insertSuperVIP(@RequestBody SupervipInfo supervipInfo){
+    int insertSuperVIP(@RequestBody SupervipInfo supervipInfo) throws Exception {
         return supervipInfoService.insertSuperVIP(supervipInfo);
     }
 

@@ -10,6 +10,13 @@ import java.util.Date;
  * @return
  */
 public class GetNowDate {
+    //获取字符串类型的天
+    public static String getStringDay() {
+        Date date = new Date();
+        SimpleDateFormat sdf
+                = new SimpleDateFormat("dd");
+        return sdf.format(date);
+    }
     //获取字符串类型的当前时间
     public static String getStringDate() {
         Date date = new Date();

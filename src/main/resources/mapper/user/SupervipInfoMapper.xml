@@ -78,4 +78,9 @@
     set have_number = have_number - 1
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+  <update id="restartNumber" parameterType="java.lang.String">
+    update supervip_info
+    set have_number = 3
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
 </mapper>

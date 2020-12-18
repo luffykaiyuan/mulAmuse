@@ -7,6 +7,7 @@ import com.skyc.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class AdminInfoService {
 
     public String insertAdmin(AdminInfo adminInfo){
         AdminInfo adminInfoOld = adminInfoMapper.selectByUsername(adminInfo.getAdminUsername());
-        if (!"".equals(adminInfoOld.getAdminUsername()) && !"".equals(adminInfoOld.getAdminPassword())){
+        if (StringUtils.isEmpty(adminInfoOld.getAdminUsername()) && StringUtils.isEmpty((adminInfoOld.getAdminPassword()))){
             adminInfo.setId(UUIDUtils.getUUID(16));
             adminInfo.setAddTime(GetNowDate.getStringDate());
             adminInfoMapper.insertAdmin(adminInfo);

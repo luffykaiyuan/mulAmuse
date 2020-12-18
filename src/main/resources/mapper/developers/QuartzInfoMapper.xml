@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.developers.dao.QuartzInfoMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.developers.po.QuartzInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="jobName" jdbcType="VARCHAR" property="jobname" />
+    <result column="jobGroup" jdbcType="VARCHAR" property="jobgroup" />
+    <result column="triggerName" jdbcType="VARCHAR" property="triggername" />
+    <result column="triggerGroup" jdbcType="VARCHAR" property="triggergroup" />
+    <result column="cron_expression" jdbcType="VARCHAR" property="cronExpression" />
+    <result column="remain_time" jdbcType="INTEGER" property="remainTime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, class_name, jobName, jobGroup, triggerName, triggerGroup, cron_expression, remain_time, 
+    description, status
+  </sql>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from quartz_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from quartz_info
+  </select>
+  <insert id="insertQuartz" parameterType="com.skyc.demo.developers.po.QuartzInfo">
+    insert into quartz_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
+      <if test="jobname != null">
+        jobName,
+      </if>
+      <if test="jobgroup != null">
+        jobGroup,
+      </if>
+      <if test="triggername != null">
+        triggerName,
+      </if>
+      <if test="triggergroup != null">
+        triggerGroup,
+      </if>
+      <if test="cronExpression != null">
+        cron_expression,
+      </if>
+      <if test="remainTime != null">
+        remain_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="jobname != null">
+        #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="jobgroup != null">
+        #{jobgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="triggername != null">
+        #{triggername,jdbcType=VARCHAR},
+      </if>
+      <if test="triggergroup != null">
+        #{triggergroup,jdbcType=VARCHAR},
+      </if>
+      <if test="cronExpression != null">
+        #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="remainTime != null">
+        #{remainTime,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateQuartz" parameterType="com.skyc.demo.developers.po.QuartzInfo">
+    update quartz_info
+    <set>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="jobname != null">
+        jobName = #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="jobgroup != null">
+        jobGroup = #{jobgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="triggername != null">
+        triggerName = #{triggername,jdbcType=VARCHAR},
+      </if>
+      <if test="triggergroup != null">
+        triggerGroup = #{triggergroup,jdbcType=VARCHAR},
+      </if>
+      <if test="cronExpression != null">
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="remainTime != null">
+        remain_time = #{remainTime,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="subTime" parameterType="java.lang.String">
+    update quartz_info
+    set remain_time = remain_time - 1
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="overTime" parameterType="java.lang.String">
+    update quartz_info
+    set status = '0'
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

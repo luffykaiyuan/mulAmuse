@@ -20,4 +20,6 @@ public interface SupervipInfoMapper {
 
     int subNumber(String userId);
 
+    int restartNumber(String userId);
+
 }
