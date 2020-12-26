@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @CrossOrigin
@@ -15,7 +16,7 @@ import java.io.IOException;
 public class CallBackCon {
 
     @RequestMapping("/callBack")
-    public void callBack(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void callBack(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
         String code = request.getParameter("code");
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token?" +
                 "appid=" + AuthUtil.APPID +
@@ -32,5 +33,7 @@ public class CallBackCon {
                 "&lang=zh_CN";
         JSONObject userInfo = AuthUtil.doGetJson(infoUrl);
         System.out.println(userInfo);
+        String toPage = (String) session.getAttribute("toPage");
+        response.sendRedirect("http://aiqiur.natappfree.cc/jumpRouter?openId=" + openid + "&toPage=" + toPage);
     }
 }
