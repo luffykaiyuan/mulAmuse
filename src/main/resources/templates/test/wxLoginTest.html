@@ -20,36 +20,37 @@
         display: none;
     }
 </style>
-<body>
-<div id="app" v-cloak>
-    <el-button @click="doLogin">登录</el-button>
-</div>
+<body >
+<!--    <el-button @click="doLogin">登录</el-button>-->
+<!--<a href="/wxLogin/doLogin">微信登录</a>-->
 </body>
 <script>
-    var vue1 = new Vue({
-        el: '#app',
-        data: function () {
-            return {
-                urls:{
-                    wxLogin: '/weChat/wxLogin'
-                },
-            }
-        },
-        created: function () {
-        },
-        methods: {
-            doLogin() {
-                console.log("Login-------------------");
-                var self = this;
-                axios({
-                    url: "/wxLogin/doLogin", // 请求的 url 地址
-                    method: 'get', // 请求方式
-                }).then((res)=>{
-                    console.log(res);
-                })
-            }
-        },
-        watch: {}
-    });
+    window.onload = function () {
+        window.location.href = "/wxLogin/doLogin";
+    }
+    // var vue1 = new Vue({
+    //     el: '#app',
+    //     data: function () {
+    //         return {
+    //             urls:{
+    //             },
+    //         }
+    //     },
+    //     created: function () {
+    //     },
+    //     methods: {
+    //         doLogin() {
+    //             console.log("Login-------------------");
+    //             var self = this;
+    //             axios({
+    //                 url: "/wxLogin/doLogin", // 请求的 url 地址
+    //                 method: 'get', // 请求方式
+    //             }).then((res)=>{
+    //                 console.log(res);
+    //             })
+    //         }
+    //     },
+    //     watch: {}
+    // });
 </script>
 </html>

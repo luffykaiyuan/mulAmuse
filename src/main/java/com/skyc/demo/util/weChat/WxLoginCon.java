@@ -16,7 +16,7 @@ public class WxLoginCon {
 
     @RequestMapping("/doLogin")
     public void doLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String backUrl = "http://4fa2yc.natappfree.cc/wxBack/callBack";
+        String backUrl = "http://z8w4qf.natappfree.cc/wxBack/callBack";
         String url = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
                 "appid=" + AuthUtil.APPID +
                 "&redirect_uri=" + backUrl +
