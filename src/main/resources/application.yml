@@ -41,6 +41,9 @@ logging:
           merchants:
             dao: debug
 
+APPID: wx6afbad17fee1f6ac
+APPSECRETP: 7286e0076fc5aeb2414dbf873d70503e
+
 uploadPath: C:/upload/img
 forePath: http://localhost:8080/netOrderInfo/
 

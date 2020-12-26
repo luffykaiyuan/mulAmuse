@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="./js/jquery.js"></script>
+    <script src="./js/vue.min.js"></script>
+    <!-- import JavaScript -->
+    <script src="./js/index.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <title>Title</title>
+</head>
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<body>
+<div id="app" v-cloak>
+</div>
+</body>
+<script>
+    var vue1 = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                urls:{
+                    getOpenId: '/weChat/getOpenId'
+                },
+            }
+        },
+        created: function () {
+            this.doBack();
+        },
+        methods: {
+            doBack() {
+                var self = this;
+                var url = self.urls.getOpenId;
+                axios.get(url)
+                    .then(function (res) {
+                        alert(res,data);
+                    })
+            }
+        },
+        watch: {}
+    });
+</script>
+</html>

@@ -23,4 +23,14 @@ public class RouteCon {
         return "test/commissionTest";
     }
 
+    @RequestMapping("/wxLoginTest")
+    public String entryWxLoginTest(){
+        return "test/wxLoginTest";
+    }
+
+    @RequestMapping("/wxBack")
+    public String entryWxBack(){
+        return "test/wxBack";
+    }
+
 }
