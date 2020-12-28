@@ -68,6 +68,8 @@ public class OrderInfoService {
 
     @Value("${forePath}")
     String forePath;
+    @Value("${foreHost}")
+    String foreHost;
 
     public String insertOrder(OrderInfo orderInfo) throws Exception{
         orderInfo.setId(UUIDUtils.getUUID(16));
@@ -77,7 +79,7 @@ public class OrderInfoService {
         if ("0".equals(orderInfo.getProductType())){
             //虚拟产品
             String qrcodeNumber = GetRandom.getRandomNumber(8);
-            String qrcodeId = fileInfoService.createQRCode(forePath + qrcodeNumber + "\\");
+            String qrcodeId = fileInfoService.createQRCode(foreHost + forePath + qrcodeNumber + "\\");
             orderInfo.setQrcodeImg(qrcodeId);
             orderInfo.setQrcodeNumber(qrcodeNumber);
         } else if ("1".equals(orderInfo.getProductType())){

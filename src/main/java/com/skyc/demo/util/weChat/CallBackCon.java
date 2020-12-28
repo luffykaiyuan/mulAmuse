@@ -6,6 +6,7 @@ import com.skyc.demo.user.service.UserInfoService;
 import net.sf.json.JSONObject;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,9 @@ public class CallBackCon {
     @Autowired
     UserInfoMapper userInfoMapper;
 
+    @Value("${foreHost}")
+    String foreHost;
+
     @RequestMapping("/callBack")
     public void callBack(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
         boolean existFlag = callWx(request, response, session);
@@ -35,8 +39,8 @@ public class CallBackCon {
             UserInfo userInfoNew = userInfoService.insertUser(userInfo);
         }
 
-//        String toPage = (String) session.getAttribute("toPage");
-//        response.sendRedirect("http://aiqiur.natappfree.cc/jumpRouter?openId=" + openid + "&toPage=" + toPage);
+        String toPage = (String) session.getAttribute("toPage");
+        response.sendRedirect(foreHost + "/jumpRouter?openId=" + userInfo.getOpenid() + "&toPage=" + toPage);
     }
 
     @RequestMapping("/callShareBack")
@@ -54,11 +58,9 @@ public class CallBackCon {
             }
             UserInfo userInfoNew = userInfoService.insertUser(userInfo);
         }
-//        UserInfo userInfo = callWx(request, response, session);
-//        userInfoService.insertUser(userInfo);
 
-//        String toPage = (String) session.getAttribute("toPage");
-//        response.sendRedirect("http://aiqiur.natappfree.cc/jumpRouter?openId=" + openid + "&toPage=" + toPage);
+        String toPage = (String) session.getAttribute("toPage");
+        response.sendRedirect(foreHost + "/jumpRouter?openId=" + userInfo.getOpenid() + "&toPage=" + toPage);
     }
 
     public boolean callWx(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {

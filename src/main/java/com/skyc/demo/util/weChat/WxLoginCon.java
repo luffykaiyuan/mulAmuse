@@ -25,8 +25,8 @@ public class WxLoginCon {
                 "&response_type=code" +
                 "&scope=snsapi_userinfo" +
                 "&state=STATE#wechat_redirect";
-//        String toPage =  request.getParameter("toPage");
-//        session.setAttribute("toPage", toPage);
+        String toPage =  request.getParameter("toPage");
+        session.setAttribute("toPage", toPage);
         response.sendRedirect(url);
     }
 
@@ -39,8 +39,8 @@ public class WxLoginCon {
                 "&response_type=code" +
                 "&scope=snsapi_userinfo" +
                 "&state=STATE#wechat_redirect";
-//        String toPage =  request.getParameter("toPage");
-//        session.setAttribute("toPage", toPage);
+        String toPage =  request.getParameter("toPage");
+        session.setAttribute("toPage", toPage);
         session.setAttribute("fatherId", fatherId);
         response.sendRedirect(url);
     }

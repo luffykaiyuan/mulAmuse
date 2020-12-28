@@ -7,6 +7,8 @@
     <result column="store_name" jdbcType="VARCHAR" property="storeName" />
     <result column="product_type" jdbcType="VARCHAR" property="productType" />
     <result column="product_free" jdbcType="VARCHAR" property="productFree" />
+    <result column="product_special" jdbcType="VARCHAR" property="productSpecial" />
+    <result column="product_special_img" jdbcType="VARCHAR" property="productSpecialImg" />
     <result column="product_cover_img" jdbcType="VARCHAR" property="productCoverImg" />
     <result column="product_main_img1" jdbcType="VARCHAR" property="productMainImg1" />
     <result column="product_main_img2" jdbcType="VARCHAR" property="productMainImg2" />
@@ -32,7 +34,7 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, store_id, store_name, product_type, product_free, product_cover_img, product_main_img1, product_main_img2,
+    id, store_id, store_name, product_type, product_free, product_special, product_special_img, product_cover_img, product_main_img1, product_main_img2,
     product_main_img3, product_main_img4, product_main_img5, product_title, product_sale_status, 
     product_sale_time, product_original_price, product_now_price, product_vip_price, 
     product_sale_volume, product_detail, max_appointment, product_end_time, commission_heigh, 
@@ -59,7 +61,6 @@
     from product_info
     where store_id = #{storeId,jdbcType=VARCHAR}
     and product_free = '1'
-    and id not in
     order by add_time desc
   </select>
   <select id="selectProductById" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -107,6 +108,12 @@
       </if>
       <if test="productFree != null">
         product_free,
+      </if>
+      <if test="productSpecial != null">
+        product_special,
+      </if>
+      <if test="productSpecialImg != null">
+        product_special_img,
       </if>
       <if test="productCoverImg != null">
         product_cover_img,
@@ -194,6 +201,12 @@
       <if test="productFree != null">
         #{productFree,jdbcType=VARCHAR},
       </if>
+      <if test="productSpecial != null">
+        #{productSpecial,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpecialImg != null">
+        #{productSpecialImg,jdbcType=VARCHAR},
+      </if>
       <if test="productCoverImg != null">
         #{productCoverImg,jdbcType=VARCHAR},
       </if>
@@ -279,6 +292,12 @@
       </if>
       <if test="productFree != null">
         product_free = #{productFree,jdbcType=VARCHAR},
+      </if>
+      <if test="productFree != null">
+        product_special = #{productSpecial,jdbcType=VARCHAR},
+      </if>
+      <if test="productFree != null">
+        product_special_img = #{productSpecialImg,jdbcType=VARCHAR},
       </if>
       <if test="productCoverImg != null">
         product_cover_img = #{productCoverImg,jdbcType=VARCHAR},

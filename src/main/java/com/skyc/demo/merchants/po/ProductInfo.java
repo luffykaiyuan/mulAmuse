@@ -11,6 +11,10 @@ public class ProductInfo {
 
     private String productFree;
 
+    private String productSpecial;
+
+    private String productSpecialImg;
+
     private String productCoverImg;
 
     private String productMainImg1;
@@ -95,6 +99,22 @@ public class ProductInfo {
 
     public void setProductFree(String productFree) {
         this.productFree = productFree == null ? null : productFree.trim();
+    }
+
+    public String getProductSpecial() {
+        return productSpecial;
+    }
+
+    public void setProductSpecial(String productSpecial) {
+        this.productSpecial = productSpecial;
+    }
+
+    public String getProductSpecialImg() {
+        return productSpecialImg;
+    }
+
+    public void setProductSpecialImg(String productSpecialImg) {
+        this.productSpecialImg = productSpecialImg;
     }
 
     public String getProductCoverImg() {
