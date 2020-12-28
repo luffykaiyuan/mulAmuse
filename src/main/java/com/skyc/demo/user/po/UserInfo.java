@@ -3,6 +3,10 @@ package com.skyc.demo.user.po;
 public class UserInfo {
     private String id;
 
+    private String openid;
+
+    private String headimgurl;
+
     private String userName;
 
     private String password;
@@ -47,6 +51,22 @@ public class UserInfo {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
+    public String getHeadimgurl() {
+        return headimgurl;
+    }
+
+    public void setHeadimgurl(String headimgurl) {
+        this.headimgurl = headimgurl;
     }
 
     public String getUserName() {

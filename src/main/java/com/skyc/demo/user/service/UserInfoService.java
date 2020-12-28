@@ -34,10 +34,10 @@ public class UserInfoService {
     @Value("${checkPass}")
     String checkPass;
 
-    public int insertUser(UserInfo userInfo){
+    public UserInfo insertUser(UserInfo userInfo){
         String userId = UUIDUtils.getUUID(16);
         userInfo.setId(userId);
-        userInfo.setAddTime(GetNowDate.getStringDate());
+        userInfo.setAddTime(GetNowDate.getDetailStringDate());
         userInfo.setUserInvite(GetRandom.getRandomNumber(8));
         //佣金信息表的数据添加
         UserCommission userCommission = new UserCommission();
@@ -49,7 +49,8 @@ public class UserInfoService {
         supervipInvite.setId(UUIDUtils.getUUID(16));
         supervipInvite.setUserId(userId);
         supervipInviteMapper.insertSupervipInvite(supervipInvite);
-        return userInfoMapper.insertUser(userInfo);
+        userInfoMapper.insertUser(userInfo);
+        return userInfo;
     }
 
     public List<UserInfo> selectAllUser(){

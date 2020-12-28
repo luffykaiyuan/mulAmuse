@@ -4,6 +4,8 @@
   <resultMap id="BaseResultMap" type="com.skyc.demo.user.po.UserInfo">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="headimgurl" jdbcType="VARCHAR" property="headimgurl" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="wechat_number" jdbcType="VARCHAR" property="wechatNumber" />
     <result column="head_img" jdbcType="VARCHAR" property="headImg" />
@@ -24,7 +26,7 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, password, wechat_number, head_img, nick_name, user_phone, user_rank, 
+    id, openid, headimgurl, user_name, password, wechat_number, head_img, nick_name, user_phone, user_rank,
     user_title, user_count, user_invite, invite_number, father_id, father_title, father_support, 
     grand_id, grand_title, grand_support, add_time, status
   </sql>
@@ -73,11 +75,23 @@
     from user_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
   <insert id="insertUser" parameterType="com.skyc.demo.user.po.UserInfo">
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="headimgurl != null">
+        headimgurl,
       </if>
       <if test="userName != null">
         user_name,
@@ -140,6 +154,12 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null">
+        #{headimgurl,jdbcType=VARCHAR},
       </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},

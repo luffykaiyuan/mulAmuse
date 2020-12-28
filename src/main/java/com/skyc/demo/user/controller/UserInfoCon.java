@@ -16,10 +16,10 @@ public class UserInfoCon {
     @Autowired
     UserInfoService userInfoService;
 
-    @PostMapping("/insertUser")
-    public int insertUser(@RequestBody UserInfo userInfo){
-        return userInfoService.insertUser(userInfo);
-    }
+//    @PostMapping("/insertUser")
+//    public void insertUser(@RequestBody UserInfo userInfo){
+//        return userInfoService.insertUser(userInfo);
+//    }
 
     @GetMapping("/selectAllUser")
     public List<UserInfo> selectAllUser(){

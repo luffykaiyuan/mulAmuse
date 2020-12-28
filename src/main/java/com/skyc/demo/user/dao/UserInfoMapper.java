@@ -26,6 +26,8 @@ public interface UserInfoMapper {
 
     UserInfo selectUserById(String id);
 
+    UserInfo selectByOpenId(String openid);
+
     int updateUser(UserInfo userInfo);
 
     int deleteUser(String id);
