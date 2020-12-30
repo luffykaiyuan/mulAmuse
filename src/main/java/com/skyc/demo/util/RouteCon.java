@@ -33,4 +33,9 @@ public class RouteCon {
         return "test/wxBack";
     }
 
+    @RequestMapping("/payTest")
+    public String entryPayTest(){
+        return "test/payTest";
+    }
+
 }

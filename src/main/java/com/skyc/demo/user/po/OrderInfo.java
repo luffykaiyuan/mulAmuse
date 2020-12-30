@@ -3,6 +3,8 @@ package com.skyc.demo.user.po;
 public class OrderInfo {
     private String id;
 
+    private String openid;
+
     private String orderNumber;
 
     private String userId;
@@ -45,6 +47,14 @@ public class OrderInfo {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     public String getOrderNumber() {

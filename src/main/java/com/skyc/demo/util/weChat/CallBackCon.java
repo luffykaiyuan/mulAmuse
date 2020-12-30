@@ -4,7 +4,6 @@ import com.skyc.demo.user.dao.UserInfoMapper;
 import com.skyc.demo.user.po.UserInfo;
 import com.skyc.demo.user.service.UserInfoService;
 import net.sf.json.JSONObject;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,7 +31,8 @@ public class CallBackCon {
     String foreHost;
 
     @RequestMapping("/callBack")
-    public void callBack(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+    public void callBack(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
         boolean existFlag = callWx(request, response, session);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
         if (existFlag){
@@ -40,11 +40,13 @@ public class CallBackCon {
         }
 
         String toPage = (String) session.getAttribute("toPage");
-        response.sendRedirect(foreHost + "/jumpRouter?openId=" + userInfo.getOpenid() + "&toPage=" + toPage);
+        String url = foreHost + "/jumpRouter?toPage=" + toPage + "&openId=" + userInfo.getOpenid();
+        response.sendRedirect(url);
     }
 
     @RequestMapping("/callShareBack")
-    public void callShareBack(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+    public void callShareBack(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
         boolean existFlag = callWx(request, response, session);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
         if (existFlag){
@@ -58,9 +60,8 @@ public class CallBackCon {
             }
             UserInfo userInfoNew = userInfoService.insertUser(userInfo);
         }
-
         String toPage = (String) session.getAttribute("toPage");
-        response.sendRedirect(foreHost + "/jumpRouter?openId=" + userInfo.getOpenid() + "&toPage=" + toPage);
+        response.sendRedirect(foreHost + "/jumpRouter?toPage=" + toPage + "&openId=" + userInfo.getOpenid());
     }
 
     public boolean callWx(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
@@ -73,6 +74,8 @@ public class CallBackCon {
         JSONObject jsonObject = AuthUtil.doGetJson(url);
         String openid = jsonObject.getString("openid");
         String token = jsonObject.getString("access_token");
+
+        session.setAttribute("openid", openid);
 
         String infoUrl = "https://api.weixin.qq.com/sns/userinfo?" +
                 "access_token=" + token +

@@ -18,6 +18,10 @@ public class AuthUtil {
 
     public static  final String APPSECRET = "7286e0076fc5aeb2414dbf873d70503e";
 
+    public static  final String MCHID = "1605041444";
+
+    public static  final String APISECRET = "6WPVXjvj33IO3SAUgnYKEo1zYJStMHEs";
+
     public static JSONObject doGetJson(String url) throws IOException {
         JSONObject jsonObject = null;
         HttpClient client = HttpClientBuilder.create().build();
