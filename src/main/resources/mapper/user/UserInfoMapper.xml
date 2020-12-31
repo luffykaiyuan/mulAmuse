@@ -302,6 +302,9 @@
   <update id="addSupport"  parameterType="com.skyc.demo.user.po.UserInfo">
     update user_info
     <set>
+      <if test="userCount != null">
+        user_count = #{userCount,jdbcType=REAL},
+      </if>
       <if test="fatherSupport != null">
         father_support = #{fatherSupport,jdbcType=REAL},
       </if>

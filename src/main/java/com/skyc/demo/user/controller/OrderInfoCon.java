@@ -89,12 +89,8 @@ public class OrderInfoCon {
     }
 
     @PostMapping("/checkOrder")
-    public int checkOrder(@RequestBody OrderInfo orderInfo, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        String orderPrice = String.valueOf( (int) (orderInfo.getOrderPrice() * 100));
-        session.setAttribute("orderPrice", orderPrice);
-        session.setAttribute("openid", orderInfo.getOpenid());
-        return 1;
+    public boolean checkOrder(@RequestBody OrderInfo orderInfo, HttpServletRequest request){
+        return orderInfoService.checkOrder(orderInfo, request);
     }
 
 }

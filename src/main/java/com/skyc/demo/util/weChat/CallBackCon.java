@@ -40,7 +40,7 @@ public class CallBackCon {
         }
 
         String toPage = (String) session.getAttribute("toPage");
-        String url = foreHost + "/jumpRouter?toPage=" + toPage + "&openId=" + userInfo.getOpenid();
+        String url = foreHost + "/jumpRouter?toPage=" + toPage + "&userId=" + userInfo.getId() + "&openId=" + userInfo.getOpenid();
         response.sendRedirect(url);
     }
 
@@ -61,7 +61,8 @@ public class CallBackCon {
             UserInfo userInfoNew = userInfoService.insertUser(userInfo);
         }
         String toPage = (String) session.getAttribute("toPage");
-        response.sendRedirect(foreHost + "/jumpRouter?toPage=" + toPage + "&openId=" + userInfo.getOpenid());
+        String url = foreHost + "/jumpRouter?toPage=" + toPage + "&userId=" + userInfo.getId() + "&openId=" + userInfo.getOpenid();
+        response.sendRedirect(url);
     }
 
     public boolean callWx(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {

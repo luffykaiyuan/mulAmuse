@@ -9,6 +9,8 @@ public class CommissionLog {
 
     private String provideName;
 
+    private String provideHead;
+
     private String getId;
 
     private String getName;
@@ -49,6 +51,14 @@ public class CommissionLog {
 
     public void setProvideName(String provideName) {
         this.provideName = provideName == null ? null : provideName.trim();
+    }
+
+    public String getProvideHead() {
+        return provideHead;
+    }
+
+    public void setProvideHead(String provideHead) {
+        this.provideHead = provideHead;
     }
 
     public String getGetId() {

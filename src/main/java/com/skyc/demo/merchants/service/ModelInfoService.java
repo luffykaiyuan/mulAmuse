@@ -40,20 +40,21 @@ public class ModelInfoService {
         return flag;
     }
 
-    public void checkStock(String productId){
+    public boolean checkStock(String productId){
         List<ModelInfo> modelInfoList = modelInfoMapper.selectModelByProduct(productId);
         for (int i = 0; i < modelInfoList.size(); i++) {
             if (modelInfoList.get(i).getModelStock() > 0){
                 productInfoMapper.saleIn(productId);
-                break;
+                return true;
             }else {
                 if (i == modelInfoList.size() - 1){
-                    productInfoMapper.saleOut(productId);
+                    return false;
                 }else {
                     continue;
                 }
             }
         }
+        return false;
     }
 
     public int deleteModel(String id){

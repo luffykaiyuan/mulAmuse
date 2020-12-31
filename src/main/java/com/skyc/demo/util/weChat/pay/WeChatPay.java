@@ -61,7 +61,7 @@ public class WeChatPay {
             paraMap.put("spbill_create_ip", ip);
             paraMap.put("total_fee", money);
             paraMap.put("trade_type", "JSAPI");
-            paraMap.put("notify_url", foreHost + "/paySuccess");// 此路径是微信服务器调用支付结果通知路径随意写
+            paraMap.put("notify_url", foreHost + "/orderSubmit");// 此路径是微信服务器调用支付结果通知路径随意写
             String sign = WXPayUtil.generateSignature(paraMap, AuthUtil.APISECRET);
             paraMap.put("sign", sign);
             String xml = WXPayUtil.mapToXml(paraMap);//将所有参数(map)转xml格式

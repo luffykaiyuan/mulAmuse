@@ -6,6 +6,7 @@
     <id column="order_number" jdbcType="VARCHAR" property="orderNumber" />
     <result column="provide_id" jdbcType="VARCHAR" property="provideId" />
     <result column="provide_name" jdbcType="VARCHAR" property="provideName" />
+    <result column="provide_head" jdbcType="VARCHAR" property="provideHead" />
     <result column="get_id" jdbcType="VARCHAR" property="getId" />
     <result column="get_name" jdbcType="VARCHAR" property="getName" />
     <result column="get_money" jdbcType="REAL" property="getMoney" />
@@ -13,7 +14,7 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, provide_id, order_number, provide_name, get_id, get_name, get_money, add_time, status
+    id, provide_id, order_number, provide_name, provide_head, get_id, get_name, get_money, add_time, status
   </sql>
   <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -52,6 +53,9 @@
       <if test="provideName != null">
         provide_name,
       </if>
+      <if test="provideHead != null">
+        provide_head,
+      </if>
       <if test="getId != null">
         get_id,
       </if>
@@ -81,6 +85,9 @@
       <if test="provideName != null">
         #{provideName,jdbcType=VARCHAR},
       </if>
+      <if test="provideHead != null">
+        #{provideHead,jdbcType=VARCHAR},
+      </if>
       <if test="getId != null">
         #{getId,jdbcType=VARCHAR},
       </if>
@@ -106,6 +113,9 @@
       </if>
       <if test="provideName != null">
         provide_name = #{provideName,jdbcType=VARCHAR},
+      </if>
+      <if test="provideHead != null">
+        provide_head = #{provideHead,jdbcType=VARCHAR},
       </if>
       <if test="getId != null">
         get_id = #{getId,jdbcType=VARCHAR},

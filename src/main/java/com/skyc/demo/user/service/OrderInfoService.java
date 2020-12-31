@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static javafx.scene.input.KeyCode.F;
@@ -94,6 +96,7 @@ public class OrderInfoService {
         }
         orderInfoMapper.insertOrder(orderInfo);
         UserInfo userInfo = userInfoMapper.selectUerDetail(orderInfo.getUserId());
+        userInfo.setUserCount(userInfo.getUserCount() + orderInfo.getOrderPrice());
         ProductInfo productInfo = productInfoMapper.selectProductById(orderInfo.getProductId());
         float[] allCommission = GetCommission.getProductCommission(userInfo, productInfo);
         userCommissionMapper.addWaitCommission(allCommission[0], userInfo.getId());
@@ -101,7 +104,8 @@ public class OrderInfoService {
         myLog.setId(UUIDUtils.getUUID(16));
         myLog.setOrderNumber(orderNumber);
         myLog.setProvideId(userInfo.getId());
-        myLog.setProvideName(userInfo.getUserName());
+        myLog.setProvideName(userInfo.getNickName());
+        myLog.setProvideHead(userInfo.getHeadimgurl());
         myLog.setGetId(userInfo.getId());
         myLog.setGetName(userInfo.getUserName());
         myLog.setGetMoney(allCommission[0]);
@@ -115,7 +119,8 @@ public class OrderInfoService {
             fatherLog.setId(UUIDUtils.getUUID(16));
             fatherLog.setOrderNumber(orderNumber);
             fatherLog.setProvideId(userInfo.getId());
-            fatherLog.setProvideName(userInfo.getUserName());
+            fatherLog.setProvideName(userInfo.getNickName());
+            fatherLog.setProvideHead(userInfo.getHeadimgurl());
             fatherLog.setGetId(userInfo.getFatherId());
             fatherLog.setGetMoney(allCommission[1]);
             fatherLog.setAddTime(GetNowDate.getStringDate());
@@ -131,7 +136,8 @@ public class OrderInfoService {
             grandLog.setId(UUIDUtils.getUUID(16));
             grandLog.setOrderNumber(orderNumber);
             grandLog.setProvideId(userInfo.getId());
-            grandLog.setProvideName(userInfo.getUserName());
+            grandLog.setProvideName(userInfo.getNickName());
+            grandLog.setProvideHead(userInfo.getHeadimgurl());
             grandLog.setGetId(userInfo.getGrandId());
             grandLog.setGetMoney(allCommission[2]);
             grandLog.setAddTime(GetNowDate.getStringDate());
@@ -181,7 +187,9 @@ public class OrderInfoService {
         ModelInfo modelInfo = modelInfoMapper.selectOneModel(orderInfo.getModelId());
         modelInfo.setModelStock(modelInfo.getModelStock() - 1);
         modelInfoMapper.subStock(modelInfo);
-        modelInfoService.checkStock(orderInfo.getProductId());
+        if (!modelInfoService.checkStock(orderInfo.getProductId())){
+            productInfoMapper.saleOut(orderInfo.getProductId());
+        }
         return "下单成功！！！";
     }
 
@@ -244,6 +252,15 @@ public class OrderInfoService {
 
     public int getProduct(OrderInfo orderInfo){
         return orderInfoMapper.getProduct(orderInfo);
+    }
+
+    public boolean checkOrder(OrderInfo orderInfo, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String orderPrice = String.valueOf( (int) (orderInfo.getOrderPrice() * 100));
+        session.setAttribute("orderPrice", orderPrice);
+        session.setAttribute("openid", orderInfo.getOpenid());
+
+        return modelInfoService.checkStock(orderInfo.getProductId());
     }
 
 }
