@@ -46,6 +46,36 @@ public class ProductInfoCon {
         return productInfoService.selectSuperProduct(userId);
     }
 
+    @GetMapping("/selectIndexOneBig")
+    public List<ProductInfo> selectIndexOneBig(){
+        return productInfoService.selectIndexOneBig();
+    }
+
+    @GetMapping("/selectIndexOneBigShow")
+    public List<ProductInfo> selectIndexOneBigShow(){
+        return productInfoService.selectIndexOneBigShow();
+    }
+
+    @GetMapping("/selectIndexOne")
+    public List<ProductInfo> selectIndexOne(){
+        return productInfoService.selectIndexOne();
+    }
+
+    @GetMapping("/selectIndexOneShow")
+    public List<ProductInfo> selectIndexOneShow(){
+        return productInfoService.selectIndexOneShow();
+    }
+
+    @GetMapping("/selectIndexTwo")
+    public List<ProductInfo> selectIndexTwo(){
+        return productInfoService.selectIndexTwo();
+    }
+
+    @GetMapping("/selectIndexTwoShow")
+    public List<ProductInfo> selectIndexTwoShow(){
+        return productInfoService.selectIndexTwoShow();
+    }
+
     @PostMapping("/insertProduct")
     public String insertProduct(@RequestBody ProductInfo productInfo){
         return productInfoService.insertProduct(productInfo);
@@ -54,6 +84,16 @@ public class ProductInfoCon {
     @PostMapping("/updateProduct")
     public int updateProduct(@RequestBody ProductInfo productInfo){
         return productInfoService.updateProduct(productInfo);
+    }
+
+    @PostMapping("/updateBig")
+    public int updateBig(@RequestBody ProductInfo productInfo){
+        return productInfoService.updateBig(productInfo);
+    }
+
+    @PostMapping("/updateOne")
+    public int updateOne(@RequestBody List<ProductInfo> productInfo){
+        return productInfoService.updateOne(productInfo);
     }
 
     @GetMapping("/deleteProduct")

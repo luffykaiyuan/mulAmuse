@@ -15,6 +15,10 @@ public class ProductInfo {
 
     private String productSpecialImg;
 
+    private String productSpecialImg2;
+
+    private String productSpecialStatus;
+
     private String productCoverImg;
 
     private String productMainImg1;
@@ -28,6 +32,8 @@ public class ProductInfo {
     private String productMainImg5;
 
     private String productTitle;
+
+    private String productSubtitle;
 
     private String productSaleStatus;
 
@@ -109,12 +115,28 @@ public class ProductInfo {
         this.productSpecial = productSpecial;
     }
 
+    public String getProductSpecialImg2() {
+        return productSpecialImg2;
+    }
+
+    public void setProductSpecialImg2(String productSpecialImg2) {
+        this.productSpecialImg2 = productSpecialImg2;
+    }
+
     public String getProductSpecialImg() {
         return productSpecialImg;
     }
 
     public void setProductSpecialImg(String productSpecialImg) {
         this.productSpecialImg = productSpecialImg;
+    }
+
+    public String getProductSpecialStatus() {
+        return productSpecialStatus;
+    }
+
+    public void setProductSpecialStatus(String productSpecialStatus) {
+        this.productSpecialStatus = productSpecialStatus;
     }
 
     public String getProductCoverImg() {
@@ -171,6 +193,14 @@ public class ProductInfo {
 
     public void setProductTitle(String productTitle) {
         this.productTitle = productTitle == null ? null : productTitle.trim();
+    }
+
+    public String getProductSubtitle() {
+        return productSubtitle;
+    }
+
+    public void setProductSubtitle(String productSubtitle) {
+        this.productSubtitle = productSubtitle;
     }
 
     public String getProductSaleStatus() {

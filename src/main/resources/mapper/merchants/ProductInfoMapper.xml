@@ -9,6 +9,8 @@
     <result column="product_free" jdbcType="VARCHAR" property="productFree" />
     <result column="product_special" jdbcType="VARCHAR" property="productSpecial" />
     <result column="product_special_img" jdbcType="VARCHAR" property="productSpecialImg" />
+    <result column="product_special_img2" jdbcType="VARCHAR" property="productSpecialImg2" />
+    <result column="product_special_status" jdbcType="VARCHAR" property="productSpecialStatus" />
     <result column="product_cover_img" jdbcType="VARCHAR" property="productCoverImg" />
     <result column="product_main_img1" jdbcType="VARCHAR" property="productMainImg1" />
     <result column="product_main_img2" jdbcType="VARCHAR" property="productMainImg2" />
@@ -16,6 +18,7 @@
     <result column="product_main_img4" jdbcType="VARCHAR" property="productMainImg4" />
     <result column="product_main_img5" jdbcType="VARCHAR" property="productMainImg5" />
     <result column="product_title" jdbcType="VARCHAR" property="productTitle" />
+    <result column="product_subtitle" jdbcType="VARCHAR" property="productSubtitle" />
     <result column="product_sale_status" jdbcType="VARCHAR" property="productSaleStatus" />
     <result column="product_sale_time" jdbcType="VARCHAR" property="productSaleTime" />
     <result column="product_original_price" jdbcType="REAL" property="productOriginalPrice" />
@@ -34,8 +37,9 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, store_id, store_name, product_type, product_free, product_special, product_special_img, product_cover_img, product_main_img1, product_main_img2,
-    product_main_img3, product_main_img4, product_main_img5, product_title, product_sale_status, 
+    id, store_id, store_name, product_type, product_free, product_special, product_special_img, product_special_img2,
+    product_special_status, product_cover_img, product_main_img1, product_main_img2,
+    product_main_img3, product_main_img4, product_main_img5, product_title, product_subtitle, product_sale_status,
     product_sale_time, product_original_price, product_now_price, product_vip_price, 
     product_sale_volume, product_detail, max_appointment, product_end_time, commission_heigh, 
     commission_middle, commission_low, sale_out, operate_id, add_time, status
@@ -45,6 +49,7 @@
     <include refid="Base_Column_List" />
     from product_info
     where store_id = #{storeId,jdbcType=VARCHAR}
+    and status = '1'
     order by add_time desc
   </select>
   <select id="selectIndexProductByStore" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -53,6 +58,7 @@
     from product_info
     where store_id = #{storeId,jdbcType=VARCHAR}
     and product_free = '0'
+    and status = '1'
     order by add_time desc
   </select>
   <select id="selectSuperProductByStore" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -61,6 +67,7 @@
     from product_info
     where store_id = #{storeId,jdbcType=VARCHAR}
     and product_free = '1'
+    and status = '1'
     order by add_time desc
   </select>
   <select id="selectProductById" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -91,6 +98,55 @@
     </if>
     order by sale_out
   </select>
+  <select id="selectIndexOneBig" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_free = '0'
+    and product_special = '3'
+  </select>
+  <select id="selectIndexOneBigShow" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_free = '0'
+    and product_special = '3'
+    and product_special_status = '1'
+  </select>
+  <select id="selectIndexOne" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_free = '0'
+    and product_special = '4'
+  </select>
+  <select id="selectIndexOneShow" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_free = '0'
+    and product_special = '4'
+    and product_special_status = '1'
+    order by add_time desc
+    limit 2
+  </select>
+  <select id="selectIndexTwo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_free = '0'
+    and product_special = '5'
+  </select>
+  <select id="selectIndexTwoShow" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_free = '0'
+    and product_special = '5'
+    and product_special_status = '1'
+    order by add_time desc
+    limit 6
+  </select>
   <insert id="insertProduct" parameterType="com.skyc.demo.merchants.po.ProductInfo">
     insert into product_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -115,6 +171,12 @@
       <if test="productSpecialImg != null">
         product_special_img,
       </if>
+      <if test="productSpecialImg2 != null">
+        product_special_img2,
+      </if>
+      <if test="productSpecialStatus != null">
+        product_special_status,
+      </if>
       <if test="productCoverImg != null">
         product_cover_img,
       </if>
@@ -135,6 +197,9 @@
       </if>
       <if test="productTitle != null">
         product_title,
+      </if>
+      <if test="productSubtitle != null">
+        product_subtitle,
       </if>
       <if test="productSaleStatus != null">
         product_sale_status,
@@ -207,6 +272,12 @@
       <if test="productSpecialImg != null">
         #{productSpecialImg,jdbcType=VARCHAR},
       </if>
+      <if test="productSpecialImg2 != null">
+        #{productSpecialImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpecialStatus != null">
+        #{productSpecialStatus,jdbcType=VARCHAR},
+      </if>
       <if test="productCoverImg != null">
         #{productCoverImg,jdbcType=VARCHAR},
       </if>
@@ -227,6 +298,9 @@
       </if>
       <if test="productTitle != null">
         #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="productSubtitle != null">
+        #{productSubtitle,jdbcType=VARCHAR},
       </if>
       <if test="productSaleStatus != null">
         #{productSaleStatus,jdbcType=VARCHAR},
@@ -293,11 +367,17 @@
       <if test="productFree != null">
         product_free = #{productFree,jdbcType=VARCHAR},
       </if>
-      <if test="productFree != null">
+      <if test="productSpecial != null">
         product_special = #{productSpecial,jdbcType=VARCHAR},
       </if>
-      <if test="productFree != null">
+      <if test="productSpecialImg != null">
         product_special_img = #{productSpecialImg,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpecialImg2 != null">
+        product_special_img2 = #{productSpecialImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpecialStatus != null">
+        product_special_status = #{productSpecialStatus,jdbcType=VARCHAR},
       </if>
       <if test="productCoverImg != null">
         product_cover_img = #{productCoverImg,jdbcType=VARCHAR},
@@ -319,6 +399,9 @@
       </if>
       <if test="productTitle != null">
         product_title = #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="productSubtitle != null">
+        product_subtitle = #{productSubtitle,jdbcType=VARCHAR},
       </if>
       <if test="productSaleStatus != null">
         product_sale_status = #{productSaleStatus,jdbcType=VARCHAR},
@@ -370,6 +453,31 @@
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateBig" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    update product_info
+    <set>
+      <if test="productSpecialStatus != null">
+        product_special_status = #{productSpecialStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateOne" parameterType="java.util.List" >
+    update product_info
+    <set>
+      <trim prefix="product_special_status=case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.productSpecialStatus !=null">
+            when id=#{item.id} then #{item.productSpecialStatus}
+          </if>
+        </foreach>
+      </trim>
+    </set>
+    where id in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
   </update>
   <update id="deleteProduct" parameterType="java.lang.String">
     update product_info

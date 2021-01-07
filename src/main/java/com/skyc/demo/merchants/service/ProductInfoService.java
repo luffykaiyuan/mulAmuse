@@ -51,6 +51,30 @@ public class ProductInfoService {
         return productInfoMapper.selectIndexProduct();
     }
 
+    public List<ProductInfo> selectIndexOneBig(){
+        return productInfoMapper.selectIndexOneBig();
+    }
+
+    public List<ProductInfo> selectIndexOneBigShow(){
+        return productInfoMapper.selectIndexOneBigShow();
+    }
+
+    public List<ProductInfo> selectIndexOne(){
+        return productInfoMapper.selectIndexOne();
+    }
+
+    public List<ProductInfo> selectIndexOneShow(){
+        return productInfoMapper.selectIndexOneShow();
+    }
+
+    public List<ProductInfo> selectIndexTwo(){
+        return productInfoMapper.selectIndexTwo();
+    }
+
+    public List<ProductInfo> selectIndexTwoShow(){
+        return productInfoMapper.selectIndexTwoShow();
+    }
+
     public List<ProductInfo> selectSuperProduct(String userId){
         List<FreeLog> logs = freeLogMapper.selectByUserId(userId);
         return productInfoMapper.selectSuperProduct(logs);
@@ -58,7 +82,7 @@ public class ProductInfoService {
 
     public String insertProduct(ProductInfo productInfo){
         productInfo.setId(UUIDUtils.getUUID(16));
-        productInfo.setAddTime(GetNowDate.getStringDate());
+        productInfo.setAddTime(GetNowDate.getDetailStringDate());
         int flag = productInfoMapper.insertProduct(productInfo);
         if (flag > 0){
             return insertSuc;
@@ -69,6 +93,14 @@ public class ProductInfoService {
 
     public int updateProduct(ProductInfo productInfo){
         return productInfoMapper.updateProduct(productInfo);
+    }
+
+    public int updateBig(ProductInfo productInfo){
+        return productInfoMapper.updateBig(productInfo);
+    }
+
+    public int updateOne(List<ProductInfo> productInfo){
+        return productInfoMapper.updateOne(productInfo);
     }
 
     public int deleteProduct(String id){

@@ -25,7 +25,23 @@ public interface ProductInfoMapper {
 
     List<ProductInfo> selectSuperProduct(List<FreeLog> list);
 
+    List<ProductInfo> selectIndexOneBig();
+
+    List<ProductInfo> selectIndexOneBigShow();
+
+    List<ProductInfo> selectIndexOne();
+
+    List<ProductInfo> selectIndexOneShow();
+
+    List<ProductInfo> selectIndexTwo();
+
+    List<ProductInfo> selectIndexTwoShow();
+
     int updateProduct(ProductInfo productInfo);
+
+    int updateBig(ProductInfo productInfo);
+
+    int updateOne(List<ProductInfo> productInfo);
 
     int deleteProduct(String id);
 
