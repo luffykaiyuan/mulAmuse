@@ -147,6 +147,24 @@
     order by add_time desc
     limit 6
   </select>
+  <select id="selectVipOneShow" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_free = '1'
+    and product_special = '1'
+    order by add_time desc
+    limit 6
+  </select>
+  <select id="selectVipTwoShow" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_free = '1'
+    and product_special = '2'
+    order by add_time desc
+    limit 4
+  </select>
   <insert id="insertProduct" parameterType="com.skyc.demo.merchants.po.ProductInfo">
     insert into product_info
     <trim prefix="(" suffix=")" suffixOverrides=",">

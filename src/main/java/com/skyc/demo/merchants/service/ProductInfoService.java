@@ -75,6 +75,14 @@ public class ProductInfoService {
         return productInfoMapper.selectIndexTwoShow();
     }
 
+    public List<ProductInfo> selectVipOneShow(){
+        return productInfoMapper.selectVipOneShow();
+    }
+
+    public List<ProductInfo> selectVipTwoShow(){
+        return productInfoMapper.selectVipTwoShow();
+    }
+
     public List<ProductInfo> selectSuperProduct(String userId){
         List<FreeLog> logs = freeLogMapper.selectByUserId(userId);
         return productInfoMapper.selectSuperProduct(logs);

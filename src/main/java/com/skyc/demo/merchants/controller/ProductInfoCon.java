@@ -66,6 +66,16 @@ public class ProductInfoCon {
         return productInfoService.selectIndexOneShow();
     }
 
+    @GetMapping("/selectVipOneShow")
+    public List<ProductInfo> selectVipOneShow(){
+        return productInfoService.selectVipOneShow();
+    }
+
+    @GetMapping("/selectVipTwoShow")
+    public List<ProductInfo> selectVipTwoShow(){
+        return productInfoService.selectVipTwoShow();
+    }
+
     @GetMapping("/selectIndexTwo")
     public List<ProductInfo> selectIndexTwo(){
         return productInfoService.selectIndexTwo();

@@ -37,6 +37,10 @@ public interface ProductInfoMapper {
 
     List<ProductInfo> selectIndexTwoShow();
 
+    List<ProductInfo> selectVipOneShow();
+
+    List<ProductInfo> selectVipTwoShow();
+
     int updateProduct(ProductInfo productInfo);
 
     int updateBig(ProductInfo productInfo);
