@@ -255,12 +255,16 @@ public class OrderInfoService {
     }
 
     public boolean checkOrder(OrderInfo orderInfo, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        String orderPrice = String.valueOf( (int) (orderInfo.getOrderPrice() * 100));
-        session.setAttribute("orderPrice", orderPrice);
-        session.setAttribute("openid", orderInfo.getOpenid());
-
-        return modelInfoService.checkStock(orderInfo.getProductId());
+        ModelInfo modelInfo = modelInfoMapper.selectOneModel(orderInfo.getModelId());
+        if (orderInfo.getOrderCount() > modelInfo.getModelStock()){
+            return false;
+        }else {
+            HttpSession session = request.getSession();
+            String orderPrice = String.valueOf( (int) (orderInfo.getOrderPrice() * 100));
+            session.setAttribute("orderPrice", orderPrice);
+            session.setAttribute("openid", orderInfo.getOpenid());
+            return true;
+        }
     }
 
 }

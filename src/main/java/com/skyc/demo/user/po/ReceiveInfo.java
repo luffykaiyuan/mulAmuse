@@ -9,6 +9,8 @@ public class ReceiveInfo {
 
     private String receivePhone;
 
+    private String receiveArea;
+
     private String receiveAddress;
 
     private String defaultStatus;
@@ -47,6 +49,14 @@ public class ReceiveInfo {
 
     public void setReceivePhone(String receivePhone) {
         this.receivePhone = receivePhone == null ? null : receivePhone.trim();
+    }
+
+    public String getReceiveArea() {
+        return receiveArea;
+    }
+
+    public void setReceiveArea(String receiveArea) {
+        this.receiveArea = receiveArea;
     }
 
     public String getReceiveAddress() {

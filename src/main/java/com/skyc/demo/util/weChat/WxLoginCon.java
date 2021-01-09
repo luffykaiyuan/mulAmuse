@@ -21,7 +21,7 @@ public class WxLoginCon {
     String backHost;
 
     @RequestMapping("/doLogin")
-    public void doLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doLogin(@PathParam("toPage") String toPage, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         String backUrl = backHost + "/wxBack/callBack";
         String url = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
@@ -30,13 +30,12 @@ public class WxLoginCon {
                 "&response_type=code" +
                 "&scope=snsapi_userinfo" +
                 "&state=STATE#wechat_redirect";
-        String toPage = request.getParameter("toPage");
         session.setAttribute("toPage", toPage);
         response.sendRedirect(url);
     }
 
     @RequestMapping("/doShareLogin")
-    public void doShareLogin(@PathParam("fatherId") String fatherId, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doShareLogin(@PathParam("fatherId") String fatherId, @PathParam("toPage") String toPage, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         String backUrl = backHost + "/wxBack/callShareBack";
         String url = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
@@ -45,7 +44,6 @@ public class WxLoginCon {
                 "&response_type=code" +
                 "&scope=snsapi_userinfo" +
                 "&state=STATE#wechat_redirect";
-        String toPage =  request.getParameter("toPage");
         session.setAttribute("toPage", toPage);
         session.setAttribute("fatherId", fatherId);
         response.sendRedirect(url);

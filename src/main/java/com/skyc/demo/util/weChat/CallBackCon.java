@@ -62,6 +62,7 @@ public class CallBackCon {
         }
         String toPage = (String) session.getAttribute("toPage");
         String url = foreHost + "/jumpRouter?toPage=" + toPage + "&userId=" + userInfo.getId() + "&openId=" + userInfo.getOpenid();
+        System.out.println(url);
         response.sendRedirect(url);
     }
 
