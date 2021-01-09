@@ -15,10 +15,12 @@ public class ReceiveInfoService {
     @Autowired
     ReceiveInfoMapper receiveInfoMapper;
 
-    public int insertReceive(ReceiveInfo receiveInfo){
-        receiveInfo.setId(UUIDUtils.getUUID(16));
+    public String insertReceive(ReceiveInfo receiveInfo){
+        String id = UUIDUtils.getUUID(16);
+        receiveInfo.setId(id);
         receiveInfo.setAddTime(GetNowDate.getStringDate());
-        return receiveInfoMapper.insertReceive(receiveInfo);
+        receiveInfoMapper.insertReceive(receiveInfo);
+        return id;
     }
 
     public List<ReceiveInfo> selectById(String id){

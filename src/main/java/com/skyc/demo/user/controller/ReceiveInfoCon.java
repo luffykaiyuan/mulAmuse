@@ -17,7 +17,7 @@ public class ReceiveInfoCon {
     ReceiveInfoService receiveInfoService;
 
     @PostMapping("/insertReceive")
-    public int insertReceive(@RequestBody ReceiveInfo receiveInfo) {
+    public String insertReceive(@RequestBody ReceiveInfo receiveInfo) {
         return receiveInfoService.insertReceive(receiveInfo);
     }
 
