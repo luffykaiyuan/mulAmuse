@@ -4,6 +4,7 @@ import com.skyc.demo.user.dao.SupervipInfoMapper;
 import com.skyc.demo.user.dao.SupervipInviteMapper;
 import com.skyc.demo.user.po.SupervipInfo;
 import com.skyc.demo.user.po.SupervipInvite;
+import com.skyc.demo.util.GetNowDate;
 import com.skyc.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,18 @@ public class SupervipInviteService {
 //        supervipInfo.setUserId(supervipInvite.getUserId());
 //        supervipInfo.setHaveNumber(supervipSet.get(0).getInviteHaveNumber());
 //        supervipInfoMapper.insertSuperVIP(supervipInfo);
+    }
+
+    public void addShare(String userId){
+        supervipInviteMapper.addShare(userId);
+        SupervipInvite supervipInvite = supervipInviteMapper.selectInvite(userId);
+        if (supervipInvite.getHaveInvite() >= 1){
+            SupervipInfo supervipInfo = new SupervipInfo();
+            supervipInfo.setId(UUIDUtils.getUUID(16));
+            supervipInfo.setUserId(userId);
+            supervipInfo.setHaveNumber(1);
+            supervipInfo.setEndTime(GetNowDate.getFetureDate(7));
+            supervipInfoMapper.insertSuperVIP(supervipInfo);
+        }
     }
 }

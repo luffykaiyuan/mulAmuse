@@ -145,7 +145,7 @@
     and product_special = '5'
     and product_special_status = '1'
     order by add_time desc
-    limit 6
+    limit 3
   </select>
   <select id="selectVipOneShow" resultMap="BaseResultMap">
     select

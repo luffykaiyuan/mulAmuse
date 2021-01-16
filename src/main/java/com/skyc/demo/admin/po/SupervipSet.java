@@ -3,6 +3,8 @@ package com.skyc.demo.admin.po;
 public class SupervipSet {
     private String id;
 
+    private String imgAddress;
+
     private String supervipName;
 
     private Float supervipPrice;
@@ -19,6 +21,14 @@ public class SupervipSet {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
+    }
+
+    public String getImgAddress() {
+        return imgAddress;
+    }
+
+    public void setImgAddress(String imgAddress) {
+        this.imgAddress = imgAddress;
     }
 
     public String getSupervipName() {

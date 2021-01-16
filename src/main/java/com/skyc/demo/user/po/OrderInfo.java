@@ -17,6 +17,8 @@ public class OrderInfo {
 
     private String productTitle;
 
+    private String productImg;
+
     private String modelId;
 
     private String modelName;
@@ -103,6 +105,14 @@ public class OrderInfo {
 
     public void setProductTitle(String productTitle) {
         this.productTitle = productTitle == null ? null : productTitle.trim();
+    }
+
+    public String getProductImg() {
+        return productImg;
+    }
+
+    public void setProductImg(String productImg) {
+        this.productImg = productImg;
     }
 
     public String getModelId() {

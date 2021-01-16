@@ -9,6 +9,7 @@
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="product_type" jdbcType="VARCHAR" property="productType" />
     <result column="product_title" jdbcType="VARCHAR" property="productTitle" />
+    <result column="product_img" jdbcType="VARCHAR" property="productImg" />
     <result column="model_id" jdbcType="VARCHAR" property="modelId" />
     <result column="model_name" jdbcType="VARCHAR" property="modelName" />
     <result column="receive_id" jdbcType="VARCHAR" property="receiveId" />
@@ -23,7 +24,7 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, order_number, user_id, store_id, product_id, product_type, product_title, model_id, 
+    id, order_number, user_id, store_id, product_id, product_type, product_title, product_img, model_id,
     model_name, receive_id, order_count, order_price, order_remark, post_number, qrcode_img, 
     qrcode_number, appointment_time, add_time, status
   </sql>
@@ -120,6 +121,9 @@
       <if test="productTitle != null">
         product_title,
       </if>
+      <if test="productImg != null">
+        product_img,
+      </if>
       <if test="modelId != null">
         model_id,
       </if>
@@ -179,6 +183,9 @@
       <if test="productTitle != null">
         #{productTitle,jdbcType=VARCHAR},
       </if>
+      <if test="productImg != null">
+        #{productImg,jdbcType=VARCHAR},
+      </if>
       <if test="modelId != null">
         #{modelId,jdbcType=VARCHAR},
       </if>
@@ -237,6 +244,9 @@
       </if>
       <if test="productTitle != null">
         product_title = #{productTitle,jdbcType=VARCHAR},
+      </if>
+       <if test="productImg != null">
+         product_img = #{productImg,jdbcType=VARCHAR},
       </if>
       <if test="modelId != null">
         model_id = #{modelId,jdbcType=VARCHAR},

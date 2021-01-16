@@ -5,6 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.imageio.ImageIO;
 
 /*
@@ -61,15 +64,30 @@ public class TestMain {
         }
     }
 
+    public static String getFetureDate(int past) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 7);
+        Date today = calendar.getTime();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String result = format.format(today);
+        return result;
+    }
+
     public static void main(String[] args) {
 
-        TestMain testMain = new TestMain();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 7);
+        Date today = calendar.getTime();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String result = format.format(today);
 
-        BufferedImage d = testMain.loadImageLocal("C:\\upload\\img\\2020\\12\\back1.jpg");
-        BufferedImage b = testMain.loadImageLocal("C:\\upload\\img\\2020\\12\\baidu.jpg");
-
-        testMain.writeImageLocal("C:\\upload\\img\\qrcode\\new10.jpg", testMain.modifyImagetogeter(b, d));
-        //将多张图片合在一起
-        System.out.println("success");
+//        TestMain testMain = new TestMain();
+//
+//        BufferedImage d = testMain.loadImageLocal("C:\\upload\\img\\2020\\12\\back1.jpg");
+//        BufferedImage b = testMain.loadImageLocal("C:\\upload\\img\\2020\\12\\baidu.jpg");
+//
+//        testMain.writeImageLocal("C:\\upload\\img\\qrcode\\new10.jpg", testMain.modifyImagetogeter(b, d));
+//        //将多张图片合在一起
+        System.out.println(result);
     }
 }

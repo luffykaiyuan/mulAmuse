@@ -3,6 +3,7 @@
 <mapper namespace="com.skyc.demo.admin.dao.SupervipSetMapper">
   <resultMap id="BaseResultMap" type="com.skyc.demo.admin.po.SupervipSet">
     <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="img_address" jdbcType="VARCHAR" property="imgAddress" />
     <result column="supervip_name" jdbcType="VARCHAR" property="supervipName" />
     <result column="supervip_price" jdbcType="REAL" property="supervipPrice" />
     <result column="have_day" jdbcType="INTEGER" property="haveDay" />
@@ -10,7 +11,7 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, supervip_name, supervip_price, have_day, have_number, status
+    id, img_address, supervip_name, supervip_price, have_day, have_number, status
   </sql>
   <select id="selectAllSet" resultMap="BaseResultMap">
     select
@@ -29,6 +30,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="imgAddress != null">
+        img_address,
       </if>
       <if test="supervipName != null">
         supervip_name,
@@ -50,6 +54,9 @@
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
+      <if test="imgAddress != null">
+        #{imgAddress,jdbcType=VARCHAR},
+      </if>
       <if test="supervipName != null">
         #{supervipName,jdbcType=VARCHAR},
       </if>
@@ -70,6 +77,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.skyc.demo.admin.po.SupervipSet">
     update supervip_set
     <set>
+      <if test="imgAddress != null">
+        img_address = #{imgAddress,jdbcType=VARCHAR},
+      </if>
       <if test="supervipName != null">
         supervip_name = #{supervipName,jdbcType=VARCHAR},
       </if>

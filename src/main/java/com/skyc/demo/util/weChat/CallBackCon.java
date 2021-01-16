@@ -2,6 +2,7 @@ package com.skyc.demo.util.weChat;
 
 import com.skyc.demo.user.dao.UserInfoMapper;
 import com.skyc.demo.user.po.UserInfo;
+import com.skyc.demo.user.service.SupervipInviteService;
 import com.skyc.demo.user.service.UserInfoService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class CallBackCon {
 
     @Autowired
     UserInfoMapper userInfoMapper;
+
+    @Autowired
+    SupervipInviteService supervipInviteService;
 
     @Value("${foreHost}")
     String foreHost;
@@ -59,6 +63,19 @@ public class CallBackCon {
                 userInfo.setGrandTitle(fatherInfo.getFatherTitle());
             }
             UserInfo userInfoNew = userInfoService.insertUser(userInfo);
+            if (fatherInfo.getUserRank() == "0"){
+                supervipInviteService.addShare(userInfo.getFatherId());
+            }
+            fatherInfo.setInviteNumber(fatherInfo.getInviteNumber() + 1);
+            if (fatherInfo.getInviteNumber() == 1){
+                fatherInfo.setUserTitle("1");
+            }else if (fatherInfo.getInviteNumber() >= 10 && fatherInfo.getInviteNumber() < 30){
+                fatherInfo.setUserTitle("2");
+            } else if (fatherInfo.getInviteNumber() >= 30){
+                fatherInfo.setUserTitle("3");
+            }
+            userInfoMapper.updateUser(userInfo);
+
         }
         String toPage = (String) session.getAttribute("toPage");
         String url = foreHost + "/jumpRouter?toPage=" + toPage + "&userId=" + userInfo.getId() + "&openId=" + userInfo.getOpenid();

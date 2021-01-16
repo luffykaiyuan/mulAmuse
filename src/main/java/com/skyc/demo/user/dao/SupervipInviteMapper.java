@@ -14,4 +14,6 @@ public interface SupervipInviteMapper {
 
     int updateSupervipInvite(SupervipInvite supervipInvite);
 
+    int addShare(String userId);
+
 }
