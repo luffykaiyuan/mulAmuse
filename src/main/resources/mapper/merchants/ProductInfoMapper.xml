@@ -12,6 +12,7 @@
     <result column="product_special_img2" jdbcType="VARCHAR" property="productSpecialImg2" />
     <result column="product_special_status" jdbcType="VARCHAR" property="productSpecialStatus" />
     <result column="product_cover_img" jdbcType="VARCHAR" property="productCoverImg" />
+    <result column="product_share_img" jdbcType="VARCHAR" property="productShareImg" />
     <result column="product_main_img1" jdbcType="VARCHAR" property="productMainImg1" />
     <result column="product_main_img2" jdbcType="VARCHAR" property="productMainImg2" />
     <result column="product_main_img3" jdbcType="VARCHAR" property="productMainImg3" />
@@ -38,7 +39,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     id, store_id, store_name, product_type, product_free, product_special, product_special_img, product_special_img2,
-    product_special_status, product_cover_img, product_main_img1, product_main_img2,
+    product_special_status, product_cover_img, product_share_img, product_main_img1, product_main_img2,
     product_main_img3, product_main_img4, product_main_img5, product_title, product_subtitle, product_sale_status,
     product_sale_time, product_original_price, product_now_price, product_vip_price, 
     product_sale_volume, product_detail, max_appointment, product_end_time, commission_heigh, 
@@ -198,6 +199,9 @@
       <if test="productCoverImg != null">
         product_cover_img,
       </if>
+      <if test="productShareImg != null">
+        product_share_img,
+      </if>
       <if test="productMainImg1 != null">
         product_main_img1,
       </if>
@@ -299,6 +303,9 @@
       <if test="productCoverImg != null">
         #{productCoverImg,jdbcType=VARCHAR},
       </if>
+      <if test="productShareImg != null">
+        #{productShareImg,jdbcType=VARCHAR},
+      </if>
       <if test="productMainImg1 != null">
         #{productMainImg1,jdbcType=VARCHAR},
       </if>
@@ -399,6 +406,9 @@
       </if>
       <if test="productCoverImg != null">
         product_cover_img = #{productCoverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="productShareImg != null">
+        product_share_img = #{productShareImg,jdbcType=VARCHAR},
       </if>
       <if test="productMainImg1 != null">
         product_main_img1 = #{productMainImg1,jdbcType=VARCHAR},

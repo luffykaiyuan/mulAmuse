@@ -21,6 +21,8 @@ public class ProductInfo {
 
     private String productCoverImg;
 
+    private String productShareImg;
+
     private String productMainImg1;
 
     private String productMainImg2;
@@ -145,6 +147,14 @@ public class ProductInfo {
 
     public void setProductCoverImg(String productCoverImg) {
         this.productCoverImg = productCoverImg == null ? null : productCoverImg.trim();
+    }
+
+    public String getProductShareImg() {
+        return productShareImg;
+    }
+
+    public void setProductShareImg(String productShareImg) {
+        this.productShareImg = productShareImg;
     }
 
     public String getProductMainImg1() {

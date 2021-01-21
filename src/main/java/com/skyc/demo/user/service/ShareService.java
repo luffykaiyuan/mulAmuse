@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.Calendar;
 
 @Service
@@ -20,11 +21,24 @@ public class ShareService {
     String getPath;
     @Value("${background}")
     String background;
+    @Value("${uploadPath}")
+    String uploadPath;
 
     @Autowired
     FileInfoMapper fileInfoMapper;
 
     public String createQR(String qrcodeUrl) throws Exception {
+        return createQRCode(qrcodeUrl, background);
+    }
+
+    public String createProductQR(String qrcodeUrl, String backgroundId) throws Exception {
+        FileInfo fileInfo = fileInfoMapper.selectFile(backgroundId);
+        String path = uploadPath + fileInfo.getFileStoragePath() + "/" + fileInfo.getFileStorageName();
+        System.out.println(path);
+        return createQRCode(qrcodeUrl, path);
+    }
+
+    public String createQRCode(String qrcodeUrl, String backgroundImg) throws Exception {
         // 嵌入二维码的图片路径
         String imgPath = null;
         // 生成的二维码的路径及名称
@@ -42,7 +56,7 @@ public class ShareService {
         QRCodeUtil.encode(qrcodeUrl, imgPath, destPath, true);
 
         CreateQrcode createQrcode = new CreateQrcode();
-        FileInfo fileInfo = createQrcode.create(getPath, background, destPath);
+        FileInfo fileInfo = createQrcode.create(getPath, backgroundImg, destPath);
         fileInfoMapper.insertFile(fileInfo);
         return fileInfo.getId();
     }

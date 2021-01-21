@@ -19,4 +19,9 @@ public class ShareCon {
     public String createQR(@PathParam("qrcodeUrl") String qrcodeUrl) throws Exception{
         return shareService.createQR(qrcodeUrl);
     }
+
+    @GetMapping("/createProductQR")
+    public String createProductQR(@PathParam("qrcodeUrl") String qrcodeUrl, @PathParam("backgroundId") String backgroundId) throws Exception{
+        return shareService.createProductQR(qrcodeUrl, backgroundId);
+    }
 }
