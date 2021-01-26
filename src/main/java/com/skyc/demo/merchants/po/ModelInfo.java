@@ -7,6 +7,8 @@ public class ModelInfo {
 
     private String modelName;
 
+    private String modelDetail;
+
     private Integer modelStock;
 
     private Float modelPrice;
@@ -37,6 +39,14 @@ public class ModelInfo {
 
     public void setModelName(String modelName) {
         this.modelName = modelName == null ? null : modelName.trim();
+    }
+
+    public String getModelDetail() {
+        return modelDetail;
+    }
+
+    public void setModelDetail(String modelDetail) {
+        this.modelDetail = modelDetail;
     }
 
     public Integer getModelStock() {

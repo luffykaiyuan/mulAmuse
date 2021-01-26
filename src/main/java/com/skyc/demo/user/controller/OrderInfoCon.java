@@ -68,13 +68,18 @@ public class OrderInfoCon {
         return orderInfoService.selectOrderDetail(id);
     }
 
+    @PostMapping("/updateOrder")
+    public int updateOrder(@RequestBody OrderInfo orderInfo){
+        return orderInfoService.updateOrder(orderInfo);
+    }
+
     @PostMapping("/sendProduct")
     public String sendProduct(@RequestBody OrderInfo orderInfo){
         return orderInfoService.sendProduct(orderInfo);
     }
 
     @GetMapping("/destoryCodeNumber")
-    public String destoryCodeNumber(@PathParam("/qrcodeNumber") String qrcodeNumber){
+    public String destoryCodeNumber(@PathParam("/run") String qrcodeNumber){
         return orderInfoService.destoryCodeNumber(qrcodeNumber);
     }
 

@@ -82,7 +82,7 @@
     select
     <include refid="Base_Column_List" />
     from order_info
-    where order_number = #{orderNumber,jdbcType=VARCHAR}
+    where qrcode_number = #{qrcodeNumber,jdbcType=VARCHAR}
   </select>
   <select id="selectOneOrder" parameterType="java.lang.String" resultMap="BaseResultMap">
     select

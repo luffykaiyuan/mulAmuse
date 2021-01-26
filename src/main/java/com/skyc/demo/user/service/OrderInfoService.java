@@ -159,6 +159,7 @@ public class OrderInfoService {
         String orderNumber = GetRandom.getRandomNumber(10);
         orderInfo.setOrderNumber(orderNumber);
         orderInfo.setAddTime(GetNowDate.getDetailStringDate());
+        orderInfo.setOrderPrice((float) 0);
         if ("0".equals(orderInfo.getProductType())){
             //虚拟产品
             String qrcodeNumber = GetRandom.getRandomNumber(8);
@@ -224,6 +225,10 @@ public class OrderInfoService {
 
     public OrderInfo selectOrderDetail(String id){
         return orderInfoMapper.selectOrderDetail(id);
+    }
+
+    public int updateOrder(OrderInfo orderInfo){
+        return orderInfoMapper.updateOrder(orderInfo);
     }
 
     public String sendProduct(OrderInfo orderInfo){
