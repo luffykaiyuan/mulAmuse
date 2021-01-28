@@ -70,4 +70,8 @@ public class SupervipInfoService {
         return supervipInfoMapper.selectByUserId(userId);
     }
 
+    public int overVip(String userId){
+        return supervipInfoMapper.overVip(userId);
+    }
+
 }

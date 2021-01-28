@@ -22,4 +22,6 @@ public interface SupervipInfoMapper {
 
     int restartNumber(String userId);
 
+    int overVip(String userId);
+
 }

@@ -37,4 +37,9 @@ public class SupervipInfoCon {
     public SupervipInfo selectByUserId(@PathParam("/userId") String userId){
         return supervipInfoService.selectByUserId(userId);
     }
+
+    @GetMapping("/overVip")
+    public int overVip(@PathParam("/userId") String userId){
+        return supervipInfoService.overVip(userId);
+    }
 }
