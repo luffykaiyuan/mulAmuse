@@ -53,7 +53,7 @@ public class WeChatPay {
             String money = (String) session.getAttribute("orderPrice");
 
             paraMap.put("appid", AuthUtil.APPID);
-            paraMap.put("body", "惠享生活-订单结算");
+            paraMap.put("body", "huixiangOrderConfirm");
             paraMap.put("mch_id", AuthUtil.MCHID);
             paraMap.put("nonce_str", WXPayUtil.generateNonceStr());
             paraMap.put("openid", openid);
@@ -65,7 +65,6 @@ public class WeChatPay {
             String sign = WXPayUtil.generateSignature(paraMap, AuthUtil.APISECRET);
             paraMap.put("sign", sign);
             String xml = WXPayUtil.mapToXml(paraMap);//将所有参数(map)转xml格式
-
             // 统一下单 https://api.mch.weixin.qq.com/pay/unifiedorder
             String unifiedorder_url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 

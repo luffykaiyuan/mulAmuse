@@ -28,7 +28,7 @@ public class WeChatCon {
     @RequestMapping("/wxLogin")
     public String wxLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String appId = APPID;
-        String redirect_url = "192.168.101.105:685/wxBack";
+        String redirect_url = "localhost:685/wxBack";
         String scope = "snsapi_userinfo";
         String getCodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?"
                 + "appid=" + appId + "&redirect_ui=" + redirect_url + "&response_type=code"
