@@ -52,4 +52,8 @@ public interface ProductInfoMapper {
     int saleIn(String id);
 
     int saleOut(String id);
+
+    int addVolume(ProductInfo productInfo);
+
+    int deleteAllProduct(String storeId);
 }

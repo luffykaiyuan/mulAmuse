@@ -35,7 +35,7 @@ public class CreateQrcode {
     public BufferedImage modifyImagetogeter(BufferedImage b, BufferedImage d) {
         try {
             g = d.createGraphics();
-            g.drawImage(b, 88, 420, 100, 100, null);
+            g.drawImage(b, 270, 580, 56, 56, null);
             g.dispose();
         } catch (Exception e) {
             System.out.println(e.getMessage());

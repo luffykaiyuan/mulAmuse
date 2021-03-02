@@ -81,7 +81,7 @@ public class OrderInfoService {
         if ("0".equals(orderInfo.getProductType())){
             //虚拟产品
             String qrcodeNumber = GetRandom.getRandomNumber(8);
-            String qrcodeId = fileInfoService.createQRCode(foreHost + forePath + qrcodeNumber + "\\");
+            String qrcodeId = fileInfoService.createQRCode(foreHost + forePath + qrcodeNumber);
             orderInfo.setQrcodeImg(qrcodeId);
             orderInfo.setQrcodeNumber(qrcodeNumber);
         } else if ("1".equals(orderInfo.getProductType())){
@@ -151,6 +151,8 @@ public class OrderInfoService {
         modelInfo.setModelStock(modelInfo.getModelStock() - orderInfo.getOrderCount());
         modelInfoMapper.subStock(modelInfo);
         modelInfoService.checkStock(orderInfo.getProductId());
+        productInfo.setProductSaleVolume(productInfo.getProductSaleVolume() + orderInfo.getOrderCount());
+        productInfoMapper.addVolume(productInfo);
         return "下单成功！！！";
     }
 
@@ -163,7 +165,7 @@ public class OrderInfoService {
         if ("0".equals(orderInfo.getProductType())){
             //虚拟产品
             String qrcodeNumber = GetRandom.getRandomNumber(8);
-            String qrcodeId = fileInfoService.createQRCode(forePath + qrcodeNumber + "\\");
+            String qrcodeId = fileInfoService.createQRCode(forePath + qrcodeNumber);
             orderInfo.setQrcodeImg(qrcodeId);
             orderInfo.setQrcodeNumber(qrcodeNumber);
         } else if ("1".equals(orderInfo.getProductType())){
@@ -175,6 +177,7 @@ public class OrderInfoService {
             return "订单提交失败!";
         }
         orderInfoMapper.insertOrder(orderInfo);
+        ProductInfo productInfo = productInfoMapper.selectProductById(orderInfo.getProductId());
         //减少兑换次数
         supervipInfoMapper.subNumber(orderInfo.getUserId());
         //记录已经购买
@@ -191,6 +194,8 @@ public class OrderInfoService {
         if (!modelInfoService.checkStock(orderInfo.getProductId())){
             productInfoMapper.saleOut(orderInfo.getProductId());
         }
+        productInfo.setProductSaleVolume(productInfo.getProductSaleVolume() + orderInfo.getOrderCount());
+        productInfoMapper.addVolume(productInfo);
         return "下单成功！！！";
     }
 

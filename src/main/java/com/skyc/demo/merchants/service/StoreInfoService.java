@@ -1,5 +1,6 @@
 package com.skyc.demo.merchants.service;
 
+import com.skyc.demo.merchants.dao.ProductInfoMapper;
 import com.skyc.demo.merchants.dao.StoreInfoMapper;
 import com.skyc.demo.merchants.po.StoreInfo;
 import com.skyc.demo.util.GetNowDate;
@@ -15,6 +16,9 @@ public class StoreInfoService {
 
     @Autowired
     StoreInfoMapper storeInfoMapper;
+
+    @Autowired
+    ProductInfoMapper productInfoMapper;
 
     @Value("${insertSuc}")
     String insertSuc;
@@ -69,6 +73,7 @@ public class StoreInfoService {
     }
 
     public int deleteStore(String id){
+        productInfoMapper.deleteAllProduct(id);
         return storeInfoMapper.deleteStore(id);
     }
 

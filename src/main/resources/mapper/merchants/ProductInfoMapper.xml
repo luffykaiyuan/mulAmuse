@@ -522,4 +522,18 @@
     set sale_out = '1'
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <update id="addVolume" parameterType="com.skyc.demo.merchants.po.ProductInfo">
+    update product_info
+    <set>
+      <if test="productSaleVolume != null">
+        product_sale_volume = #{productSaleVolume,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <update id="deleteAllProduct" parameterType="java.lang.String">
+    update product_info
+    set status = '0'
+    where store_id = #{storeId,jdbcType=VARCHAR}
+  </update>
 </mapper>
