@@ -53,19 +53,23 @@ public class CallBackCon {
         HttpSession session = request.getSession();
         boolean existFlag = callWx(request, response, session);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+        //被邀请人是否存在
         if (existFlag){
             String fatherId = (String) session.getAttribute("fatherId");
             UserInfo fatherInfo = userInfoMapper.selectUserById(fatherId);
             userInfo.setFatherId(fatherId);
             userInfo.setFatherTitle(fatherInfo.getUserTitle());
+            //是否有爷级
             if (!StringUtils.isEmpty(fatherInfo.getFatherId())){
                 userInfo.setGrandId(fatherInfo.getFatherId());
                 userInfo.setGrandTitle(fatherInfo.getFatherTitle());
             }
             UserInfo userInfoNew = userInfoService.insertUser(userInfo);
-            if (fatherInfo.getUserRank() == "0"){
+            //邀请人是不是会员，不是则进入
+            if ("0".equals(fatherInfo.getUserRank())){
                 supervipInviteService.addShare(userInfo.getFatherId());
             }
+            //邀请人+1，并更新
             fatherInfo.setInviteNumber(fatherInfo.getInviteNumber() + 1);
             if (fatherInfo.getInviteNumber() == 1){
                 fatherInfo.setUserTitle("1");
@@ -74,7 +78,7 @@ public class CallBackCon {
             } else if (fatherInfo.getInviteNumber() >= 30){
                 fatherInfo.setUserTitle("3");
             }
-            userInfoMapper.updateUser(userInfo);
+            userInfoMapper.updateUser(fatherInfo);
 
         }
         String toPage = (String) session.getAttribute("toPage");
