@@ -46,7 +46,7 @@ public class SupervipInviteService {
     public void addShare(String userId){
         supervipInviteMapper.addShare(userId);
         SupervipInvite supervipInvite = supervipInviteMapper.selectInvite(userId);
-        if (supervipInvite.getHaveInvite() >= 3){
+        if (supervipInvite.getHaveInvite() >= 1){
             SupervipInfo supervipInfo = new SupervipInfo();
             supervipInfo.setId(UUIDUtils.getUUID(16));
             supervipInfo.setUserId(userId);
