@@ -68,6 +68,7 @@ public class CallBackCon {
             //邀请人是不是会员，不是则进入
             if ("0".equals(fatherInfo.getUserRank())){
                 supervipInviteService.addShare(userInfo.getFatherId());
+                fatherInfo.setUserRank("1");
             }
             //邀请人+1，并更新
             fatherInfo.setInviteNumber(fatherInfo.getInviteNumber() + 1);

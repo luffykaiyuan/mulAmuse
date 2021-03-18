@@ -15,9 +15,9 @@ import java.util.List;
 public class GetCommission {
 
     public static float[] getProductCommission(UserInfo userInfo, ProductInfo productInfo){
-        int myTitle = Integer.parseInt(userInfo.getUserTitle());
-        int fatherTitle = Integer.parseInt(userInfo.getFatherTitle());
-        int grandTitle = Integer.parseInt(userInfo.getGrandTitle());
+        int myTitle = Integer.parseInt(userInfo.getUserTitle().trim());
+        int fatherTitle = Integer.parseInt(userInfo.getFatherTitle().trim());
+        int grandTitle = Integer.parseInt(userInfo.getGrandTitle().trim());
         float[] allCommission = getCake(userInfo, productInfo, myTitle, fatherTitle, grandTitle);
         for (int i = 0; i < allCommission.length; i++) {
             System.out.println(allCommission[i]);
