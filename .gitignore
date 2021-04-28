@@ -34,3 +34,4 @@ build/
 .vscode/
 mvnw.cmd
 *.html___jb_tmp___
+src/main/java/com/skyc/demo/util/ali/AliYunParameterUtil.java
