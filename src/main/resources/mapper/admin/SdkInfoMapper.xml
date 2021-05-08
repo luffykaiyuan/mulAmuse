@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyc.demo.admin.dao.SdkInfoMapper">
+  <resultMap id="BaseResultMap" type="com.skyc.demo.admin.po.SdkInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="sdk_number" jdbcType="VARCHAR" property="sdkNumber" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="end_time" jdbcType="VARCHAR" property="endTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, sdk_number, add_time, end_time, status
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sdk_info
+    where status = '1'
+  </select>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sdk_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBySdk" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sdk_info
+    where sdk_number = #{sdkNumber,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertSdk" parameterType="com.skyc.demo.admin.po.SdkInfo">
+    insert into sdk_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="sdkNumber != null">
+        sdk_number,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="sdkNumber != null">
+        #{sdkNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateSdk" parameterType="com.skyc.demo.admin.po.SdkInfo">
+    update sdk_info
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sdk_number = #{sdkNumber,jdbcType=VARCHAR}
+  </update>
+</mapper>
